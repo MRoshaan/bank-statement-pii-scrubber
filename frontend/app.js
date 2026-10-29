@@ -7,6 +7,8 @@ const state = {
   fileDetails: [],
   analysis: null,
   sessionId: null,
+  chatVersion: 0,
+  chatPending: false,
 };
 
 const SUGGESTIONS = [
@@ -229,6 +231,7 @@ $("#scrub-btn").addEventListener("click", async () => {
     state.fileDetails = data.files || [];
     state.analysis = null;
     state.sessionId = null;
+    state.chatVersion += 1;
     renderBatch();
     showAlert(`Scrubbed ${data.batch.file_count} files and stored batch ${shortId(data.batch.id)}.`, "success");
     $("#results").scrollIntoView({ behavior: "smooth", block: "start" });
@@ -341,18 +344,21 @@ for (const tab of $$(".tab")) {
 
 $("#analyze-btn").addEventListener("click", async () => {
   if (!state.batch) return;
+  const batchId = state.batch.id;
   const button = $("#analyze-btn");
   setBusy(button, true, "Analyzing…");
   $("#analysis-status").classList.remove("hidden");
   $("#analysis-status").replaceChildren(el("p", "muted", "Sending scrubbed facts to Groq…"));
   try {
-    const response = await fetch(`/api/v1/batches/${state.batch.id}/analyze`, { method: "POST" });
+    const response = await fetch(`/api/v1/batches/${batchId}/analyze`, { method: "POST" });
     if (!response.ok) throw new Error(await readError(response));
     const analysis = await response.json();
+    if (state.batch?.id !== batchId) return;
     state.analysis = analysis;
     renderAnalysis(analysis);
-    showAlert("Analysis generated and grounded.", "success");
+    showAlert(analysis.status === "fallback" ? "Analysis generated from deterministic facts." : "Analysis generated and grounded.", "success");
   } catch (error) {
+    if (state.batch?.id !== batchId) return;
     $("#analysis-status").replaceChildren(el("p", "fineprint", error.message || "Analysis failed."));
     showAlert(error.message || "Analysis failed.");
   } finally {
@@ -505,22 +511,26 @@ function appendMessage(role, text, meta = {}) {
 
 $("#chat-form").addEventListener("submit", async (event) => {
   event.preventDefault();
-  if (!state.batch) return;
+  if (!state.batch || state.chatPending) return;
+  const batchId = state.batch.id;
+  const chatVersion = state.chatVersion;
   const input = $("#chat-input");
   const message = input.value.trim();
   if (!message) return;
   const button = $("#chat-form button");
+  state.chatPending = true;
   appendMessage("user", message);
   input.value = "";
   setBusy(button, true, "Thinking…");
   try {
-    const response = await fetch(`/api/v1/batches/${state.batch.id}/chat`, {
+    const response = await fetch(`/api/v1/batches/${batchId}/chat`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message, session_id: state.sessionId }),
     });
     if (!response.ok) throw new Error(await readError(response));
     const data = await response.json();
+    if (state.batch?.id !== batchId || state.chatVersion !== chatVersion) return;
     state.sessionId = data.session_id;
     appendMessage("assistant", data.answer, {
       grounded: data.grounded,
@@ -532,15 +542,18 @@ $("#chat-form").addEventListener("submit", async (event) => {
       ? "Answer checked against deterministic facts and retrieved transactions."
       : "This answer is not fully grounded; treat it with caution.";
   } catch (error) {
+    if (state.batch?.id !== batchId || state.chatVersion !== chatVersion) return;
     appendMessage("assistant", error.message || "Chat failed.");
     showAlert(error.message || "Chat failed.");
   } finally {
+    state.chatPending = false;
     setBusy(button, false);
   }
 });
 
 $("#new-chat").addEventListener("click", () => {
   state.sessionId = null;
+  state.chatVersion += 1;
   $("#chat-messages").replaceChildren();
   $("#chat-meta").textContent = "";
   renderSuggestions();
