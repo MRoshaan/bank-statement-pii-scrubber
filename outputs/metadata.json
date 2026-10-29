@@ -1,0 +1,8 @@
+{
+  "batch_id": "cc6ad43f-8441-485e-9457-dd9c36196c1c",
+  "stored_in_postgres": true,
+  "file_count": 4,
+  "transaction_count": 119,
+  "combined_output": "scrubbed_combined.txt",
+  "per_file_output": "per_file/"
+}

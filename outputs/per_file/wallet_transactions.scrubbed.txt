@@ -1,0 +1,57 @@
+Customer Name,Bilal Hassan Khan,,,
+Wallet ID,<WALLET_ID>,,,
+Wallet Account Number,<ACCOUNT_NUMBER>,,,
+IBAN,<IBAN>,,,
+Registered CNIC,<NATIONAL_ID>,,,
+Registered Email,<EMAIL>,,,
+Linked Card,521234******2070,,,
+Statement Period,01 Apr 2026 to 30 Apr 2026,,,
+Opening Balance,"8,450.50",Closing Balance,"21,294.29",
+Total Spent,"105,456.21",Total Received,"118,300.00",
+,,,,
+TIMESTAMP,TYPE,DESCRIPTION,AMOUNT,BALANCE
+2026-04-01 08:55:12,Merchant Payment,Paid to Foodpanda Karachi PK|Visa xxxx2070,-1240.50,7210.00
+2026-04-01 18:22:47,Mobile Top-Up,Mobile top-up purchased |Ufone <PHONE> Nickname: my ufone,-500.00,6710.00
+2026-04-02 10:14:03,Raast In,"Incoming fund transfer from Bilal Hassan Khan, Crescent Bank IBAN <IBAN>|Transaction ID <REFERENCE>","+25,000.00","31,710.00"
+2026-04-02 13:40:29,Merchant Payment,Paid to Foodpanda Karachi PK|Visa xxxx2070,-985.75,30724.25
+2026-04-03 19:22:51,Peer to Peer,Money sent to Hamza Qureshi|(<PAYMENT_HANDLE>) NayaPay <WALLET_ID>,-5000.00,25724.25
+2026-04-04 09:12:36,Online,Paid to Careem Rides Karachi PK|Visa xxxx2070,-435.00,25289.25
+2026-04-04 21:48:10,Merchant Payment,Paid to Foodpanda Karachi PK|Visa xxxx2070,-1512.30,23776.95
+2026-04-05 16:40:44,Bill Payment (1LINK),Paid to StormFiber|Consumer Number: <REFERENCE> Consumer Name: Bilal Khan Alias: Internet Bill,-4200.00,19576.95
+2026-04-06 12:05:18,POS,"Paid to IMTIAZ SUPER MARKET, GULSHAN BRANCH KARACHI PK|Visa xxxx2070",-6320.40,13256.55
+2026-04-07 18:41:09,Raast Out,Outgoing fund transfer to Bilal Hassan Khan SadaPay-<ACCOUNT_ID>|Nickname: my sadapay Transaction ID <REFERENCE>,-8000.00,5256.55
+2026-04-08 20:31:55,Merchant Payment,Paid to Foodpanda Karachi PK|Visa xxxx2070,-742.99,4513.56
+2026-04-09 12:35:27,Raast In,"Incoming fund transfer from Gulf Freelance Portal LLC MCB-<ACCOUNT_ID>|Invoice <REFERENCE>, Transaction ID <REFERENCE>","+62,500.00","67,013.56"
+2026-04-09 13:02:41,Raast Out,Outgoing fund transfer to Ammi Jaan easypaisa Bank-<ACCOUNT_ID>|Nickname: Ammi kharcha Transaction ID <REFERENCE>,"-15,000.00","52,013.56"
+2026-04-10 20:12:33,Online,Paid to Careem Rides Karachi PK|Visa xxxx2070,-850.00,51163.56
+2026-04-11 21:30:02,Peer to Peer,Money received from Ayesha Siddiqui|(<PAYMENT_HANDLE>) NayaPay <WALLET_ID>,+3000.00,54163.56
+2026-04-12 12:01:14,Cash Withdrawal,Cash Withdrawn at ATM|Visa xxxx2070 Trace <REFERENCE>,"-20,000.00","34,163.56"
+2026-04-12 14:44:58,POS,Paid to CHASE UP SHOPPING KARACHI PK|Visa xxxx2070,-2890.00,31273.56
+2026-04-13 09:02:11,Service,SIM reissue verification|CNIC <NATIONAL_ID> submitted at Ufone franchise Gulshan,0.00,31273.56
+2026-04-13 23:11:37,Merchant Payment,Paid to Foodpanda Karachi PK|Visa xxxx2070,-1105.50,30168.06
+2026-04-14 22:18:26,Merchant Payment,Paid to Foodpanda Karachi PK|Visa xxxx2070,-980.25,29187.81
+2026-04-14 22:18:26,Merchant Payment,Paid to Foodpanda Karachi PK|Visa xxxx2070,-980.25,29187.81
+2026-04-15 10:20:05,Refund,Refund from Foodpanda Karachi PK|Visa xxxx2070 confirmation sent to <EMAIL>,+980.25,30168.06
+2026-04-15 19:35:48,Mobile Top-Up,Mobile top-up purchased |Zong <PHONE> Nickname: office sim,-300.00,29868.06
+2026-04-16 21:27:12,Bill Payment (1LINK),Paid to K-Electric|Consumer Number: <REFERENCE> Consumer Name: Bilal Khan Alias: ELECTRICITY â_x009a_¡,-9120.00,20748.06
+2026-04-16 21:31:39,Bill Payment (1LINK),Paid to Karachi Water & Sewerage Corporation|Consumer Number: Consumer Name: Owner Alias: Pani,-1450.00,19298.06
+2026-04-17 13:26:44,Merchant Payment,Paid to KFC Gulshan Karachi PK|Visa xxxx2070,-1890.00,17408.06
+2026-04-18 15:44:21,Online,Paid to Daraz.pk Karachi PK|Visa xxxx2070 Order <REFERENCE>,-3499.00,13909.06
+2026-04-19 11:08:53,Peer to Peer,Money received from Hamza Qureshi|(<PAYMENT_HANDLE>) NayaPay <WALLET_ID>,+2500.00,16409.06
+2026-04-20 10:09:32,Raast Out,Outgoing fund transfer to Muhammad Irfan easypaisa Bank-<ACCOUNT_ID>|Nickname: Irfan bhai plumber <PHONE> Transaction ID <REFERENCE>,-2500.00,13909.06
+2026-04-20 22:47:15,Merchant Payment,Paid to HAMZA GENERAL STORE KARACHI PK|Visa xxxx2070,-664.80,13244.26
+2026-04-21 09:15:40,Online,Paid to Careem Rides Karachi PK|Visa xxxx2070,-390.00,12854.26
+2026-04-22 17:54:07,Subscription,"Paid to Spotify AB, Stockholm SE|Visa xxxx2070",-499.00,12355.26
+2026-04-23 20:02:59,POS,PAID TO SHANDAR SHINWARI RESTAURANT NATIONAL HIGHWAY KARACHI PK|Visa xxxx2070,-3150.00,9205.26
+2026-04-24 12:30:11,Raast In,Incoming fund transfer from Bilal Hassan Khan Crescent-<ACCOUNT_ID>|Transaction ID <REFERENCE>,"+15,000.00","24,205.26"
+2026-04-24 12:33:57,Cash Withdrawal,Cash Withdrawn at ATM|Visa xxxx2070 Trace <REFERENCE>,"-10,000.00","14,205.26"
+2026-04-25 21:03:16,Raast Out,Outgoing fund transfer to Bilal Hassan Khan Crescent-<ACCOUNT_ID>|Nickname: main bank Transaction ID <REFERENCE>,-5000.00,9205.26
+2026-04-26 14:19:02,Merchant Payment,Paid to Foodpanda Karachi PK|Visa xxxx2070,-873.45,8331.81
+2026-04-27 00:00:03,Peer to Peer,Money sent to Hamza Qureshi|(<PAYMENT_HANDLE>) NayaPay <WALLET_ID>,-1500.00,6831.81
+2026-04-28 16:45:23,Raast In,Incoming fund transfer from Bilal Hassan Khan SadaPay-<ACCOUNT_ID>|Transaction ID <REFERENCE>,"+10,300.00","17,131.81"
+2026-04-29 19:21:34,Reversal,Transaction reversal ATM decline Trace <REFERENCE>|Visa xxxx2070,+2000.00,19131.81
+2026-04-29 23:55:50,Merchant Payment,Paid to Netflix.com Amsterdam NLD|Visa xxxx2070,-1100.00,18031.81
+2026-04-30 18:37:29,Mobile Top-Up,Mobile top-up purchased |Ufone <PHONE> Nickname: my ufone,-500.00,17531.81
+2026-04-30 21:12:08,Merchant Payment,Paid to Foodpanda Karachi PK|Visa xxxx2070,-898.90,16632.91
+2026-04-30 22:40:19,Raast In,Incoming fund transfer from Osman Tariq Meezan-<ACCOUNT_ID>|Nickname: cricket fund wapsi Transaction ID <REFERENCE>,+6000.00,22632.91
+2026-04-30 23:59:58,Fee,Monthly service charges incl. FED|Ref <REFERENCE>,-1338.62,21294.29

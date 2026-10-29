@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:16
+    container_name: pj-bank-db
+    environment:
+      POSTGRES_USER: pjbank
+      POSTGRES_PASSWORD: pjbank_dev_password
+      POSTGRES_DB: pjbank
+    ports:
+      - "5432:5432"
+    volumes:
+      - pjbank_pgdata:/var/lib/postgresql/data
+
+volumes:
+  pjbank_pgdata:

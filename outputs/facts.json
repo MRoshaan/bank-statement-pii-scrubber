@@ -1,0 +1,1340 @@
+{
+  "version": 1,
+  "generated_at": "2026-10-29T14:50:36.473817+00:00",
+  "period": {
+    "start": "2026-04-01",
+    "end": "2026-04-30"
+  },
+  "transaction_count": 119,
+  "currencies": [
+    "CAD",
+    "EUR",
+    "GBP",
+    "INR",
+    "PKR",
+    "USD"
+  ],
+  "by_currency": {
+    "CAD": {
+      "spend": 1731.41,
+      "received": 7191.12,
+      "net": 5459.71,
+      "count": 17
+    },
+    "EUR": {
+      "spend": 1160.53,
+      "received": 3200.0,
+      "net": 2039.47,
+      "count": 7
+    },
+    "GBP": {
+      "spend": 855.04,
+      "received": 2450.0,
+      "net": 1594.96,
+      "count": 9
+    },
+    "INR": {
+      "spend": 30520.0,
+      "received": 85312.0,
+      "net": 54792.0,
+      "count": 8
+    },
+    "PKR": {
+      "spend": 259676.67,
+      "received": 473093.13,
+      "net": 213416.46,
+      "count": 69
+    },
+    "USD": {
+      "spend": 303.77,
+      "received": 382.2,
+      "net": 78.43,
+      "count": 9
+    }
+  },
+  "spend_excluding_transfers_and_reversals": {
+    "CAD": 921.41,
+    "EUR": 1160.53,
+    "GBP": 735.04,
+    "INR": 15520.0,
+    "PKR": 167676.67,
+    "USD": 27.97
+  },
+  "by_category": {
+    "PKR": {
+      "Income": {
+        "spend": 0.0,
+        "received": 312262.88,
+        "net": 312262.88,
+        "count": 5
+      },
+      "Transfers": {
+        "spend": 92000.0,
+        "received": 137850.0,
+        "net": 45850.0,
+        "count": 18
+      },
+      "Fees & Charges": {
+        "spend": 1643.62,
+        "received": 0.0,
+        "net": -1643.62,
+        "count": 5
+      },
+      "Groceries": {
+        "spend": 14325.7,
+        "received": 0.0,
+        "net": -14325.7,
+        "count": 3
+      },
+      "Bills & Utilities": {
+        "spend": 25690.0,
+        "received": 0.0,
+        "net": -25690.0,
+        "count": 9
+      },
+      "Other": {
+        "spend": 30000.0,
+        "received": 0.0,
+        "net": -30000.0,
+        "count": 1
+      },
+      "Cash": {
+        "spend": 70023.44,
+        "received": 0.0,
+        "net": -70023.44,
+        "count": 5
+      },
+      "Entertainment": {
+        "spend": 2710.02,
+        "received": 0.0,
+        "net": -2710.02,
+        "count": 3
+      },
+      "Refunds & Reversals": {
+        "spend": 0.0,
+        "received": 22980.25,
+        "net": 22980.25,
+        "count": 3
+      },
+      "Food & Dining": {
+        "spend": 15219.89,
+        "received": 0.0,
+        "net": -15219.89,
+        "count": 12
+      },
+      "Transport": {
+        "spend": 1675.0,
+        "received": 0.0,
+        "net": -1675.0,
+        "count": 3
+      },
+      "Shopping": {
+        "spend": 6389.0,
+        "received": 0.0,
+        "net": -6389.0,
+        "count": 2
+      }
+    },
+    "GBP": {
+      "Income": {
+        "spend": 0.0,
+        "received": 2450.0,
+        "net": 2450.0,
+        "count": 1
+      },
+      "Groceries": {
+        "spend": 54.2,
+        "received": 0.0,
+        "net": -54.2,
+        "count": 1
+      },
+      "Bills & Utilities": {
+        "spend": 231.0,
+        "received": 0.0,
+        "net": -231.0,
+        "count": 2
+      },
+      "Housing": {
+        "spend": 300.0,
+        "received": 0.0,
+        "net": -300.0,
+        "count": 1
+      },
+      "Entertainment": {
+        "spend": 11.99,
+        "received": 0.0,
+        "net": -11.99,
+        "count": 1
+      },
+      "Shopping": {
+        "spend": 37.85,
+        "received": 0.0,
+        "net": -37.85,
+        "count": 1
+      },
+      "Cash": {
+        "spend": 100.0,
+        "received": 0.0,
+        "net": -100.0,
+        "count": 1
+      },
+      "Transfers": {
+        "spend": 120.0,
+        "received": 0.0,
+        "net": -120.0,
+        "count": 1
+      }
+    },
+    "CAD": {
+      "Income": {
+        "spend": 0.0,
+        "received": 6971.12,
+        "net": 6971.12,
+        "count": 3
+      },
+      "Food & Dining": {
+        "spend": 13.65,
+        "received": 0.0,
+        "net": -13.65,
+        "count": 2
+      },
+      "Transfers": {
+        "spend": 810.0,
+        "received": 220.0,
+        "net": -590.0,
+        "count": 4
+      },
+      "Groceries": {
+        "spend": 251.52,
+        "received": 0.0,
+        "net": -251.52,
+        "count": 2
+      },
+      "Bills & Utilities": {
+        "spend": 183.5,
+        "received": 0.0,
+        "net": -183.5,
+        "count": 2
+      },
+      "Software & Subscriptions": {
+        "spend": 10.0,
+        "received": 0.0,
+        "net": -10.0,
+        "count": 1
+      },
+      "Other": {
+        "spend": 400.0,
+        "received": 0.0,
+        "net": -400.0,
+        "count": 1
+      },
+      "Transport": {
+        "spend": 43.75,
+        "received": 0.0,
+        "net": -43.75,
+        "count": 1
+      },
+      "Entertainment": {
+        "spend": 18.99,
+        "received": 0.0,
+        "net": -18.99,
+        "count": 1
+      }
+    },
+    "EUR": {
+      "Income": {
+        "spend": 0.0,
+        "received": 3200.0,
+        "net": 3200.0,
+        "count": 1
+      },
+      "Groceries": {
+        "spend": 64.35,
+        "received": 0.0,
+        "net": -64.35,
+        "count": 1
+      },
+      "Housing": {
+        "spend": 950.0,
+        "received": 0.0,
+        "net": -950.0,
+        "count": 1
+      },
+      "Entertainment": {
+        "spend": 15.99,
+        "received": 0.0,
+        "net": -15.99,
+        "count": 1
+      },
+      "Shopping": {
+        "spend": 41.2,
+        "received": 0.0,
+        "net": -41.2,
+        "count": 1
+      },
+      "Bills & Utilities": {
+        "spend": 39.99,
+        "received": 0.0,
+        "net": -39.99,
+        "count": 1
+      },
+      "Transport": {
+        "spend": 49.0,
+        "received": 0.0,
+        "net": -49.0,
+        "count": 1
+      }
+    },
+    "INR": {
+      "Income": {
+        "spend": 0.0,
+        "received": 85312.0,
+        "net": 85312.0,
+        "count": 2
+      },
+      "Food & Dining": {
+        "spend": 1660.0,
+        "received": 0.0,
+        "net": -1660.0,
+        "count": 2
+      },
+      "Other": {
+        "spend": 2000.0,
+        "received": 0.0,
+        "net": -2000.0,
+        "count": 1
+      },
+      "Cash": {
+        "spend": 10000.0,
+        "received": 0.0,
+        "net": -10000.0,
+        "count": 1
+      },
+      "Bills & Utilities": {
+        "spend": 1860.0,
+        "received": 0.0,
+        "net": -1860.0,
+        "count": 1
+      },
+      "Transfers": {
+        "spend": 15000.0,
+        "received": 0.0,
+        "net": -15000.0,
+        "count": 1
+      }
+    },
+    "USD": {
+      "Income": {
+        "spend": 0.0,
+        "received": 382.2,
+        "net": 382.2,
+        "count": 3
+      },
+      "Software & Subscriptions": {
+        "spend": 22.98,
+        "received": 0.0,
+        "net": -22.98,
+        "count": 2
+      },
+      "Transfers": {
+        "spend": 192.5,
+        "received": 0.0,
+        "net": -192.5,
+        "count": 2
+      },
+      "Refunds & Reversals": {
+        "spend": 83.3,
+        "received": 0.0,
+        "net": -83.3,
+        "count": 1
+      },
+      "Entertainment": {
+        "spend": 4.99,
+        "received": 0.0,
+        "net": -4.99,
+        "count": 1
+      }
+    }
+  },
+  "top_merchants_by_spend": {
+    "PKR": [
+      {
+        "merchant": "AL-REHMAN ESTATE AGENCY",
+        "spend": 30000.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "K-ELECTRIC",
+        "spend": 18240.0,
+        "received": 0.0,
+        "count": 2
+      },
+      {
+        "merchant": "IMTIAZ SUPER MARKET",
+        "spend": 13660.9,
+        "received": 0.0,
+        "count": 2
+      },
+      {
+        "merchant": "Foodpanda",
+        "spend": 9319.89,
+        "received": 0.0,
+        "count": 9
+      },
+      {
+        "merchant": "StormFiber",
+        "spend": 4200.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "Daraz.pk",
+        "spend": 3499.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "SHANDAR SHINWARI RESTAURANT NATIONAL HIGHWAY",
+        "spend": 3150.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "CHASE UP SHOPPING",
+        "spend": 2890.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "NETFLIX.COM",
+        "spend": 2211.02,
+        "received": 0.0,
+        "count": 2
+      },
+      {
+        "merchant": "KFC Gulshan",
+        "spend": 1890.0,
+        "received": 0.0,
+        "count": 1
+      }
+    ],
+    "GBP": [
+      {
+        "merchant": "SARAH WHITFIELD",
+        "spend": 300.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "COUNCIL TAX",
+        "spend": 142.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "THAMES ENERGY",
+        "spend": 89.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "TESCO STORES 3421",
+        "spend": 54.2,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "AMAZON.CO.UK MKTPLACE",
+        "spend": 37.85,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "SPOTIFY UK LONDON GBR",
+        "spend": 11.99,
+        "received": 0.0,
+        "count": 1
+      }
+    ],
+    "CAD": [
+      {
+        "merchant": "CHECK # IMAGE",
+        "spend": 400.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "WHOLE FOODS MKT #10233",
+        "spend": 132.6,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "LOBLAWS #0762",
+        "spend": 118.92,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "ACH",
+        "spend": 95.4,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "HYDRO ONE BILL PAYMENT ACCT",
+        "spend": 88.1,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "PRESTO FARE",
+        "spend": 43.75,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "NETFLIX.COM",
+        "spend": 18.99,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "GITHUB",
+        "spend": 10.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "STARBUCKS #08841",
+        "spend": 7.25,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "TIM HORTONS #4471",
+        "spend": 6.4,
+        "received": 0.0,
+        "count": 1
+      }
+    ],
+    "EUR": [
+      {
+        "merchant": "KLAUS MUELLER",
+        "spend": 950.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "REWE MARKT",
+        "spend": 64.35,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "BVG TICKET",
+        "spend": 49.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "AMAZON.DE MKTPLACE",
+        "spend": 41.2,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "SEPA-LASTSCHRIFT VODAFONE GMBH MANDATSREF GLAEUBIGER-ID",
+        "spend": 39.99,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "Netflix.com",
+        "spend": 15.99,
+        "received": 0.0,
+        "count": 1
+      }
+    ],
+    "INR": [
+      {
+        "merchant": "PRIYA SHARMA",
+        "spend": 2000.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "MSEB ELECTRICITY CONSUMER",
+        "spend": 1860.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "SWIGGY INSTAMART",
+        "spend": 1240.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "ZOMATO ONLINE ORDER",
+        "spend": 420.0,
+        "received": 0.0,
+        "count": 1
+      }
+    ],
+    "USD": [
+      {
+        "merchant": "Namecheap Inc",
+        "spend": 12.98,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "GitHub Inc",
+        "spend": 10.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "Steam Games (Valve Corp)",
+        "spend": 4.99,
+        "received": 0.0,
+        "count": 1
+      }
+    ]
+  },
+  "top_merchants_by_count": {
+    "PKR": [
+      {
+        "merchant": "Foodpanda",
+        "spend": 9319.89,
+        "received": 0.0,
+        "count": 9
+      },
+      {
+        "merchant": "Careem Rides",
+        "spend": 1675.0,
+        "received": 0.0,
+        "count": 3
+      },
+      {
+        "merchant": "K-ELECTRIC",
+        "spend": 18240.0,
+        "received": 0.0,
+        "count": 2
+      },
+      {
+        "merchant": "IMTIAZ SUPER MARKET",
+        "spend": 13660.9,
+        "received": 0.0,
+        "count": 2
+      },
+      {
+        "merchant": "NETFLIX.COM",
+        "spend": 2211.02,
+        "received": 0.0,
+        "count": 2
+      },
+      {
+        "merchant": "Ufone",
+        "spend": 1000.0,
+        "received": 0.0,
+        "count": 2
+      },
+      {
+        "merchant": "AL-REHMAN ESTATE AGENCY",
+        "spend": 30000.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "StormFiber",
+        "spend": 4200.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "Daraz.pk",
+        "spend": 3499.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "SHANDAR SHINWARI RESTAURANT NATIONAL HIGHWAY",
+        "spend": 3150.0,
+        "received": 0.0,
+        "count": 1
+      }
+    ],
+    "GBP": [
+      {
+        "merchant": "SARAH WHITFIELD",
+        "spend": 300.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "COUNCIL TAX",
+        "spend": 142.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "THAMES ENERGY",
+        "spend": 89.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "TESCO STORES 3421",
+        "spend": 54.2,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "AMAZON.CO.UK MKTPLACE",
+        "spend": 37.85,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "SPOTIFY UK LONDON GBR",
+        "spend": 11.99,
+        "received": 0.0,
+        "count": 1
+      }
+    ],
+    "CAD": [
+      {
+        "merchant": "CHECK # IMAGE",
+        "spend": 400.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "WHOLE FOODS MKT #10233",
+        "spend": 132.6,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "LOBLAWS #0762",
+        "spend": 118.92,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "ACH",
+        "spend": 95.4,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "HYDRO ONE BILL PAYMENT ACCT",
+        "spend": 88.1,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "PRESTO FARE",
+        "spend": 43.75,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "NETFLIX.COM",
+        "spend": 18.99,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "GITHUB",
+        "spend": 10.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "STARBUCKS #08841",
+        "spend": 7.25,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "TIM HORTONS #4471",
+        "spend": 6.4,
+        "received": 0.0,
+        "count": 1
+      }
+    ],
+    "EUR": [
+      {
+        "merchant": "KLAUS MUELLER",
+        "spend": 950.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "REWE MARKT",
+        "spend": 64.35,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "BVG TICKET",
+        "spend": 49.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "AMAZON.DE MKTPLACE",
+        "spend": 41.2,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "SEPA-LASTSCHRIFT VODAFONE GMBH MANDATSREF GLAEUBIGER-ID",
+        "spend": 39.99,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "Netflix.com",
+        "spend": 15.99,
+        "received": 0.0,
+        "count": 1
+      }
+    ],
+    "INR": [
+      {
+        "merchant": "PRIYA SHARMA",
+        "spend": 2000.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "MSEB ELECTRICITY CONSUMER",
+        "spend": 1860.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "SWIGGY INSTAMART",
+        "spend": 1240.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "ZOMATO ONLINE ORDER",
+        "spend": 420.0,
+        "received": 0.0,
+        "count": 1
+      }
+    ],
+    "USD": [
+      {
+        "merchant": "Namecheap Inc",
+        "spend": 12.98,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "GitHub Inc",
+        "spend": 10.0,
+        "received": 0.0,
+        "count": 1
+      },
+      {
+        "merchant": "Steam Games (Valve Corp)",
+        "spend": 4.99,
+        "received": 0.0,
+        "count": 1
+      }
+    ]
+  },
+  "top_counterparties": {
+    "PKR": [
+      {
+        "merchant": "Currency Conversion PKR",
+        "amount": 61050.0,
+        "count": 1
+      },
+      {
+        "merchant": "BILAL HASSAN KHAN",
+        "amount": 43000.0,
+        "count": 3
+      },
+      {
+        "merchant": "Bilal Hassan Khan",
+        "amount": 25000.0,
+        "count": 1
+      },
+      {
+        "merchant": "Bilal Hassan Khan Crescent",
+        "amount": 20000.0,
+        "count": 2
+      },
+      {
+        "merchant": "Bilal Hassan Khan SadaPay",
+        "amount": 18300.0,
+        "count": 2
+      },
+      {
+        "merchant": "RAAST Transfer",
+        "amount": 15000.0,
+        "count": 1
+      },
+      {
+        "merchant": "Ammi Jaan easypaisa Bank",
+        "amount": 15000.0,
+        "count": 1
+      },
+      {
+        "merchant": "AYESHA SIDDIQUI",
+        "amount": 12000.0,
+        "count": 1
+      },
+      {
+        "merchant": "Hamza Qureshi",
+        "amount": 9000.0,
+        "count": 3
+      },
+      {
+        "merchant": "Osman Tariq Meezan",
+        "amount": 6000.0,
+        "count": 1
+      }
+    ],
+    "GBP": [
+      {
+        "merchant": "TRANSFER OVERSEAS REMITLY TO PK BENEFICIARY BILAL HASSAN KHAN",
+        "amount": 120.0,
+        "count": 1
+      }
+    ],
+    "CAD": [
+      {
+        "merchant": "INTERAC e-Transfer TO ROHAN RAGHUNATHAN",
+        "amount": 500.0,
+        "count": 1
+      },
+      {
+        "merchant": "ZELLE PAYMENT TO JENNA ALVAREZ",
+        "amount": 250.0,
+        "count": 1
+      },
+      {
+        "merchant": "INTERAC e-Transfer FROM ANANYA IYER",
+        "amount": 220.0,
+        "count": 1
+      },
+      {
+        "merchant": "VENMO PAYMENT TO",
+        "amount": 60.0,
+        "count": 1
+      }
+    ],
+    "INR": [
+      {
+        "merchant": "SELF",
+        "amount": 15000.0,
+        "count": 1
+      }
+    ],
+    "USD": [
+      {
+        "merchant": "Payoneer Withdrawal",
+        "amount": 152.5,
+        "count": 1
+      },
+      {
+        "merchant": "Money Sent",
+        "amount": 40.0,
+        "count": 1
+      }
+    ]
+  },
+  "largest_transactions": [
+    {
+      "ref": "crescent_bank_statement_apr2026.pdf:18",
+      "date": "2026-04-01",
+      "merchant": "TECHVERSE SOLUTIONS PVT LTD",
+      "category": "Income",
+      "amount": 185000.0,
+      "currency": "PKR",
+      "direction": "credit",
+      "description": "SALARY CREDIT TECHVERSE SOLUTIONS PVT LTD REF"
+    },
+    {
+      "ref": "international_bank_statements_apr2026.docx:81",
+      "date": "2026-04-01",
+      "merchant": "INFOTECH LABS PVT LTD SALARY UTR",
+      "category": "Income",
+      "amount": 85000.0,
+      "currency": "INR",
+      "direction": "credit",
+      "description": "NEFT CR INFOTECH LABS PVT LTD SALARY UTR"
+    },
+    {
+      "ref": "crescent_bank_statement_apr2026.pdf:31",
+      "date": "2026-04-09",
+      "merchant": "Onelink R",
+      "category": "Income",
+      "amount": 62500.0,
+      "currency": "PKR",
+      "direction": "credit",
+      "description": "IBFT CR Apr09-12:33:41 -MZN GULF FREELANCE PORTAL LLC INTERNET PK OTHERS Onelink R2"
+    },
+    {
+      "ref": "wallet_transactions.csv:24",
+      "date": "2026-04-09",
+      "merchant": "Gulf Freelance Portal LLC MCB",
+      "category": "Income",
+      "amount": 62500.0,
+      "currency": "PKR",
+      "direction": "credit",
+      "description": "Incoming fund transfer from Gulf Freelance Portal LLC MCB-|Invoice , Transaction ID"
+    },
+    {
+      "ref": "paypal_activity_apr2026.txt:13",
+      "date": "2026-04-03",
+      "merchant": "Currency Conversion PKR",
+      "category": "Transfers",
+      "amount": 61050.0,
+      "currency": "PKR",
+      "direction": "credit",
+      "description": "Currency Conversion PKR — Transfer ( Completed)"
+    },
+    {
+      "ref": "crescent_bank_statement_apr2026.pdf:33",
+      "date": "2026-04-09",
+      "merchant": "AL-REHMAN ESTATE AGENCY",
+      "category": "Other",
+      "amount": -30000.0,
+      "currency": "PKR",
+      "direction": "debit",
+      "description": "CHEQUE NO CLEARING FAVOURING AL-REHMAN ESTATE AGENCY"
+    },
+    {
+      "ref": "crescent_bank_statement_apr2026.pdf:19",
+      "date": "2026-04-02",
+      "merchant": "BILAL HASSAN KHAN",
+      "category": "Transfers",
+      "amount": -25000.0,
+      "currency": "PKR",
+      "direction": "debit",
+      "description": "RAAST P2P FT - Digital 20260402001456 FT BILAL HASSAN KHAN Others BILAL HASSAN KHAN 2026-Apr-02 10:14:22"
+    },
+    {
+      "ref": "wallet_transactions.csv:15",
+      "date": "2026-04-02",
+      "merchant": "Bilal Hassan Khan",
+      "category": "Transfers",
+      "amount": 25000.0,
+      "currency": "PKR",
+      "direction": "credit",
+      "description": "Incoming fund transfer from Bilal Hassan Khan, Crescent Bank IBAN |Transaction ID"
+    },
+    {
+      "ref": "crescent_bank_statement_apr2026.pdf:34",
+      "date": "2026-04-12",
+      "merchant": "CRESCENT ATM GULSHAN BR",
+      "category": "Cash",
+      "amount": -20000.0,
+      "currency": "PKR",
+      "direction": "debit",
+      "description": "ATM WDL CRESCENT ATM GULSHAN BR Trace"
+    },
+    {
+      "ref": "crescent_bank_statement_apr2026.pdf:35",
+      "date": "2026-04-12",
+      "merchant": "CRESCENT ATM GULSHAN BR",
+      "category": "Cash",
+      "amount": -20000.0,
+      "currency": "PKR",
+      "direction": "debit",
+      "description": "ATM WDL CRESCENT ATM GULSHAN BR Trace"
+    },
+    {
+      "ref": "crescent_bank_statement_apr2026.pdf:41",
+      "date": "2026-04-22",
+      "merchant": "REVERSAL ATM WDL",
+      "category": "Refunds & Reversals",
+      "amount": 20000.0,
+      "currency": "PKR",
+      "direction": "credit",
+      "description": "REVERSAL ATM WDL TRACE DISPUTE RESOLVED"
+    },
+    {
+      "ref": "wallet_transactions.csv:28",
+      "date": "2026-04-12",
+      "merchant": "ATM",
+      "category": "Cash",
+      "amount": -20000.0,
+      "currency": "PKR",
+      "direction": "debit",
+      "description": "Cash Withdrawn at ATM| Trace"
+    },
+    {
+      "ref": "crescent_bank_statement_apr2026.pdf:42",
+      "date": "2026-04-24",
+      "merchant": "RAAST Transfer",
+      "category": "Transfers",
+      "amount": 15000.0,
+      "currency": "PKR",
+      "direction": "credit",
+      "description": "RAAST IN FT BILAL HASSAN KHAN Others 2026-Apr-24 12:30:11"
+    },
+    {
+      "ref": "international_bank_statements_apr2026.docx:87",
+      "date": "2026-04-23",
+      "merchant": "SELF",
+      "category": "Transfers",
+      "amount": -15000.0,
+      "currency": "INR",
+      "direction": "debit",
+      "description": "IMPS/P2A//TO RAHUL DESHPANDE// SELF"
+    },
+    {
+      "ref": "wallet_transactions.csv:25",
+      "date": "2026-04-09",
+      "merchant": "Ammi Jaan easypaisa Bank",
+      "category": "Transfers",
+      "amount": -15000.0,
+      "currency": "PKR",
+      "direction": "debit",
+      "description": "Outgoing fund transfer to Ammi Jaan easypaisa Bank-| Ammi kharcha Transaction ID"
+    }
+  ],
+  "recurring_merchants": {
+    "PKR": [
+      {
+        "merchant": "Foodpanda",
+        "spend": 9319.89,
+        "received": 0.0,
+        "count": 9
+      },
+      {
+        "merchant": "Careem Rides",
+        "spend": 1675.0,
+        "received": 0.0,
+        "count": 3
+      },
+      {
+        "merchant": "K-ELECTRIC",
+        "spend": 18240.0,
+        "received": 0.0,
+        "count": 2
+      },
+      {
+        "merchant": "IMTIAZ SUPER MARKET",
+        "spend": 13660.9,
+        "received": 0.0,
+        "count": 2
+      },
+      {
+        "merchant": "NETFLIX.COM",
+        "spend": 2211.02,
+        "received": 0.0,
+        "count": 2
+      },
+      {
+        "merchant": "Ufone",
+        "spend": 1000.0,
+        "received": 0.0,
+        "count": 2
+      }
+    ],
+    "GBP": [],
+    "CAD": [],
+    "EUR": [],
+    "INR": [],
+    "USD": []
+  },
+  "duplicate_groups": [
+    {
+      "date": "2026-04-12",
+      "amount": -20000.0,
+      "description": "atm wdl crescent atm gulshan br trace",
+      "count": 2,
+      "refs": [
+        "crescent_bank_statement_apr2026.pdf:34",
+        "crescent_bank_statement_apr2026.pdf:35"
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "amount": -980.25,
+      "description": "paid to foodpanda karachi pk",
+      "count": 2,
+      "refs": [
+        "wallet_transactions.csv:32",
+        "wallet_transactions.csv:33"
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "amount": 83.3,
+      "description": "fiverr international ltd — payment received ( completed)",
+      "count": 2,
+      "refs": [
+        "paypal_activity_apr2026.txt:16",
+        "paypal_activity_apr2026.txt:17"
+      ]
+    }
+  ],
+  "fees": {
+    "CAD": {
+      "amount": 0.0,
+      "count": 0
+    },
+    "EUR": {
+      "amount": 0.0,
+      "count": 0
+    },
+    "GBP": {
+      "amount": 0.0,
+      "count": 0
+    },
+    "INR": {
+      "amount": 0.0,
+      "count": 0
+    },
+    "PKR": {
+      "amount": 1643.62,
+      "count": 5
+    },
+    "USD": {
+      "amount": 0.0,
+      "count": 0
+    }
+  },
+  "cash_withdrawals": {
+    "CAD": {
+      "amount": 0.0,
+      "count": 0
+    },
+    "EUR": {
+      "amount": 0.0,
+      "count": 0
+    },
+    "GBP": {
+      "amount": 100.0,
+      "count": 1
+    },
+    "INR": {
+      "amount": 10000.0,
+      "count": 1
+    },
+    "PKR": {
+      "amount": 70023.44,
+      "count": 5
+    },
+    "USD": {
+      "amount": 0.0,
+      "count": 0
+    }
+  },
+  "transfers": {
+    "CAD": {
+      "amount": 1030.0,
+      "count": 4
+    },
+    "EUR": {
+      "amount": 0.0,
+      "count": 0
+    },
+    "GBP": {
+      "amount": 120.0,
+      "count": 1
+    },
+    "INR": {
+      "amount": 15000.0,
+      "count": 1
+    },
+    "PKR": {
+      "amount": 229850.0,
+      "count": 18
+    },
+    "USD": {
+      "amount": 192.5,
+      "count": 2
+    }
+  },
+  "monthly": {
+    "PKR": {
+      "2026-04": {
+        "spend": 259676.67,
+        "received": 473093.13
+      }
+    },
+    "GBP": {
+      "2026-04": {
+        "spend": 855.04,
+        "received": 2450.0
+      }
+    },
+    "CAD": {
+      "2026-04": {
+        "spend": 1731.41,
+        "received": 7191.12
+      }
+    },
+    "EUR": {
+      "2026-04": {
+        "spend": 1160.53,
+        "received": 3200.0
+      }
+    },
+    "INR": {
+      "2026-04": {
+        "spend": 30520.0,
+        "received": 85312.0
+      }
+    },
+    "USD": {
+      "2026-04": {
+        "spend": 303.77,
+        "received": 382.2
+      }
+    }
+  },
+  "files": [
+    {
+      "filename": "crescent_bank_statement_apr2026.pdf",
+      "format": "pdf",
+      "transactions": 23,
+      "warnings": []
+    },
+    {
+      "filename": "international_bank_statements_apr2026.docx",
+      "format": "docx",
+      "transactions": 41,
+      "warnings": []
+    },
+    {
+      "filename": "paypal_activity_apr2026.txt",
+      "format": "txt",
+      "transactions": 10,
+      "warnings": []
+    },
+    {
+      "filename": "wallet_transactions.csv",
+      "format": "csv",
+      "transactions": 45,
+      "warnings": []
+    }
+  ],
+  "data_quality": {
+    "parsed_transactions": 119,
+    "files": 4,
+    "missing_dates": 0,
+    "missing_currency": 0,
+    "parse_warnings": []
+  },
+  "notes": [
+    "Amounts are signed; negative means money left the account.",
+    "Currencies are not converted or summed across currencies.",
+    "Transfers, income, refunds/reversals, cash, and fees are excluded from merchant rankings."
+  ]
+}

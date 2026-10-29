@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PJ Bank — Privacy-first statement analysis</title>
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">PJ</span>
+      <div>
+        <strong>PJ Bank</strong>
+        <span>Privacy-first statement analysis</span>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <span class="privacy-pill">Raw files stay on this machine</span>
+      <a class="ghost-link" href="/docs" target="_blank" rel="noreferrer">API docs</a>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <p class="eyebrow">Local scrubber → PostgreSQL → Groq</p>
+      <h1>Turn bank statements into safe budgeting insights.</h1>
+      <p class="hero-copy">
+        Upload PDF, DOCX, CSV, or TXT statements. The scrubber removes account numbers,
+        IBANs, national IDs, phones, emails, addresses, and references locally. Only the
+        scrubbed output is stored and sent to the analysis model.
+      </p>
+      <div class="hero-steps">
+        <span><b>1</b> Upload & scrub</span>
+        <span><b>2</b> Store in PostgreSQL</span>
+        <span><b>3</b> Analyze & chat</span>
+      </div>
+    </section>
+
+    <div id="alert" class="alert hidden" role="status"></div>
+
+    <section class="card upload-card" id="upload-card">
+      <div class="card-head">
+        <div>
+          <p class="eyebrow">Step 1</p>
+          <h2>Upload statements</h2>
+        </div>
+        <span class="muted" id="file-count-label">No files selected</span>
+      </div>
+
+      <label class="dropzone" id="dropzone" for="file-input">
+        <input id="file-input" type="file" multiple accept=".pdf,.docx,.csv,.txt,.text,.zip" />
+        <span class="drop-icon">↓</span>
+        <strong>Drop files here or click to browse</strong>
+        <span class="muted">PDF, DOCX, CSV, TXT, or a ZIP folder. Multiple files supported.</span>
+      </label>
+
+      <div id="selected-files" class="file-list"></div>
+
+      <div class="upload-actions">
+        <label class="field">
+          <span>Batch name <em>(optional)</em></span>
+          <input id="batch-name" type="text" maxlength="120" placeholder="e.g. April 2026 statements" />
+        </label>
+        <button id="scrub-btn" class="primary" type="button">Scrub &amp; store</button>
+      </div>
+      <p class="fineprint">
+        The raw bytes are processed in memory. They are not written to the database and are
+        never sent to Groq. A residual-PII guard blocks analysis if anything survives.
+      </p>
+    </section>
+
+    <section id="results" class="hidden">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Step 2</p>
+          <h2>Scrubbed result</h2>
+        </div>
+        <span id="postgres-badge" class="badge success"></span>
+      </div>
+
+      <div class="stat-grid" id="stat-grid"></div>
+
+      <div class="card">
+        <div class="tabs" role="tablist">
+          <button class="tab active" data-tab="combined" type="button">Combined output</button>
+          <button class="tab" data-tab="files" type="button">Per-file output</button>
+          <button class="tab" data-tab="redactions" type="button">Redactions</button>
+        </div>
+
+        <div class="tab-panel" data-panel="combined">
+          <div class="panel-actions">
+            <span id="combined-meta" class="muted"></span>
+            <div>
+              <button class="secondary" id="copy-combined" type="button">Copy</button>
+              <a class="button secondary" id="download-combined" href="#" download>Download .txt</a>
+            </div>
+          </div>
+          <pre id="combined-text" class="code-block"></pre>
+        </div>
+
+        <div class="tab-panel hidden" data-panel="files">
+          <div id="per-file-list" class="accordion"></div>
+        </div>
+
+        <div class="tab-panel hidden" data-panel="redactions">
+          <p class="muted">Counts only. Original identifiers are never stored.</p>
+          <div id="redaction-table"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <p class="eyebrow">Step 3</p>
+            <h2>Groq budgeting analysis</h2>
+          </div>
+          <button id="analyze-btn" class="primary" type="button">Generate analysis</button>
+        </div>
+        <p class="muted" id="analysis-hint">
+          The model receives a compact facts pack derived from the scrubbed data, a scrubbed
+          excerpt, and a full transaction digest. Deterministic totals are the source of truth.
+        </p>
+        <div id="analysis-status" class="hidden"></div>
+        <div id="analysis-output" class="analysis-output"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <p class="eyebrow">Step 4</p>
+            <h2>Ask follow-up questions</h2>
+          </div>
+          <button id="new-chat" class="secondary" type="button">New chat</button>
+        </div>
+        <p class="muted">
+          Answers are grounded in the analysis, deterministic facts, and retrieved scrubbed
+          transactions. Citations are validated before they are shown.
+        </p>
+        <div id="suggestions" class="suggestions"></div>
+        <div id="chat-messages" class="chat-messages"></div>
+        <form id="chat-form" class="chat-form">
+          <input id="chat-input" type="text" maxlength="4000" placeholder="How much did I spend on food?" autocomplete="off" />
+          <button class="primary" type="submit">Send</button>
+        </form>
+        <p id="chat-meta" class="fineprint"></p>
+      </div>
+    </section>
+
+    <section id="empty-state" class="card empty-state">
+      <h2>Ready when you are</h2>
+      <p class="muted">
+        Start with the four provided sample files or your own statements. The first run also
+        creates the PostgreSQL rows and transaction facts used by the chat.
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>PJ Bank · local PII scrubbing · PostgreSQL · Groq</span>
+    <span>No raw statement text leaves this machine.</span>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

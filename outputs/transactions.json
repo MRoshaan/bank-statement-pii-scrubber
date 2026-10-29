@@ -1,0 +1,2110 @@
+[
+  {
+    "ref": "crescent_bank_statement_apr2026.pdf:18",
+    "filename": "crescent_bank_statement_apr2026.pdf",
+    "line_no": 18,
+    "date": "2026-04-01",
+    "time": null,
+    "description": "SALARY CREDIT TECHVERSE SOLUTIONS PVT LTD REF",
+    "merchant": "TECHVERSE SOLUTIONS PVT LTD",
+    "category": "Income",
+    "amount": 185000.0,
+    "currency": "PKR",
+    "direction": "credit",
+    "balance": 203450.75,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "crescent_bank_statement_apr2026.pdf:19",
+    "filename": "crescent_bank_statement_apr2026.pdf",
+    "line_no": 19,
+    "date": "2026-04-02",
+    "time": null,
+    "description": "RAAST P2P FT - Digital 20260402001456 FT BILAL HASSAN KHAN Others BILAL HASSAN KHAN 2026-Apr-02 10:14:22",
+    "merchant": "BILAL HASSAN KHAN",
+    "category": "Transfers",
+    "amount": -25000.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 178450.75,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "crescent_bank_statement_apr2026.pdf:23",
+    "filename": "crescent_bank_statement_apr2026.pdf",
+    "line_no": 23,
+    "date": "2026-04-02",
+    "time": null,
+    "description": "WHT ON CASH/TRANSFER SEC 231AA",
+    "merchant": "Bank Fee",
+    "category": "Fees & Charges",
+    "amount": -125.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 178325.75,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "crescent_bank_statement_apr2026.pdf:24",
+    "filename": "crescent_bank_statement_apr2026.pdf",
+    "line_no": 24,
+    "date": "2026-04-03",
+    "time": null,
+    "description": "POS PURCHASE IMTIAZ SUPER MARKET KARACHI PK",
+    "merchant": "IMTIAZ SUPER MARKET",
+    "category": "Groceries",
+    "amount": -7340.5,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 170985.25,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "crescent_bank_statement_apr2026.pdf:25",
+    "filename": "crescent_bank_statement_apr2026.pdf",
+    "line_no": 25,
+    "date": "2026-04-04",
+    "time": null,
+    "description": "NATIONAL FOODS LTD DIVIDEND WARRANT 0044918 CDC REF",
+    "merchant": "NATIONAL FOODS LTD",
+    "category": "Income",
+    "amount": 1850.0,
+    "currency": "PKR",
+    "direction": "credit",
+    "balance": 172835.25,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "crescent_bank_statement_apr2026.pdf:26",
+    "filename": "crescent_bank_statement_apr2026.pdf",
+    "line_no": 26,
+    "date": "2026-04-05",
+    "time": null,
+    "description": "UTILITY BILL K-ELECTRIC",
+    "merchant": "K-ELECTRIC",
+    "category": "Bills & Utilities",
+    "amount": -9120.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 163715.25,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "crescent_bank_statement_apr2026.pdf:27",
+    "filename": "crescent_bank_statement_apr2026.pdf",
+    "line_no": 27,
+    "date": "2026-04-07",
+    "time": null,
+    "description": "RAAST P2P FT - Digital FT BILAL HASSAN KHAN Others BILAL HASSAN KHAN 2026-Apr-07 18:40:05, , VALUE DATE:07 Apr 2026",
+    "merchant": "BILAL HASSAN KHAN",
+    "category": "Transfers",
+    "amount": -8000.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 155715.25,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "crescent_bank_statement_apr2026.pdf:30",
+    "filename": "crescent_bank_statement_apr2026.pdf",
+    "line_no": 30,
+    "date": "2026-04-07",
+    "time": null,
+    "description": "TRANSFER FEE RAAST INTERBANK",
+    "merchant": "Bank Fee",
+    "category": "Fees & Charges",
+    "amount": 0.0,
+    "currency": "PKR",
+    "direction": "neutral",
+    "balance": 155715.25,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "crescent_bank_statement_apr2026.pdf:31",
+    "filename": "crescent_bank_statement_apr2026.pdf",
+    "line_no": 31,
+    "date": "2026-04-09",
+    "time": "12:33:41",
+    "description": "IBFT CR Apr09-12:33:41 -MZN GULF FREELANCE PORTAL LLC INTERNET PK OTHERS Onelink R2",
+    "merchant": "Onelink R",
+    "category": "Income",
+    "amount": 62500.0,
+    "currency": "PKR",
+    "direction": "credit",
+    "balance": 218215.25,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "crescent_bank_statement_apr2026.pdf:33",
+    "filename": "crescent_bank_statement_apr2026.pdf",
+    "line_no": 33,
+    "date": "2026-04-09",
+    "time": null,
+    "description": "CHEQUE NO CLEARING FAVOURING AL-REHMAN ESTATE AGENCY",
+    "merchant": "AL-REHMAN ESTATE AGENCY",
+    "category": "Other",
+    "amount": -30000.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 188215.25,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "crescent_bank_statement_apr2026.pdf:34",
+    "filename": "crescent_bank_statement_apr2026.pdf",
+    "line_no": 34,
+    "date": "2026-04-12",
+    "time": null,
+    "description": "ATM WDL CRESCENT ATM GULSHAN BR Trace",
+    "merchant": "CRESCENT ATM GULSHAN BR",
+    "category": "Cash",
+    "amount": -20000.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 168215.25,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "crescent_bank_statement_apr2026.pdf:35",
+    "filename": "crescent_bank_statement_apr2026.pdf",
+    "line_no": 35,
+    "date": "2026-04-12",
+    "time": null,
+    "description": "ATM WDL CRESCENT ATM GULSHAN BR Trace",
+    "merchant": "CRESCENT ATM GULSHAN BR",
+    "category": "Cash",
+    "amount": -20000.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 168215.25,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "crescent_bank_statement_apr2026.pdf:36",
+    "filename": "crescent_bank_statement_apr2026.pdf",
+    "line_no": 36,
+    "date": "2026-04-12",
+    "time": null,
+    "description": "ATM WDL CHARGES OFF-US",
+    "merchant": "OFF-US",
+    "category": "Cash",
+    "amount": -23.44,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 168191.81,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "crescent_bank_statement_apr2026.pdf:37",
+    "filename": "crescent_bank_statement_apr2026.pdf",
+    "line_no": 37,
+    "date": "2026-04-15",
+    "time": null,
+    "description": "ONLINE TRANSFER TO AYESHA SIDDIQUI ACC HABIBMETRO REF POF: FAMILY SUPPORT",
+    "merchant": "AYESHA SIDDIQUI",
+    "category": "Transfers",
+    "amount": -12000.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 156191.81,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "crescent_bank_statement_apr2026.pdf:39",
+    "filename": "crescent_bank_statement_apr2026.pdf",
+    "line_no": 39,
+    "date": "2026-04-18",
+    "time": null,
+    "description": "NETFLIX.COM AMSTERDAM NL USD 3.99 @ 278.45 INCL FED",
+    "merchant": "NETFLIX.COM",
+    "category": "Entertainment",
+    "amount": -1111.02,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 155080.79,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "crescent_bank_statement_apr2026.pdf:40",
+    "filename": "crescent_bank_statement_apr2026.pdf",
+    "line_no": 40,
+    "date": "2026-04-21",
+    "time": null,
+    "description": "MOBILE TOPUP JAZZ SELF",
+    "merchant": "MOBILE TOPUP JAZZ SELF",
+    "category": "Bills & Utilities",
+    "amount": -500.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 154580.79,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "crescent_bank_statement_apr2026.pdf:41",
+    "filename": "crescent_bank_statement_apr2026.pdf",
+    "line_no": 41,
+    "date": "2026-04-22",
+    "time": null,
+    "description": "REVERSAL ATM WDL TRACE DISPUTE RESOLVED",
+    "merchant": "REVERSAL ATM WDL",
+    "category": "Refunds & Reversals",
+    "amount": 20000.0,
+    "currency": "PKR",
+    "direction": "credit",
+    "balance": 174580.79,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "crescent_bank_statement_apr2026.pdf:42",
+    "filename": "crescent_bank_statement_apr2026.pdf",
+    "line_no": 42,
+    "date": "2026-04-24",
+    "time": null,
+    "description": "RAAST IN FT BILAL HASSAN KHAN Others 2026-Apr-24 12:30:11",
+    "merchant": "RAAST Transfer",
+    "category": "Transfers",
+    "amount": 15000.0,
+    "currency": "PKR",
+    "direction": "credit",
+    "balance": 189580.79,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "crescent_bank_statement_apr2026.pdf:44",
+    "filename": "crescent_bank_statement_apr2026.pdf",
+    "line_no": 44,
+    "date": "2026-04-25",
+    "time": null,
+    "description": "RAAST P2P FT - Digital FT BILAL HASSAN KHAN Others BILAL HASSAN KHAN 2026-Apr-25 21:02:44, , VALUE DATE:25 Apr 2026",
+    "merchant": "BILAL HASSAN KHAN",
+    "category": "Transfers",
+    "amount": -10000.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 179580.79,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "crescent_bank_statement_apr2026.pdf:47",
+    "filename": "crescent_bank_statement_apr2026.pdf",
+    "line_no": 47,
+    "date": "2026-04-28",
+    "time": null,
+    "description": "FONEPAY QR PAYMENT CHAI WALA CLIFTON KARACHI",
+    "merchant": "FONEPAY QR PAYMENT CHAI WALA CLIFTON",
+    "category": "Food & Dining",
+    "amount": -860.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 178720.79,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "crescent_bank_statement_apr2026.pdf:48",
+    "filename": "crescent_bank_statement_apr2026.pdf",
+    "line_no": 48,
+    "date": "2026-04-29",
+    "time": null,
+    "description": "SMS BANKING CHARGES APR-26",
+    "merchant": "Bank Fee",
+    "category": "Fees & Charges",
+    "amount": -180.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 178540.79,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "crescent_bank_statement_apr2026.pdf:49",
+    "filename": "crescent_bank_statement_apr2026.pdf",
+    "line_no": 49,
+    "date": "2026-04-30",
+    "time": null,
+    "description": "WHT SEC 236P NON-FILER ADJ REVERSED FILER STATUS CONFIRMED CNIC",
+    "merchant": "Bank Fee",
+    "category": "Fees & Charges",
+    "amount": 0.0,
+    "currency": "PKR",
+    "direction": "neutral",
+    "balance": 178540.79,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "crescent_bank_statement_apr2026.pdf:51",
+    "filename": "crescent_bank_statement_apr2026.pdf",
+    "line_no": 51,
+    "date": "2026-04-30",
+    "time": null,
+    "description": "PROFIT PAYMENT SAVINGS APR-26",
+    "merchant": "PROFIT PAYMENT SAVINGS APR-26",
+    "category": "Income",
+    "amount": 412.88,
+    "currency": "PKR",
+    "direction": "credit",
+    "balance": 178953.67,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:11",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 11,
+    "date": "2026-04-01",
+    "time": null,
+    "description": "SALARY NORTHERN GRID LTD REF",
+    "merchant": "NORTHERN GRID LTD",
+    "category": "Income",
+    "amount": 2450.0,
+    "currency": "GBP",
+    "direction": "credit",
+    "balance": 3120.44,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:12",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 12,
+    "date": "2026-04-03",
+    "time": null,
+    "description": "TESCO STORES 3421 MANCHESTER GBR",
+    "merchant": "TESCO STORES 3421",
+    "category": "Groceries",
+    "amount": -54.2,
+    "currency": "GBP",
+    "direction": "debit",
+    "balance": 3066.24,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:13",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 13,
+    "date": "2026-04-05",
+    "time": null,
+    "description": "DIRECT DEBIT THAMES ENERGY REF",
+    "merchant": "THAMES ENERGY",
+    "category": "Bills & Utilities",
+    "amount": -89.0,
+    "currency": "GBP",
+    "direction": "debit",
+    "balance": 2977.24,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:14",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 14,
+    "date": "2026-04-08",
+    "time": null,
+    "description": "FASTER PAYMENT TO SARAH WHITFIELD SORT ACC REF RENT SHARE",
+    "merchant": "SARAH WHITFIELD",
+    "category": "Housing",
+    "amount": -300.0,
+    "currency": "GBP",
+    "direction": "debit",
+    "balance": 2677.24,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:15",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 15,
+    "date": "2026-04-11",
+    "time": null,
+    "description": "SPOTIFY UK LONDON GBR",
+    "merchant": "SPOTIFY UK LONDON GBR",
+    "category": "Entertainment",
+    "amount": -11.99,
+    "currency": "GBP",
+    "direction": "debit",
+    "balance": 2665.25,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:16",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 16,
+    "date": "2026-04-14",
+    "time": null,
+    "description": "AMAZON.CO.UK MKTPLACE",
+    "merchant": "AMAZON.CO.UK MKTPLACE",
+    "category": "Shopping",
+    "amount": -37.85,
+    "currency": "GBP",
+    "direction": "debit",
+    "balance": 2627.4,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:17",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 17,
+    "date": "2026-04-19",
+    "time": null,
+    "description": "CASH WITHDRAWAL LINK ATM PICCADILLY",
+    "merchant": "LINK ATM PICCADILLY",
+    "category": "Cash",
+    "amount": -100.0,
+    "currency": "GBP",
+    "direction": "debit",
+    "balance": 2527.4,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:18",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 18,
+    "date": "2026-04-24",
+    "time": null,
+    "description": "COUNCIL TAX MANCHESTER CC REF",
+    "merchant": "COUNCIL TAX",
+    "category": "Bills & Utilities",
+    "amount": -142.0,
+    "currency": "GBP",
+    "direction": "debit",
+    "balance": 2385.4,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:19",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 19,
+    "date": "2026-04-28",
+    "time": null,
+    "description": "TRANSFER OVERSEAS REMITLY TO PK BENEFICIARY BILAL HASSAN KHAN IBAN Harborstone National Bank (USA) Harborstone National Bank — Checking Account — April 2026",
+    "merchant": "TRANSFER OVERSEAS REMITLY TO PK BENEFICIARY BILAL HASSAN KHAN",
+    "category": "Transfers",
+    "amount": -120.0,
+    "currency": "GBP",
+    "direction": "debit",
+    "balance": 2265.4,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:28",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 28,
+    "date": "2026-04-01",
+    "time": null,
+    "description": "PAYROLL DEPOSIT LONESTAR ANALYTICS LLC ACH TRACE",
+    "merchant": "LONESTAR ANALYTICS LLC ACH",
+    "category": "Income",
+    "amount": 3850.0,
+    "currency": "CAD",
+    "direction": "credit",
+    "balance": 5214.33,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:29",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 29,
+    "date": "2026-04-03",
+    "time": null,
+    "description": "STARBUCKS #08841 AUSTIN TX",
+    "merchant": "STARBUCKS #08841",
+    "category": "Food & Dining",
+    "amount": -7.25,
+    "currency": "CAD",
+    "direction": "debit",
+    "balance": 5207.08,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:30",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 30,
+    "date": "2026-04-05",
+    "time": null,
+    "description": "ZELLE PAYMENT TO JENNA ALVAREZ REF",
+    "merchant": "ZELLE PAYMENT TO JENNA ALVAREZ",
+    "category": "Transfers",
+    "amount": -250.0,
+    "currency": "CAD",
+    "direction": "debit",
+    "balance": 4957.08,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:31",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 31,
+    "date": "2026-04-08",
+    "time": null,
+    "description": "WHOLE FOODS MKT #10233 AUSTIN TX",
+    "merchant": "WHOLE FOODS MKT #10233",
+    "category": "Groceries",
+    "amount": -132.6,
+    "currency": "CAD",
+    "direction": "debit",
+    "balance": 4824.48,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:32",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 32,
+    "date": "2026-04-12",
+    "time": null,
+    "description": "ACH DEBIT AUSTIN ENERGY UTILITY ACCT",
+    "merchant": "ACH",
+    "category": "Bills & Utilities",
+    "amount": -95.4,
+    "currency": "CAD",
+    "direction": "debit",
+    "balance": 4729.08,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:33",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 33,
+    "date": "2026-04-15",
+    "time": null,
+    "description": "VENMO PAYMENT TO",
+    "merchant": "VENMO PAYMENT TO",
+    "category": "Transfers",
+    "amount": -60.0,
+    "currency": "CAD",
+    "direction": "debit",
+    "balance": 4669.08,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:34",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 34,
+    "date": "2026-04-18",
+    "time": null,
+    "description": "GITHUB, INC. SAN FRANCISCO CA",
+    "merchant": "GITHUB",
+    "category": "Software & Subscriptions",
+    "amount": -10.0,
+    "currency": "CAD",
+    "direction": "debit",
+    "balance": 4659.08,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:35",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 35,
+    "date": "2026-04-22",
+    "time": null,
+    "description": "CHECK # IMAGE REF",
+    "merchant": "CHECK # IMAGE",
+    "category": "Other",
+    "amount": -400.0,
+    "currency": "CAD",
+    "direction": "debit",
+    "balance": 4259.08,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:36",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 36,
+    "date": "2026-04-29",
+    "time": null,
+    "description": "INTEREST PAYMENT Mapleleaf Credit Union (Canada) Mapleleaf Credit Union — Chequing Account — April 2026",
+    "merchant": "INTEREST PAYMENT Mapleleaf",
+    "category": "Income",
+    "amount": 1.12,
+    "currency": "CAD",
+    "direction": "credit",
+    "balance": 4260.2,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:45",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 45,
+    "date": "2026-04-01",
+    "time": null,
+    "description": "PAYROLL DEPOSIT NORTHBRIDGE HEALTH INC",
+    "merchant": "NORTHBRIDGE HEALTH INC",
+    "category": "Income",
+    "amount": 3120.0,
+    "currency": "CAD",
+    "direction": "credit",
+    "balance": 4880.19,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:46",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 46,
+    "date": "2026-04-02",
+    "time": null,
+    "description": "INTERAC e-Transfer TO ROHAN RAGHUNATHAN REF",
+    "merchant": "INTERAC e-Transfer TO ROHAN RAGHUNATHAN",
+    "category": "Transfers",
+    "amount": -500.0,
+    "currency": "CAD",
+    "direction": "debit",
+    "balance": 4380.19,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:47",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 47,
+    "date": "2026-04-06",
+    "time": null,
+    "description": "TIM HORTONS #4471 TORONTO ON",
+    "merchant": "TIM HORTONS #4471",
+    "category": "Food & Dining",
+    "amount": -6.4,
+    "currency": "CAD",
+    "direction": "debit",
+    "balance": 4373.79,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:48",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 48,
+    "date": "2026-04-09",
+    "time": null,
+    "description": "PRESTO FARE TORONTO",
+    "merchant": "PRESTO FARE",
+    "category": "Transport",
+    "amount": -43.75,
+    "currency": "CAD",
+    "direction": "debit",
+    "balance": 4330.04,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:49",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 49,
+    "date": "2026-04-13",
+    "time": null,
+    "description": "LOBLAWS #0762 TORONTO ON",
+    "merchant": "LOBLAWS #0762",
+    "category": "Groceries",
+    "amount": -118.92,
+    "currency": "CAD",
+    "direction": "debit",
+    "balance": 4211.12,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:50",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 50,
+    "date": "2026-04-17",
+    "time": null,
+    "description": "HYDRO ONE BILL PAYMENT ACCT",
+    "merchant": "HYDRO ONE BILL PAYMENT ACCT",
+    "category": "Bills & Utilities",
+    "amount": -88.1,
+    "currency": "CAD",
+    "direction": "debit",
+    "balance": 4123.02,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:51",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 51,
+    "date": "2026-04-21",
+    "time": null,
+    "description": "NETFLIX.COM",
+    "merchant": "NETFLIX.COM",
+    "category": "Entertainment",
+    "amount": -18.99,
+    "currency": "CAD",
+    "direction": "debit",
+    "balance": 4104.03,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:52",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 52,
+    "date": "2026-04-26",
+    "time": null,
+    "description": "INTERAC e-Transfer FROM ANANYA IYER REF Rheinbank AG (Germany) Rheinbank AG — Kontoauszug April 2026 Kontoinhaber: Lukas Brandt Anschrift",
+    "merchant": "INTERAC e-Transfer FROM ANANYA IYER",
+    "category": "Transfers",
+    "amount": 220.0,
+    "currency": "CAD",
+    "direction": "credit",
+    "balance": 4324.03,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:63",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 63,
+    "date": "2026-04-01",
+    "time": null,
+    "description": "GEHALT BERLINER DATENWERK GMBH",
+    "merchant": "BERLINER DATENWERK GMBH",
+    "category": "Income",
+    "amount": 3200.0,
+    "currency": "EUR",
+    "direction": "credit",
+    "balance": 4150.2,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:64",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 64,
+    "date": "2026-04-04",
+    "time": null,
+    "description": "REWE MARKT BERLIN DEU",
+    "merchant": "REWE MARKT",
+    "category": "Groceries",
+    "amount": -64.35,
+    "currency": "EUR",
+    "direction": "debit",
+    "balance": 4085.85,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:65",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 65,
+    "date": "2026-04-07",
+    "time": null,
+    "description": "SEPA-UEBERWEISUNG AN KLAUS MUELLER IBAN VERWENDUNG MIETE APRIL",
+    "merchant": "KLAUS MUELLER",
+    "category": "Housing",
+    "amount": -950.0,
+    "currency": "EUR",
+    "direction": "debit",
+    "balance": 3135.85,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:66",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 66,
+    "date": "2026-04-12",
+    "time": null,
+    "description": "Netflix.com AMSTERDAM NLD",
+    "merchant": "Netflix.com",
+    "category": "Entertainment",
+    "amount": -15.99,
+    "currency": "EUR",
+    "direction": "debit",
+    "balance": 3119.86,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:67",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 67,
+    "date": "2026-04-16",
+    "time": null,
+    "description": "AMAZON.DE MKTPLACE",
+    "merchant": "AMAZON.DE MKTPLACE",
+    "category": "Shopping",
+    "amount": -41.2,
+    "currency": "EUR",
+    "direction": "debit",
+    "balance": 3078.66,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:68",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 68,
+    "date": "2026-04-20",
+    "time": null,
+    "description": "SEPA-LASTSCHRIFT VODAFONE GMBH MANDATSREF GLAEUBIGER-ID",
+    "merchant": "SEPA-LASTSCHRIFT VODAFONE GMBH MANDATSREF GLAEUBIGER-ID",
+    "category": "Bills & Utilities",
+    "amount": -39.99,
+    "currency": "EUR",
+    "direction": "debit",
+    "balance": 3038.67,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:69",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 69,
+    "date": "2026-04-23",
+    "time": null,
+    "description": "BVG TICKET BERLIN Shree Vardhaman Bank (India) Shree Vardhaman Bank — Savings Account Statement — April 2026",
+    "merchant": "BVG TICKET",
+    "category": "Transport",
+    "amount": -49.0,
+    "currency": "EUR",
+    "direction": "debit",
+    "balance": 2989.67,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:81",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 81,
+    "date": "2026-04-01",
+    "time": null,
+    "description": "NEFT CR INFOTECH LABS PVT LTD SALARY UTR",
+    "merchant": "INFOTECH LABS PVT LTD SALARY UTR",
+    "category": "Income",
+    "amount": 85000.0,
+    "currency": "INR",
+    "direction": "credit",
+    "balance": 112340.0,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:82",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 82,
+    "date": "2026-04-03",
+    "time": null,
+    "description": "UPI/P2M//ZOMATO ONLINE ORDER",
+    "merchant": "ZOMATO ONLINE ORDER",
+    "category": "Food & Dining",
+    "amount": -420.0,
+    "currency": "INR",
+    "direction": "debit",
+    "balance": 111920.0,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:83",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 83,
+    "date": "2026-04-06",
+    "time": null,
+    "description": "UPI/P2P//PRIYA SHARMA/",
+    "merchant": "PRIYA SHARMA",
+    "category": "Other",
+    "amount": -2000.0,
+    "currency": "INR",
+    "direction": "debit",
+    "balance": 109920.0,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:84",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 84,
+    "date": "2026-04-10",
+    "time": null,
+    "description": "ATM WDL PUNE CAMP BR",
+    "merchant": "ATM WDL PUNE CAMP BR",
+    "category": "Cash",
+    "amount": -10000.0,
+    "currency": "INR",
+    "direction": "debit",
+    "balance": 99920.0,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:85",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 85,
+    "date": "2026-04-14",
+    "time": null,
+    "description": "BILLPAY MSEB ELECTRICITY CONSUMER",
+    "merchant": "MSEB ELECTRICITY CONSUMER",
+    "category": "Bills & Utilities",
+    "amount": -1860.0,
+    "currency": "INR",
+    "direction": "debit",
+    "balance": 98060.0,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:86",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 86,
+    "date": "2026-04-19",
+    "time": null,
+    "description": "UPI/P2M//SWIGGY INSTAMART",
+    "merchant": "SWIGGY INSTAMART",
+    "category": "Food & Dining",
+    "amount": -1240.0,
+    "currency": "INR",
+    "direction": "debit",
+    "balance": 96820.0,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:87",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 87,
+    "date": "2026-04-23",
+    "time": null,
+    "description": "IMPS/P2A//TO RAHUL DESHPANDE// SELF",
+    "merchant": "SELF",
+    "category": "Transfers",
+    "amount": -15000.0,
+    "currency": "INR",
+    "direction": "debit",
+    "balance": 81820.0,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "international_bank_statements_apr2026.docx:88",
+    "filename": "international_bank_statements_apr2026.docx",
+    "line_no": 88,
+    "date": "2026-04-27",
+    "time": null,
+    "description": "CREDIT INTEREST",
+    "merchant": "CREDIT INTEREST",
+    "category": "Income",
+    "amount": 312.0,
+    "currency": "INR",
+    "direction": "credit",
+    "balance": 82132.0,
+    "meta": {
+      "type": ""
+    }
+  },
+  {
+    "ref": "paypal_activity_apr2026.txt:12",
+    "filename": "paypal_activity_apr2026.txt",
+    "line_no": 12,
+    "date": "2026-04-03",
+    "time": null,
+    "description": "Upwork Escrow Inc () — Payment Received ( Completed)",
+    "merchant": "Upwork Escrow Inc",
+    "category": "Income",
+    "amount": 215.6,
+    "currency": "USD",
+    "direction": "credit",
+    "balance": null,
+    "meta": {
+      "status": " Completed",
+      "fees": " -$4.40",
+      "gross_amount": " +$220.00 USD",
+      "name": " Upwork Escrow Inc (<EMAIL>)",
+      "type": " Payment Received"
+    }
+  },
+  {
+    "ref": "paypal_activity_apr2026.txt:13",
+    "filename": "paypal_activity_apr2026.txt",
+    "line_no": 13,
+    "date": "2026-04-03",
+    "time": null,
+    "description": "Currency Conversion PKR — Transfer ( Completed)",
+    "merchant": "Currency Conversion PKR",
+    "category": "Transfers",
+    "amount": 61050.0,
+    "currency": "PKR",
+    "direction": "credit",
+    "balance": null,
+    "meta": {
+      "status": " Completed",
+      "fees": " PKR 0.00",
+      "gross_amount": " +PKR 61050.00",
+      "name": " Currency Conversion PKR",
+      "type": " Transfer"
+    }
+  },
+  {
+    "ref": "paypal_activity_apr2026.txt:14",
+    "filename": "paypal_activity_apr2026.txt",
+    "line_no": 14,
+    "date": "2026-04-08",
+    "time": null,
+    "description": "GitHub Inc — Preapproved Payment ( Completed)",
+    "merchant": "GitHub Inc",
+    "category": "Software & Subscriptions",
+    "amount": -10.0,
+    "currency": "USD",
+    "direction": "debit",
+    "balance": null,
+    "meta": {
+      "status": " Completed",
+      "fees": " $0.00",
+      "gross_amount": " -$10.00 USD",
+      "name": " GitHub Inc",
+      "type": " Preapproved Payment"
+    }
+  },
+  {
+    "ref": "paypal_activity_apr2026.txt:15",
+    "filename": "paypal_activity_apr2026.txt",
+    "line_no": 15,
+    "date": "2026-04-12",
+    "time": null,
+    "description": "Payoneer Withdrawal Ref — Withdrawal ( Pending then Completed)",
+    "merchant": "Payoneer Withdrawal",
+    "category": "Transfers",
+    "amount": -152.5,
+    "currency": "USD",
+    "direction": "debit",
+    "balance": null,
+    "meta": {
+      "status": " Pending then Completed",
+      "fees": " -$2.50",
+      "gross_amount": " -$150.00 USD",
+      "name": " Payoneer Withdrawal Ref <REFERENCE>",
+      "type": " Withdrawal"
+    }
+  },
+  {
+    "ref": "paypal_activity_apr2026.txt:16",
+    "filename": "paypal_activity_apr2026.txt",
+    "line_no": 16,
+    "date": "2026-04-15",
+    "time": null,
+    "description": "Fiverr International Ltd — Payment Received ( Completed)",
+    "merchant": "Fiverr International Ltd",
+    "category": "Income",
+    "amount": 83.3,
+    "currency": "USD",
+    "direction": "credit",
+    "balance": null,
+    "meta": {
+      "status": " Completed",
+      "fees": " -$1.70",
+      "gross_amount": " +$85.00 USD",
+      "name": " Fiverr International Ltd",
+      "type": " Payment Received"
+    }
+  },
+  {
+    "ref": "paypal_activity_apr2026.txt:17",
+    "filename": "paypal_activity_apr2026.txt",
+    "line_no": 17,
+    "date": "2026-04-15",
+    "time": null,
+    "description": "Fiverr International Ltd — Payment Received ( Completed)",
+    "merchant": "Fiverr International Ltd",
+    "category": "Income",
+    "amount": 83.3,
+    "currency": "USD",
+    "direction": "credit",
+    "balance": null,
+    "meta": {
+      "status": " Completed",
+      "fees": " -$1.70",
+      "gross_amount": " +$85.00 USD",
+      "name": " Fiverr International Ltd",
+      "type": " Payment Received"
+    }
+  },
+  {
+    "ref": "paypal_activity_apr2026.txt:18",
+    "filename": "paypal_activity_apr2026.txt",
+    "line_no": 18,
+    "date": "2026-04-16",
+    "time": null,
+    "description": "Fiverr International Ltd — Payment Reversal ( Completed)",
+    "merchant": "Fiverr International Ltd",
+    "category": "Refunds & Reversals",
+    "amount": -83.3,
+    "currency": "USD",
+    "direction": "debit",
+    "balance": null,
+    "meta": {
+      "status": " Completed",
+      "fees": " +$1.70",
+      "gross_amount": " -$85.00 USD",
+      "name": " Fiverr International Ltd",
+      "type": " Payment Reversal"
+    }
+  },
+  {
+    "ref": "paypal_activity_apr2026.txt:19",
+    "filename": "paypal_activity_apr2026.txt",
+    "line_no": 19,
+    "date": "2026-04-18",
+    "time": null,
+    "description": "Namecheap Inc order domain bilalbuilds.dev — Payment ( Completed)",
+    "merchant": "Namecheap Inc",
+    "category": "Software & Subscriptions",
+    "amount": -12.98,
+    "currency": "USD",
+    "direction": "debit",
+    "balance": null,
+    "meta": {
+      "status": " Completed",
+      "fees": " $0.00",
+      "gross_amount": " -$12.98 USD",
+      "name": " Namecheap Inc order <REFERENCE> domain bilalbuilds.dev",
+      "type": " Payment"
+    }
+  },
+  {
+    "ref": "paypal_activity_apr2026.txt:21",
+    "filename": "paypal_activity_apr2026.txt",
+    "line_no": 21,
+    "date": "2026-04-26",
+    "time": null,
+    "description": "— Money Sent ( Completed)",
+    "merchant": "Money Sent",
+    "category": "Transfers",
+    "amount": -40.0,
+    "currency": "USD",
+    "direction": "debit",
+    "balance": null,
+    "meta": {
+      "status": " Completed",
+      "fees": " $0.00",
+      "gross_amount": " -$40.00 USD",
+      "name": " <EMAIL>",
+      "type": " Money Sent"
+    }
+  },
+  {
+    "ref": "paypal_activity_apr2026.txt:22",
+    "filename": "paypal_activity_apr2026.txt",
+    "line_no": 22,
+    "date": "2026-04-29",
+    "time": null,
+    "description": "Steam Games (Valve Corp) — Payment ( Completed)",
+    "merchant": "Steam Games (Valve Corp)",
+    "category": "Entertainment",
+    "amount": -4.99,
+    "currency": "USD",
+    "direction": "debit",
+    "balance": null,
+    "meta": {
+      "status": " Completed",
+      "fees": " $0.00",
+      "gross_amount": " -$4.99 USD",
+      "name": " Steam Games (Valve Corp)",
+      "type": " Payment"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:13",
+    "filename": "wallet_transactions.csv",
+    "line_no": 13,
+    "date": "2026-04-01",
+    "time": null,
+    "description": "Paid to Foodpanda Karachi PK",
+    "merchant": "Foodpanda",
+    "category": "Food & Dining",
+    "amount": -1240.5,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 7210.0,
+    "meta": {
+      "timestamp": "2026-04-01 08:55:12",
+      "type": "Merchant Payment"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:14",
+    "filename": "wallet_transactions.csv",
+    "line_no": 14,
+    "date": "2026-04-01",
+    "time": null,
+    "description": "Mobile top-up purchased |Ufone my ufone",
+    "merchant": "Ufone",
+    "category": "Bills & Utilities",
+    "amount": -500.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 6710.0,
+    "meta": {
+      "timestamp": "2026-04-01 18:22:47",
+      "type": "Mobile Top-Up"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:15",
+    "filename": "wallet_transactions.csv",
+    "line_no": 15,
+    "date": "2026-04-02",
+    "time": null,
+    "description": "Incoming fund transfer from Bilal Hassan Khan, Crescent Bank IBAN |Transaction ID",
+    "merchant": "Bilal Hassan Khan",
+    "category": "Transfers",
+    "amount": 25000.0,
+    "currency": "PKR",
+    "direction": "credit",
+    "balance": 31710.0,
+    "meta": {
+      "timestamp": "2026-04-02 10:14:03",
+      "type": "Raast In"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:16",
+    "filename": "wallet_transactions.csv",
+    "line_no": 16,
+    "date": "2026-04-02",
+    "time": null,
+    "description": "Paid to Foodpanda Karachi PK",
+    "merchant": "Foodpanda",
+    "category": "Food & Dining",
+    "amount": -985.75,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 30724.25,
+    "meta": {
+      "timestamp": "2026-04-02 13:40:29",
+      "type": "Merchant Payment"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:17",
+    "filename": "wallet_transactions.csv",
+    "line_no": 17,
+    "date": "2026-04-03",
+    "time": null,
+    "description": "Money sent to Hamza Qureshi|() NayaPay",
+    "merchant": "Hamza Qureshi",
+    "category": "Transfers",
+    "amount": -5000.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 25724.25,
+    "meta": {
+      "timestamp": "2026-04-03 19:22:51",
+      "type": "Peer to Peer"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:18",
+    "filename": "wallet_transactions.csv",
+    "line_no": 18,
+    "date": "2026-04-04",
+    "time": null,
+    "description": "Paid to Careem Rides Karachi PK",
+    "merchant": "Careem Rides",
+    "category": "Transport",
+    "amount": -435.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 25289.25,
+    "meta": {
+      "timestamp": "2026-04-04 09:12:36",
+      "type": "Online"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:19",
+    "filename": "wallet_transactions.csv",
+    "line_no": 19,
+    "date": "2026-04-04",
+    "time": null,
+    "description": "Paid to Foodpanda Karachi PK",
+    "merchant": "Foodpanda",
+    "category": "Food & Dining",
+    "amount": -1512.3,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 23776.95,
+    "meta": {
+      "timestamp": "2026-04-04 21:48:10",
+      "type": "Merchant Payment"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:20",
+    "filename": "wallet_transactions.csv",
+    "line_no": 20,
+    "date": "2026-04-05",
+    "time": null,
+    "description": "Paid to StormFiber| Consumer Name: Bilal Khan Internet Bill",
+    "merchant": "StormFiber",
+    "category": "Bills & Utilities",
+    "amount": -4200.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 19576.95,
+    "meta": {
+      "timestamp": "2026-04-05 16:40:44",
+      "type": "Bill Payment (1LINK)"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:21",
+    "filename": "wallet_transactions.csv",
+    "line_no": 21,
+    "date": "2026-04-06",
+    "time": null,
+    "description": "Paid to IMTIAZ SUPER MARKET, GULSHAN BRANCH KARACHI PK",
+    "merchant": "IMTIAZ SUPER MARKET",
+    "category": "Groceries",
+    "amount": -6320.4,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 13256.55,
+    "meta": {
+      "timestamp": "2026-04-06 12:05:18",
+      "type": "POS"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:22",
+    "filename": "wallet_transactions.csv",
+    "line_no": 22,
+    "date": "2026-04-07",
+    "time": null,
+    "description": "Outgoing fund transfer to Bilal Hassan Khan SadaPay-| my sadapay Transaction ID",
+    "merchant": "Bilal Hassan Khan SadaPay",
+    "category": "Transfers",
+    "amount": -8000.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 5256.55,
+    "meta": {
+      "timestamp": "2026-04-07 18:41:09",
+      "type": "Raast Out"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:23",
+    "filename": "wallet_transactions.csv",
+    "line_no": 23,
+    "date": "2026-04-08",
+    "time": null,
+    "description": "Paid to Foodpanda Karachi PK",
+    "merchant": "Foodpanda",
+    "category": "Food & Dining",
+    "amount": -742.99,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 4513.56,
+    "meta": {
+      "timestamp": "2026-04-08 20:31:55",
+      "type": "Merchant Payment"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:24",
+    "filename": "wallet_transactions.csv",
+    "line_no": 24,
+    "date": "2026-04-09",
+    "time": null,
+    "description": "Incoming fund transfer from Gulf Freelance Portal LLC MCB-|Invoice , Transaction ID",
+    "merchant": "Gulf Freelance Portal LLC MCB",
+    "category": "Income",
+    "amount": 62500.0,
+    "currency": "PKR",
+    "direction": "credit",
+    "balance": 67013.56,
+    "meta": {
+      "timestamp": "2026-04-09 12:35:27",
+      "type": "Raast In"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:25",
+    "filename": "wallet_transactions.csv",
+    "line_no": 25,
+    "date": "2026-04-09",
+    "time": null,
+    "description": "Outgoing fund transfer to Ammi Jaan easypaisa Bank-| Ammi kharcha Transaction ID",
+    "merchant": "Ammi Jaan easypaisa Bank",
+    "category": "Transfers",
+    "amount": -15000.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 52013.56,
+    "meta": {
+      "timestamp": "2026-04-09 13:02:41",
+      "type": "Raast Out"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:26",
+    "filename": "wallet_transactions.csv",
+    "line_no": 26,
+    "date": "2026-04-10",
+    "time": null,
+    "description": "Paid to Careem Rides Karachi PK",
+    "merchant": "Careem Rides",
+    "category": "Transport",
+    "amount": -850.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 51163.56,
+    "meta": {
+      "timestamp": "2026-04-10 20:12:33",
+      "type": "Online"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:27",
+    "filename": "wallet_transactions.csv",
+    "line_no": 27,
+    "date": "2026-04-11",
+    "time": null,
+    "description": "Money received from Ayesha Siddiqui|() NayaPay",
+    "merchant": "Ayesha Siddiqui",
+    "category": "Transfers",
+    "amount": 3000.0,
+    "currency": "PKR",
+    "direction": "credit",
+    "balance": 54163.56,
+    "meta": {
+      "timestamp": "2026-04-11 21:30:02",
+      "type": "Peer to Peer"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:28",
+    "filename": "wallet_transactions.csv",
+    "line_no": 28,
+    "date": "2026-04-12",
+    "time": null,
+    "description": "Cash Withdrawn at ATM| Trace",
+    "merchant": "ATM",
+    "category": "Cash",
+    "amount": -20000.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 34163.56,
+    "meta": {
+      "timestamp": "2026-04-12 12:01:14",
+      "type": "Cash Withdrawal"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:29",
+    "filename": "wallet_transactions.csv",
+    "line_no": 29,
+    "date": "2026-04-12",
+    "time": null,
+    "description": "Paid to CHASE UP SHOPPING KARACHI PK",
+    "merchant": "CHASE UP SHOPPING",
+    "category": "Shopping",
+    "amount": -2890.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 31273.56,
+    "meta": {
+      "timestamp": "2026-04-12 14:44:58",
+      "type": "POS"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:30",
+    "filename": "wallet_transactions.csv",
+    "line_no": 30,
+    "date": "2026-04-13",
+    "time": null,
+    "description": "SIM reissue verification|CNIC submitted at Ufone franchise Gulshan",
+    "merchant": "SIM reissue verification",
+    "category": "Bills & Utilities",
+    "amount": 0.0,
+    "currency": "PKR",
+    "direction": "neutral",
+    "balance": 31273.56,
+    "meta": {
+      "timestamp": "2026-04-13 09:02:11",
+      "type": "Service"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:31",
+    "filename": "wallet_transactions.csv",
+    "line_no": 31,
+    "date": "2026-04-13",
+    "time": null,
+    "description": "Paid to Foodpanda Karachi PK",
+    "merchant": "Foodpanda",
+    "category": "Food & Dining",
+    "amount": -1105.5,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 30168.06,
+    "meta": {
+      "timestamp": "2026-04-13 23:11:37",
+      "type": "Merchant Payment"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:32",
+    "filename": "wallet_transactions.csv",
+    "line_no": 32,
+    "date": "2026-04-14",
+    "time": null,
+    "description": "Paid to Foodpanda Karachi PK",
+    "merchant": "Foodpanda",
+    "category": "Food & Dining",
+    "amount": -980.25,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 29187.81,
+    "meta": {
+      "timestamp": "2026-04-14 22:18:26",
+      "type": "Merchant Payment"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:33",
+    "filename": "wallet_transactions.csv",
+    "line_no": 33,
+    "date": "2026-04-14",
+    "time": null,
+    "description": "Paid to Foodpanda Karachi PK",
+    "merchant": "Foodpanda",
+    "category": "Food & Dining",
+    "amount": -980.25,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 29187.81,
+    "meta": {
+      "timestamp": "2026-04-14 22:18:26",
+      "type": "Merchant Payment"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:34",
+    "filename": "wallet_transactions.csv",
+    "line_no": 34,
+    "date": "2026-04-15",
+    "time": null,
+    "description": "Refund from Foodpanda Karachi PK| confirmation sent to",
+    "merchant": "Foodpanda",
+    "category": "Refunds & Reversals",
+    "amount": 980.25,
+    "currency": "PKR",
+    "direction": "credit",
+    "balance": 30168.06,
+    "meta": {
+      "timestamp": "2026-04-15 10:20:05",
+      "type": "Refund"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:35",
+    "filename": "wallet_transactions.csv",
+    "line_no": 35,
+    "date": "2026-04-15",
+    "time": null,
+    "description": "Mobile top-up purchased |Zong office sim",
+    "merchant": "Zong",
+    "category": "Bills & Utilities",
+    "amount": -300.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 29868.06,
+    "meta": {
+      "timestamp": "2026-04-15 19:35:48",
+      "type": "Mobile Top-Up"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:36",
+    "filename": "wallet_transactions.csv",
+    "line_no": 36,
+    "date": "2026-04-16",
+    "time": null,
+    "description": "Paid to K-Electric| Consumer Name: Bilal Khan ELECTRICITY â_x009a_¡",
+    "merchant": "K-Electric",
+    "category": "Bills & Utilities",
+    "amount": -9120.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 20748.06,
+    "meta": {
+      "timestamp": "2026-04-16 21:27:12",
+      "type": "Bill Payment (1LINK)"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:37",
+    "filename": "wallet_transactions.csv",
+    "line_no": 37,
+    "date": "2026-04-16",
+    "time": null,
+    "description": "Paid to Karachi Water & Sewerage Corporation| Consumer Name: Owner Pani",
+    "merchant": "Bill Payment (1LINK)",
+    "category": "Bills & Utilities",
+    "amount": -1450.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 19298.06,
+    "meta": {
+      "timestamp": "2026-04-16 21:31:39",
+      "type": "Bill Payment (1LINK)"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:38",
+    "filename": "wallet_transactions.csv",
+    "line_no": 38,
+    "date": "2026-04-17",
+    "time": null,
+    "description": "Paid to KFC Gulshan Karachi PK",
+    "merchant": "KFC Gulshan",
+    "category": "Food & Dining",
+    "amount": -1890.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 17408.06,
+    "meta": {
+      "timestamp": "2026-04-17 13:26:44",
+      "type": "Merchant Payment"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:39",
+    "filename": "wallet_transactions.csv",
+    "line_no": 39,
+    "date": "2026-04-18",
+    "time": null,
+    "description": "Paid to Daraz.pk Karachi PK| Order",
+    "merchant": "Daraz.pk",
+    "category": "Shopping",
+    "amount": -3499.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 13909.06,
+    "meta": {
+      "timestamp": "2026-04-18 15:44:21",
+      "type": "Online"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:40",
+    "filename": "wallet_transactions.csv",
+    "line_no": 40,
+    "date": "2026-04-19",
+    "time": null,
+    "description": "Money received from Hamza Qureshi|() NayaPay",
+    "merchant": "Hamza Qureshi",
+    "category": "Transfers",
+    "amount": 2500.0,
+    "currency": "PKR",
+    "direction": "credit",
+    "balance": 16409.06,
+    "meta": {
+      "timestamp": "2026-04-19 11:08:53",
+      "type": "Peer to Peer"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:41",
+    "filename": "wallet_transactions.csv",
+    "line_no": 41,
+    "date": "2026-04-20",
+    "time": null,
+    "description": "Outgoing fund transfer to Muhammad Irfan easypaisa Bank-| Irfan bhai plumber Transaction ID",
+    "merchant": "Muhammad Irfan easypaisa Bank",
+    "category": "Transfers",
+    "amount": -2500.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 13909.06,
+    "meta": {
+      "timestamp": "2026-04-20 10:09:32",
+      "type": "Raast Out"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:42",
+    "filename": "wallet_transactions.csv",
+    "line_no": 42,
+    "date": "2026-04-20",
+    "time": null,
+    "description": "Paid to HAMZA GENERAL STORE KARACHI PK",
+    "merchant": "HAMZA GENERAL STORE",
+    "category": "Groceries",
+    "amount": -664.8,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 13244.26,
+    "meta": {
+      "timestamp": "2026-04-20 22:47:15",
+      "type": "Merchant Payment"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:43",
+    "filename": "wallet_transactions.csv",
+    "line_no": 43,
+    "date": "2026-04-21",
+    "time": null,
+    "description": "Paid to Careem Rides Karachi PK",
+    "merchant": "Careem Rides",
+    "category": "Transport",
+    "amount": -390.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 12854.26,
+    "meta": {
+      "timestamp": "2026-04-21 09:15:40",
+      "type": "Online"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:44",
+    "filename": "wallet_transactions.csv",
+    "line_no": 44,
+    "date": "2026-04-22",
+    "time": null,
+    "description": "Paid to Spotify AB, Stockholm SE",
+    "merchant": "Spotify AB",
+    "category": "Entertainment",
+    "amount": -499.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 12355.26,
+    "meta": {
+      "timestamp": "2026-04-22 17:54:07",
+      "type": "Subscription"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:45",
+    "filename": "wallet_transactions.csv",
+    "line_no": 45,
+    "date": "2026-04-23",
+    "time": null,
+    "description": "PAID TO SHANDAR SHINWARI RESTAURANT NATIONAL HIGHWAY KARACHI PK",
+    "merchant": "SHANDAR SHINWARI RESTAURANT NATIONAL HIGHWAY",
+    "category": "Food & Dining",
+    "amount": -3150.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 9205.26,
+    "meta": {
+      "timestamp": "2026-04-23 20:02:59",
+      "type": "POS"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:46",
+    "filename": "wallet_transactions.csv",
+    "line_no": 46,
+    "date": "2026-04-24",
+    "time": null,
+    "description": "Incoming fund transfer from Bilal Hassan Khan Crescent-|Transaction ID",
+    "merchant": "Bilal Hassan Khan Crescent",
+    "category": "Transfers",
+    "amount": 15000.0,
+    "currency": "PKR",
+    "direction": "credit",
+    "balance": 24205.26,
+    "meta": {
+      "timestamp": "2026-04-24 12:30:11",
+      "type": "Raast In"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:47",
+    "filename": "wallet_transactions.csv",
+    "line_no": 47,
+    "date": "2026-04-24",
+    "time": null,
+    "description": "Cash Withdrawn at ATM| Trace",
+    "merchant": "ATM",
+    "category": "Cash",
+    "amount": -10000.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 14205.26,
+    "meta": {
+      "timestamp": "2026-04-24 12:33:57",
+      "type": "Cash Withdrawal"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:48",
+    "filename": "wallet_transactions.csv",
+    "line_no": 48,
+    "date": "2026-04-25",
+    "time": null,
+    "description": "Outgoing fund transfer to Bilal Hassan Khan Crescent-| main bank Transaction ID",
+    "merchant": "Bilal Hassan Khan Crescent",
+    "category": "Transfers",
+    "amount": -5000.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 9205.26,
+    "meta": {
+      "timestamp": "2026-04-25 21:03:16",
+      "type": "Raast Out"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:49",
+    "filename": "wallet_transactions.csv",
+    "line_no": 49,
+    "date": "2026-04-26",
+    "time": null,
+    "description": "Paid to Foodpanda Karachi PK",
+    "merchant": "Foodpanda",
+    "category": "Food & Dining",
+    "amount": -873.45,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 8331.81,
+    "meta": {
+      "timestamp": "2026-04-26 14:19:02",
+      "type": "Merchant Payment"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:50",
+    "filename": "wallet_transactions.csv",
+    "line_no": 50,
+    "date": "2026-04-27",
+    "time": null,
+    "description": "Money sent to Hamza Qureshi|() NayaPay",
+    "merchant": "Hamza Qureshi",
+    "category": "Transfers",
+    "amount": -1500.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 6831.81,
+    "meta": {
+      "timestamp": "2026-04-27 00:00:03",
+      "type": "Peer to Peer"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:51",
+    "filename": "wallet_transactions.csv",
+    "line_no": 51,
+    "date": "2026-04-28",
+    "time": null,
+    "description": "Incoming fund transfer from Bilal Hassan Khan SadaPay-|Transaction ID",
+    "merchant": "Bilal Hassan Khan SadaPay",
+    "category": "Transfers",
+    "amount": 10300.0,
+    "currency": "PKR",
+    "direction": "credit",
+    "balance": 17131.81,
+    "meta": {
+      "timestamp": "2026-04-28 16:45:23",
+      "type": "Raast In"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:52",
+    "filename": "wallet_transactions.csv",
+    "line_no": 52,
+    "date": "2026-04-29",
+    "time": null,
+    "description": "Transaction reversal ATM decline Trace",
+    "merchant": "Transaction reversal ATM decline",
+    "category": "Refunds & Reversals",
+    "amount": 2000.0,
+    "currency": "PKR",
+    "direction": "credit",
+    "balance": 19131.81,
+    "meta": {
+      "timestamp": "2026-04-29 19:21:34",
+      "type": "Reversal"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:53",
+    "filename": "wallet_transactions.csv",
+    "line_no": 53,
+    "date": "2026-04-29",
+    "time": null,
+    "description": "Paid to Netflix.com Amsterdam NLD",
+    "merchant": "Netflix.com",
+    "category": "Entertainment",
+    "amount": -1100.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 18031.81,
+    "meta": {
+      "timestamp": "2026-04-29 23:55:50",
+      "type": "Merchant Payment"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:54",
+    "filename": "wallet_transactions.csv",
+    "line_no": 54,
+    "date": "2026-04-30",
+    "time": null,
+    "description": "Mobile top-up purchased |Ufone my ufone",
+    "merchant": "Ufone",
+    "category": "Bills & Utilities",
+    "amount": -500.0,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 17531.81,
+    "meta": {
+      "timestamp": "2026-04-30 18:37:29",
+      "type": "Mobile Top-Up"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:55",
+    "filename": "wallet_transactions.csv",
+    "line_no": 55,
+    "date": "2026-04-30",
+    "time": null,
+    "description": "Paid to Foodpanda Karachi PK",
+    "merchant": "Foodpanda",
+    "category": "Food & Dining",
+    "amount": -898.9,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 16632.91,
+    "meta": {
+      "timestamp": "2026-04-30 21:12:08",
+      "type": "Merchant Payment"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:56",
+    "filename": "wallet_transactions.csv",
+    "line_no": 56,
+    "date": "2026-04-30",
+    "time": null,
+    "description": "Incoming fund transfer from Osman Tariq Meezan-| cricket fund wapsi Transaction ID",
+    "merchant": "Osman Tariq Meezan",
+    "category": "Transfers",
+    "amount": 6000.0,
+    "currency": "PKR",
+    "direction": "credit",
+    "balance": 22632.91,
+    "meta": {
+      "timestamp": "2026-04-30 22:40:19",
+      "type": "Raast In"
+    }
+  },
+  {
+    "ref": "wallet_transactions.csv:57",
+    "filename": "wallet_transactions.csv",
+    "line_no": 57,
+    "date": "2026-04-30",
+    "time": null,
+    "description": "Monthly service charges incl. FED|Ref",
+    "merchant": "Bank Fee",
+    "category": "Fees & Charges",
+    "amount": -1338.62,
+    "currency": "PKR",
+    "direction": "debit",
+    "balance": 21294.29,
+    "meta": {
+      "timestamp": "2026-04-30 23:59:58",
+      "type": "Fee"
+    }
+  }
+]

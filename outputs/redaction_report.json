@@ -1,0 +1,306 @@
+{
+  "batch_id": "cc6ad43f-8441-485e-9457-dd9c36196c1c",
+  "batch_name": "Provided sample statements",
+  "files": [
+    {
+      "filename": "crescent_bank_statement_apr2026.pdf",
+      "format": "pdf",
+      "output": "per_file/crescent_bank_statement_apr2026.scrubbed.txt",
+      "redaction_counts": {
+        "ACCOUNT_NUMBER": 2,
+        "ADDRESS": 1,
+        "BANK_REF": 3,
+        "BRANCH_CODE": 1,
+        "EMAIL": 1,
+        "IBAN": 3,
+        "NATIONAL_ID": 2,
+        "PHONE": 2,
+        "REFERENCE": 16,
+        "SWIFT_BIC": 4
+      },
+      "findings": [
+        {
+          "entity_type": "ACCOUNT_NUMBER",
+          "placeholder": "<ACCOUNT_NUMBER>",
+          "count": 2
+        },
+        {
+          "entity_type": "ADDRESS",
+          "placeholder": "<ADDRESS>",
+          "count": 1
+        },
+        {
+          "entity_type": "BANK_REF",
+          "placeholder": "<BANK_REF>",
+          "count": 3
+        },
+        {
+          "entity_type": "BRANCH_CODE",
+          "placeholder": "<BRANCH_CODE>",
+          "count": 1
+        },
+        {
+          "entity_type": "EMAIL",
+          "placeholder": "<EMAIL>",
+          "count": 1
+        },
+        {
+          "entity_type": "IBAN",
+          "placeholder": "<IBAN>",
+          "count": 3
+        },
+        {
+          "entity_type": "NATIONAL_ID",
+          "placeholder": "<NATIONAL_ID>",
+          "count": 2
+        },
+        {
+          "entity_type": "PHONE",
+          "placeholder": "<PHONE>",
+          "count": 2
+        },
+        {
+          "entity_type": "REFERENCE",
+          "placeholder": "<REFERENCE>",
+          "count": 16
+        },
+        {
+          "entity_type": "SWIFT_BIC",
+          "placeholder": "<SWIFT_BIC>",
+          "count": 4
+        }
+      ],
+      "warnings": [],
+      "transactions": 23
+    },
+    {
+      "filename": "international_bank_statements_apr2026.docx",
+      "format": "docx",
+      "output": "per_file/international_bank_statements_apr2026.scrubbed.txt",
+      "redaction_counts": {
+        "ACCOUNT_NUMBER": 9,
+        "ADDRESS": 5,
+        "EMAIL": 6,
+        "IBAN": 5,
+        "IFSC": 2,
+        "MICR": 1,
+        "NATIONAL_ID": 4,
+        "PAYMENT_HANDLE": 3,
+        "PHONE": 5,
+        "REFERENCE": 16,
+        "ROUTING_NUMBER": 7,
+        "SWIFT_BIC": 2,
+        "TAX_ID": 2
+      },
+      "findings": [
+        {
+          "entity_type": "ACCOUNT_NUMBER",
+          "placeholder": "<ACCOUNT_NUMBER>",
+          "count": 9
+        },
+        {
+          "entity_type": "ADDRESS",
+          "placeholder": "<ADDRESS>",
+          "count": 5
+        },
+        {
+          "entity_type": "EMAIL",
+          "placeholder": "<EMAIL>",
+          "count": 6
+        },
+        {
+          "entity_type": "IBAN",
+          "placeholder": "<IBAN>",
+          "count": 5
+        },
+        {
+          "entity_type": "IFSC",
+          "placeholder": "<IFSC>",
+          "count": 2
+        },
+        {
+          "entity_type": "MICR",
+          "placeholder": "<MICR>",
+          "count": 1
+        },
+        {
+          "entity_type": "NATIONAL_ID",
+          "placeholder": "<NATIONAL_ID>",
+          "count": 4
+        },
+        {
+          "entity_type": "PAYMENT_HANDLE",
+          "placeholder": "<PAYMENT_HANDLE>",
+          "count": 3
+        },
+        {
+          "entity_type": "PHONE",
+          "placeholder": "<PHONE>",
+          "count": 5
+        },
+        {
+          "entity_type": "REFERENCE",
+          "placeholder": "<REFERENCE>",
+          "count": 16
+        },
+        {
+          "entity_type": "ROUTING_NUMBER",
+          "placeholder": "<ROUTING_NUMBER>",
+          "count": 7
+        },
+        {
+          "entity_type": "SWIFT_BIC",
+          "placeholder": "<SWIFT_BIC>",
+          "count": 2
+        },
+        {
+          "entity_type": "TAX_ID",
+          "placeholder": "<TAX_ID>",
+          "count": 2
+        }
+      ],
+      "warnings": [],
+      "transactions": 41
+    },
+    {
+      "filename": "paypal_activity_apr2026.txt",
+      "format": "txt",
+      "output": "per_file/paypal_activity_apr2026.scrubbed.txt",
+      "redaction_counts": {
+        "ACCOUNT_NUMBER": 1,
+        "ADDRESS": 1,
+        "CARD_EXPIRY": 1,
+        "EMAIL": 3,
+        "IP_ADDRESS": 1,
+        "PHONE": 2,
+        "REFERENCE": 7
+      },
+      "findings": [
+        {
+          "entity_type": "ACCOUNT_NUMBER",
+          "placeholder": "<ACCOUNT_NUMBER>",
+          "count": 1
+        },
+        {
+          "entity_type": "ADDRESS",
+          "placeholder": "<ADDRESS>",
+          "count": 1
+        },
+        {
+          "entity_type": "CARD_EXPIRY",
+          "placeholder": "<CARD_EXPIRY>",
+          "count": 1
+        },
+        {
+          "entity_type": "EMAIL",
+          "placeholder": "<EMAIL>",
+          "count": 3
+        },
+        {
+          "entity_type": "IP_ADDRESS",
+          "placeholder": "<IP_ADDRESS>",
+          "count": 1
+        },
+        {
+          "entity_type": "PHONE",
+          "placeholder": "<PHONE>",
+          "count": 2
+        },
+        {
+          "entity_type": "REFERENCE",
+          "placeholder": "<REFERENCE>",
+          "count": 7
+        }
+      ],
+      "warnings": [],
+      "transactions": 10
+    },
+    {
+      "filename": "wallet_transactions.csv",
+      "format": "csv",
+      "output": "per_file/wallet_transactions.scrubbed.txt",
+      "redaction_counts": {
+        "ACCOUNT_ID": 8,
+        "ACCOUNT_NUMBER": 1,
+        "EMAIL": 2,
+        "IBAN": 2,
+        "NATIONAL_ID": 2,
+        "PAYMENT_HANDLE": 4,
+        "PHONE": 4,
+        "REFERENCE": 17,
+        "WALLET_ID": 5
+      },
+      "findings": [
+        {
+          "entity_type": "ACCOUNT_ID",
+          "placeholder": "<ACCOUNT_ID>",
+          "count": 8
+        },
+        {
+          "entity_type": "ACCOUNT_NUMBER",
+          "placeholder": "<ACCOUNT_NUMBER>",
+          "count": 1
+        },
+        {
+          "entity_type": "EMAIL",
+          "placeholder": "<EMAIL>",
+          "count": 2
+        },
+        {
+          "entity_type": "IBAN",
+          "placeholder": "<IBAN>",
+          "count": 2
+        },
+        {
+          "entity_type": "NATIONAL_ID",
+          "placeholder": "<NATIONAL_ID>",
+          "count": 2
+        },
+        {
+          "entity_type": "PAYMENT_HANDLE",
+          "placeholder": "<PAYMENT_HANDLE>",
+          "count": 4
+        },
+        {
+          "entity_type": "PHONE",
+          "placeholder": "<PHONE>",
+          "count": 4
+        },
+        {
+          "entity_type": "REFERENCE",
+          "placeholder": "<REFERENCE>",
+          "count": 17
+        },
+        {
+          "entity_type": "WALLET_ID",
+          "placeholder": "<WALLET_ID>",
+          "count": 5
+        }
+      ],
+      "warnings": [],
+      "transactions": 45
+    }
+  ],
+  "totals": {
+    "IBAN": 10,
+    "IFSC": 2,
+    "MICR": 1,
+    "EMAIL": 12,
+    "PHONE": 13,
+    "TAX_ID": 2,
+    "ADDRESS": 7,
+    "BANK_REF": 3,
+    "REFERENCE": 56,
+    "SWIFT_BIC": 6,
+    "WALLET_ID": 5,
+    "ACCOUNT_ID": 8,
+    "IP_ADDRESS": 1,
+    "BRANCH_CODE": 1,
+    "CARD_EXPIRY": 1,
+    "NATIONAL_ID": 8,
+    "ACCOUNT_NUMBER": 13,
+    "PAYMENT_HANDLE": 7,
+    "ROUTING_NUMBER": 7
+  },
+  "warnings": []
+}

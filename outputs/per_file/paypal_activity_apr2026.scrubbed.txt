@@ -1,0 +1,25 @@
+PayPal Activity Export — generated 01 May 2026 03:14 UTC
+Account: <EMAIL>
+Account Holder: Bilal Hassan Khan
+Account Type: Personal (Verified)
+Linked Card: Visa x-2070 (expires <CARD_EXPIRY>)
+Linked Bank: Crescent Bank <ACCOUNT_NUMBER>
+Registered Phone: <PHONE>
+Billing Address: <ADDRESS>
+Login IP (last): <IP_ADDRESS>
+
+Date, Name / Email, Type, Status, Amount, Fees, Total
+03 Apr 2026, Upwork Escrow Inc (<EMAIL>), Payment Received, Completed, +$220.00 USD, -$4.40, +$215.60
+03 Apr 2026, Currency Conversion PKR, Transfer, Completed, +PKR 61050.00, PKR 0.00, +PKR 61050.00
+08 Apr 2026, GitHub Inc, Preapproved Payment, Completed, -$10.00 USD, $0.00, -$10.00
+12 Apr 2026, Payoneer Withdrawal Ref <REFERENCE>, Withdrawal, Pending then Completed, -$150.00 USD, -$2.50, -$152.50
+15 Apr 2026, Fiverr International Ltd, Payment Received, Completed, +$85.00 USD, -$1.70, +$83.30
+15 Apr 2026, Fiverr International Ltd, Payment Received, Completed, +$85.00 USD, -$1.70, +$83.30
+16 Apr 2026, Fiverr International Ltd, Payment Reversal, Completed, -$85.00 USD, +$1.70, -$83.30
+18 Apr 2026, Namecheap Inc order <REFERENCE> domain bilalbuilds.dev, Payment, Completed, -$12.98 USD, $0.00, -$12.98
+22 Apr 2026, TRANSFER TO NATIONAL SAVINGS not related note to self, Note, -, -, -, -
+26 Apr 2026, <EMAIL>, Money Sent, Completed, -$40.00 USD, $0.00, -$40.00
+29 Apr 2026, Steam Games (Valve Corp), Payment, Completed, -$4.99 USD, $0.00, -$4.99
+
+Transaction IDs: <REFERENCE>, <REFERENCE>, <REFERENCE>, <REFERENCE>
+Customer Support Reference: <REFERENCE> (call <PHONE>)
