@@ -25,7 +25,7 @@ TIME_RE = re.compile(r"\b\d{2}:\d{2}:\d{2}\b")
 AMOUNT_RE = re.compile(
     r"(?<![\w])(?P<sign>[+-]?)\s*"
     r"(?P<currency>C\$|A\$|[$€£₹]|PKR|USD|GBP|CAD|EUR|INR|AUD|AED|SAR)?\s?"
-    r"(?P<number>\d{1,3}(?:[.,\s]\d{2,3})*(?:[.,]\d{2})|\d+[.,]\d{2})"
+    r"(?P<number>\d{1,3}(?:,\d{2,3})+\.\d{2}|\d{1,3}(?:\.\d{3})+,\d{2}|\d{1,3}(?:[ \u00a0]\d{3})+[.,]\d{2}|\d+[.,]\d{2})"
     r"(?:\s?(?P<dc>Cr|Dr|CR|DR))?(?![\w])"
 )
 REFERENCE_HINTS = re.compile(
@@ -374,7 +374,7 @@ def _record_from_parts(
             return None
         amount_candidate, balance_candidate = candidates[-2], candidates[-1]
         amount = amount_candidate["value"]
-        balance = abs(balance_candidate["value"])
+        balance = balance_candidate["value"]
         description = _clean_description(body[: amount_candidate["start"]])
         currency = amount_candidate["currency"] or _currency_for(body, context)
         if not description:
@@ -434,6 +434,8 @@ def _parse_wallet_csv(filename: str, text: str, warnings: list[str]) -> list[Tra
             meta={"timestamp": timestamp},
         )
         if record:
+            time_match = TIME_RE.search(timestamp)
+            record.txn_time = time_match.group(0) if time_match else None
             record.description = _clean_description(description)
             record.meta["timestamp"] = timestamp
             records.append(record)

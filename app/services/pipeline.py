@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from collections.abc import Iterable
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
@@ -7,10 +8,12 @@ from pathlib import Path
 
 from sqlalchemy.orm import Session
 
+from app.config import settings
 from app.models import Batch, Redaction, StatementFile, Transaction
 from app.services.extractors import (
     ExtractedFile,
     ExtractionError,
+    ExtractionLimitError,
     combine_files,
     discover_files,
     expand_zip,
@@ -22,6 +25,10 @@ from app.services.transactions import ParseResult, TransactionRecord, parse_tran
 
 
 class PipelineError(RuntimeError):
+    pass
+
+
+class UploadLimitError(PipelineError):
     pass
 
 
@@ -49,20 +56,66 @@ STATEMENT_EXTENSIONS = {".pdf", ".docx", ".csv", ".txt", ".text", ".log"}
 
 def _safe_filename(name: str) -> str:
     base = Path(name.replace("\\", "/")).name
-    return base or "unnamed"
+    base = re.sub(r"[\x00-\x1f\x7f]", "_", base)
+    suffix = Path(base).suffix
+    if suffix.lower() not in STATEMENT_EXTENSIONS | {".zip"}:
+        suffix = ""
+    stem = base[:-len(suffix)] if suffix else base
+    safe = scrub_text(stem)
+    if safe.residual:
+        raise PipelineError("Filename contains an identifier after scrubbing.")
+    # Keep the extension for format detection and use portable placeholder names.
+    stem = safe.text.translate(str.maketrans({"<": "_", ">": "_", "/": "_", "\\": "_"}))
+    return (stem[:200] or "unnamed") + suffix[:16]
 
 
 def _prepare_sources(uploads: Iterable[tuple[str, bytes]]) -> list[tuple[str, bytes]]:
     prepared: list[tuple[str, bytes]] = []
+    used: set[str] = set()
+    total = 0
+    max_file = settings.max_file_mb * 1024 * 1024
+    max_total = settings.max_total_mb * 1024 * 1024
+
+    def add(name: str, data: bytes) -> None:
+        nonlocal total
+        if len(prepared) >= settings.max_files:
+            raise UploadLimitError("Upload exceeds the batch file count limit.")
+        if len(data) > max_file:
+            raise UploadLimitError("A file exceeds the per-file size limit.")
+        total += len(data)
+        if total > max_total:
+            raise UploadLimitError("Upload exceeds the total batch size limit.")
+        safe_name = _safe_filename(name)
+        path = Path(safe_name)
+        counter = 2
+        candidate = safe_name
+        while candidate.casefold() in used:
+            candidate = f"{path.stem}-{counter}{path.suffix}"
+            counter += 1
+        used.add(candidate.casefold())
+        prepared.append((candidate, data))
+
     for name, content in uploads:
+        if len(content) > max_file:
+            raise UploadLimitError("A file exceeds the per-file size limit.")
         safe_name = _safe_filename(name)
         if safe_name.lower().endswith(".zip"):
             try:
-                prepared.extend((member, data) for member, data in expand_zip(safe_name, content))
+                members = expand_zip(
+                    safe_name,
+                    content,
+                    max_files=settings.max_files - len(prepared),
+                    max_file_bytes=max_file,
+                    max_total_bytes=max_total - total,
+                )
+                for member, data in members:
+                    add(member, data)
+            except ExtractionLimitError as exc:
+                raise UploadLimitError(str(exc)) from exc
             except ExtractionError as exc:
                 raise PipelineError(str(exc)) from exc
         else:
-            prepared.append((safe_name, content))
+            add(safe_name, content)
     return prepared
 
 
@@ -226,7 +279,10 @@ def process_sources(
         for result in files
     ]
     facts = build_facts(records, file_summaries, warnings)
-    batch_name = name or f"Batch {datetime.now(UTC).strftime('%Y-%m-%d %H:%M UTC')}"
+    batch_name_result = scrub_text(name or f"Batch {datetime.now(UTC).strftime('%Y-%m-%d %H:%M UTC')}")
+    if batch_name_result.residual:
+        raise PipelineError("Batch name contains an identifier after scrubbing.")
+    batch_name = batch_name_result.text.strip()[:255] or "Untitled batch"
     batch = _persist(db, batch_name, files, records, facts, combined_text, warnings) if db is not None else None
     return PipelineResult(
         files=files,

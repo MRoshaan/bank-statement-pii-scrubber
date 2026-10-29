@@ -475,10 +475,13 @@ def detect_generic_numeric_refs(text: str) -> list[Span]:
     spans: list[Span] = []
     for match in LONG_NUMERIC_RE.finditer(text):
         token = match.group(0)
-        if compact_date_ok(token):
-            continue
         left, right = line_bounds(text, match.start(), match.end())
         line = text[left:right]
+        if compact_date_ok(token):
+            prefix = text[left:match.start()]
+            timestamp_field = re.fullmatch(r"(?i)\s*(?:(?:timestamp|date[ /_-]*time)\s*[:=]\s*)?", prefix)
+            if not REF_CONTEXT_RE.search(line) or timestamp_field:
+                continue
         before = text[max(0, match.start() - 4) : match.start()]
         after = text[match.end() : match.end() + 3]
         if AMOUNT_CONTEXT_RE.search(line) and (after.startswith(".") or re.search(r"[$€£₹]", before)):

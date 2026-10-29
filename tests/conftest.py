@@ -5,9 +5,19 @@ from pathlib import Path
 
 import pytest
 
-TEST_DATABASE_URL = "postgresql+psycopg://pjbank:pjbank_dev_password@localhost:5432/pjbank_test"
+os.environ["GROQ_API_KEY"] = "test-key-not-used"
+
+from sqlalchemy.engine import make_url  # noqa: E402
+
+from app.config import settings  # noqa: E402
+
+TEST_DATABASE_URL = settings.test_database_url
+test_url = make_url(TEST_DATABASE_URL)
+if test_url.get_backend_name() != "postgresql" or not (test_url.database or "").endswith("_test"):
+    raise RuntimeError("TEST_DATABASE_URL must point to an isolated PostgreSQL database ending in _test.")
 os.environ["DATABASE_URL"] = TEST_DATABASE_URL
-os.environ.setdefault("GROQ_API_KEY", "test-key-not-used")
+settings.database_url = TEST_DATABASE_URL
+settings.groq_api_key = "test-key-not-used"
 
 from fastapi.testclient import TestClient  # noqa: E402
 

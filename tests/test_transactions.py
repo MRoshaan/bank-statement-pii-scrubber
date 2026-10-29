@@ -19,6 +19,7 @@ def test_wallet_csv_parse():
     assert len(result.records) == 2
     first = result.records[0]
     assert first.txn_date == date(2026, 4, 1)
+    assert first.txn_time == "08:55:12"
     assert first.amount == Decimal("-1240.50")
     assert first.currency == "PKR"
     assert first.merchant == "Foodpanda"

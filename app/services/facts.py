@@ -158,20 +158,22 @@ def build_facts(
         )[:10]
 
     duplicate_groups: list[dict[str, Any]] = []
-    groups: dict[tuple[str, str, str], list[TransactionRecord]] = defaultdict(list)
+    groups: dict[tuple[str, str, str, str], list[TransactionRecord]] = defaultdict(list)
     for record in records:
         key = (
             record.txn_date.isoformat() if record.txn_date else "",
             str(record.amount),
+            record.currency,
             record.description.lower(),
         )
         groups[key].append(record)
-    for (txn_date, amount, description), group in groups.items():
+    for (txn_date, amount, currency, description), group in groups.items():
         if len(group) > 1:
             duplicate_groups.append(
                 {
                     "date": txn_date or None,
                     "amount": float(Decimal(amount)),
+                    "currency": currency,
                     "description": description[:160],
                     "count": len(group),
                     "refs": [record.ref for record in group[:10]],

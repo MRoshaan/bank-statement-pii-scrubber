@@ -11,7 +11,14 @@ from sqlalchemy.orm import Session
 
 from app.models import Batch, ChatMessage, ChatSession, Transaction
 from app.services.llm.analysis import latest_analysis
-from app.services.llm.client import GroqLLM, LLMError, LLMNotConfigured
+from app.services.llm.client import (
+    GroqLLM,
+    LLMError,
+    LLMNotConfigured,
+    LLMPrivacyError,
+    ensure_safe_prompt,
+    sanitize_model_data,
+)
 from app.services.llm.context import (
     CATEGORY_HINTS,
     allowed_numbers,
@@ -66,7 +73,7 @@ def _retrieve_rows(db: Session, batch: Batch, question: str) -> list[Transaction
 
     tokens = [
         token
-        for token in set(question.lower().replace("?", " ").replace(",", " ").split())
+        for token in dict.fromkeys(question.lower().replace("?", " ").replace(",", " ").split())
         if len(token) >= 3 and token not in {"how", "much", "did", "the", "and", "for", "was", "were", "what", "which", "most", "often"}
     ]
     for token in tokens[:6]:
@@ -130,6 +137,7 @@ def _fallback_or_raise(
         }
         model = "deterministic"
         report = {"grounded": True, "source": "deterministic", "reason": reason, "checked_at": datetime.now(UTC).isoformat()}
+    payload = sanitize_model_data(payload)
     message = ChatMessage(
         session_id=session.id,
         role="assistant",
@@ -178,6 +186,16 @@ def chat(db: Session, batch: Batch, message: str, session_id: UUID | None = None
 
     records = list(batch.transactions)
     facts = analysis_facts(batch.facts or {}, records)
+    category = _question_category(question)
+    if category:
+        facts["requested_category"] = {
+            "category": category,
+            "by_currency": {
+                currency: values[category]
+                for currency, values in ((batch.facts or {}).get("by_category") or {}).items()
+                if category in values
+            },
+        }
     rows = _retrieve_rows(db, batch, question)
     row_context = rows_to_context(rows, limit=18)
     _preflight(question, facts, row_context)
@@ -215,14 +233,19 @@ def chat(db: Session, batch: Batch, message: str, session_id: UUID | None = None
 
     if llm is not None:
         for attempt in range(2):
+            call_prompt = prompt if attempt == 0 else build_repair_prompt(prompt, last_errors)
+            try:
+                ensure_safe_prompt(CHAT_SYSTEM_PROMPT, call_prompt)
+            except LLMPrivacyError as exc:
+                raise ChatGuardrailError(str(exc)) from exc
             try:
                 result = llm.complete_json(
                     system=CHAT_SYSTEM_PROMPT,
-                    user=prompt if attempt == 0 else build_repair_prompt(prompt, last_errors),
+                    user=call_prompt,
                     max_tokens=1200,
                 )
                 model_used = result.model
-                payload = ChatPayload.model_validate(result.data)
+                payload = ChatPayload.model_validate(sanitize_model_data(result.data))
                 validation = validate_chat_payload(payload.model_dump(), valid_refs, allowed)
                 validation["checked_at"] = datetime.now(UTC).isoformat()
                 if validation["grounded"]:
@@ -233,10 +256,10 @@ def chat(db: Session, batch: Batch, message: str, session_id: UUID | None = None
                     "invalid_figures": validation.get("invalid_figures", []),
                 }
             except (ValidationError, LLMError) as exc:
-                last_errors = {"error": str(exc)[:600]}
+                last_errors = {"error": f"Invalid model response ({type(exc).__name__})."}
                 validation = {
                     "grounded": False,
-                    "error": str(exc)[:600],
+                    "error": f"Invalid model response ({type(exc).__name__}).",
                     "checked_at": datetime.now(UTC).isoformat(),
                 }
     else:

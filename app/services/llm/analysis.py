@@ -8,7 +8,14 @@ from pydantic import BaseModel, Field, ValidationError
 from sqlalchemy.orm import Session
 
 from app.models import Analysis, Batch
-from app.services.llm.client import GroqLLM, LLMError, LLMNotConfigured
+from app.services.llm.client import (
+    GroqLLM,
+    LLMError,
+    LLMNotConfigured,
+    LLMPrivacyError,
+    ensure_safe_prompt,
+    sanitize_model_data,
+)
 from app.services.llm.context import (
     allowed_numbers,
     analysis_facts,
@@ -117,15 +124,20 @@ def generate_analysis(db: Session, batch: Batch) -> Analysis:
     usage: dict[str, Any] = {}
     last_errors: dict[str, Any] = {}
     for attempt in range(2):
+        call_prompt = prompt if attempt == 0 else build_repair_prompt(prompt, last_errors)
+        try:
+            ensure_safe_prompt(ANALYSIS_SYSTEM_PROMPT, call_prompt)
+        except LLMPrivacyError as exc:
+            raise GuardrailError(str(exc)) from exc
         try:
             result = llm.complete_json(
                 system=ANALYSIS_SYSTEM_PROMPT,
-                user=prompt if attempt == 0 else build_repair_prompt(prompt, last_errors),
+                user=call_prompt,
                 max_tokens=1200,
             )
             model_used = result.model
             usage = result.usage
-            payload = AnalysisPayload.model_validate(result.data)
+            payload = AnalysisPayload.model_validate(sanitize_model_data(result.data))
             grounded_data = ground_citations(_payload_data(payload), facts, records)
             payload = AnalysisPayload.model_validate(grounded_data)
             validation = validate_payload(_payload_data(payload), valid_refs, allowed)
@@ -137,16 +149,16 @@ def generate_analysis(db: Session, batch: Batch) -> Analysis:
                 "unsupported_numbers": validation["unsupported_numbers"],
             }
         except (ValidationError, LLMError) as exc:
-            last_errors = {"error": str(exc)[:800]}
+            last_errors = {"error": f"Invalid model response ({type(exc).__name__})."}
             validation = {
                 "grounded": False,
                 "invalid_refs": [],
                 "unsupported_numbers": [],
-                "error": str(exc)[:800],
+                "error": f"Invalid model response ({type(exc).__name__}).",
                 "checked_at": datetime.now(UTC).isoformat(),
             }
 
-    if payload is None:
+    if payload is None or not validation.get("grounded"):
         fallback = deterministic_analysis(facts)
         payload = AnalysisPayload.model_validate(fallback)
         validation = {
@@ -159,7 +171,7 @@ def generate_analysis(db: Session, batch: Batch) -> Analysis:
         model_used = "deterministic"
         status = "fallback"
     else:
-        status = "completed" if validation.get("grounded") else "needs_review"
+        status = "completed"
 
     result_payload = _result_payload(payload, facts, validation, model_used, "groq" if model_used != "deterministic" else "deterministic")
     markdown = markdown_from_result(result_payload)

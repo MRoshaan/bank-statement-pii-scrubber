@@ -8,6 +8,8 @@ from typing import Any
 from groq import APIConnectionError, APIStatusError, APITimeoutError, Groq, RateLimitError
 
 from app.config import settings
+from app.services.scrubber.engine import scrub_text
+from app.services.scrubber.residual import scan_residual
 
 
 class LLMNotConfigured(RuntimeError):
@@ -16,6 +18,33 @@ class LLMNotConfigured(RuntimeError):
 
 class LLMError(RuntimeError):
     pass
+
+
+class LLMPrivacyError(LLMError):
+    pass
+
+
+def ensure_safe_prompt(system: str, user: str) -> None:
+    """Check the complete assembled request, including retries and history."""
+    for text in (system, user):
+        hits = scan_residual(text)
+        if hits:
+            types = ", ".join(sorted({str(hit["entity_type"]) for hit in hits}))
+            raise LLMPrivacyError(f"Residual PII detected in LLM request: {types}")
+
+
+def sanitize_model_data(value: Any) -> Any:
+    """Scrub every model-controlled string before validation or persistence."""
+    if isinstance(value, str):
+        result = scrub_text(value)
+        if result.residual:
+            raise LLMPrivacyError("Model output contains an identifier after scrubbing.")
+        return result.text
+    if isinstance(value, list):
+        return [sanitize_model_data(item) for item in value]
+    if isinstance(value, dict):
+        return {sanitize_model_data(key): sanitize_model_data(item) for key, item in value.items()}
+    return value
 
 
 @dataclass
@@ -29,7 +58,7 @@ class GroqLLM:
     def __init__(self) -> None:
         if not settings.groq_api_key:
             raise LLMNotConfigured("GROQ_API_KEY is not configured.")
-        self.client = Groq(api_key=settings.groq_api_key, timeout=settings.llm_timeout_seconds)
+        self.client = Groq(api_key=settings.groq_api_key, timeout=settings.llm_timeout_seconds, max_retries=0)
 
     def _call(
         self,
@@ -39,6 +68,7 @@ class GroqLLM:
         max_tokens: int,
         temperature: float,
     ) -> LLMResult:
+        ensure_safe_prompt(system, user)
         response = self.client.chat.completions.create(
             model=model,
             messages=[
@@ -50,12 +80,16 @@ class GroqLLM:
             response_format={"type": "json_object"},
             reasoning_effort="low",
         )
+        if not response.choices:
+            raise LLMError("Model returned no choices.")
         content = response.choices[0].message.content or ""
         try:
             data = json.loads(content)
         except json.JSONDecodeError as exc:
             raise LLMError(f"Model returned invalid JSON: {exc}") from exc
-        usage = response.usage.model_dump() if hasattr(response.usage, "model_dump") else dict(response.usage)
+        if not isinstance(data, dict):
+            raise LLMError("Model returned JSON that was not an object.")
+        usage = response.usage.model_dump() if hasattr(response.usage, "model_dump") else dict(response.usage or {})
         return LLMResult(data=data, model=model, usage=usage)
 
     def complete_json(
@@ -98,6 +132,8 @@ class GroqLLM:
                         time.sleep(2 ** attempt)
                         continue
                     break
+                except LLMPrivacyError:
+                    raise
                 except LLMError as exc:
                     last_error = exc
                     if attempt == 0:
@@ -105,4 +141,7 @@ class GroqLLM:
                         user = user + "\n\nYour previous response was not valid JSON. Return one JSON object only."
                         continue
                     break
-        raise LLMError(f"Groq request failed after retries: {last_error}")
+        # Provider exception bodies can contain credentials or echoed input.
+        status = getattr(last_error, "status_code", None)
+        detail = f"HTTP {status}" if status else type(last_error).__name__
+        raise LLMError(f"Groq request failed after retries ({detail}).") from last_error

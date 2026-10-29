@@ -7,9 +7,22 @@ from decimal import Decimal
 from typing import Any
 
 CURRENCY_CODES = ("PKR", "USD", "GBP", "CAD", "EUR", "INR", "AUD", "AED", "SAR")
-CURRENCY_RE = re.compile(r"(?:(PKR|USD|GBP|CAD|EUR|INR|AUD|AED|SAR)|[$€£₹])\s?(\d[\d,]*(?:\.\d{1,2})?)")
-DECIMAL_RE = re.compile(r"(?<![\d.])(\d[\d,]*\.\d{1,2})(?![\d.])")
-PERCENT_RE = re.compile(r"(\d+(?:\.\d+)?)\s?%")
+MONEY_NUMBER = r"([+-]?\d[\d,]*(?:\.\d{1,2})?)"
+CURRENCY_PREFIX_RE = re.compile(
+    r"(?<!\w)(?:" + "|".join(CURRENCY_CODES) + r"|C\$|A\$|[$€£₹])\s*" + MONEY_NUMBER + r"(?!\w|\.\d)"
+)
+CURRENCY_SUFFIX_RE = re.compile(
+    r"(?<![\w.])" + MONEY_NUMBER + r"\s*(?:" + "|".join(CURRENCY_CODES) + r")(?!\w)"
+)
+PERCENT_RE = re.compile(r"([+-]?\d+(?:\.\d+)?)\s?%")
+NUMBER_RE = re.compile(r"(?<![\w.])([+-]?\d[\d,]*(?:\.\d{1,2})?)(?!\w|\.\d)")
+DATE_CLAIM_RE = re.compile(
+    r"\b(?:\d{4}-\d{2}-\d{2}|\d{1,2}[/-]\d{1,2}[/-]\d{2,4}|"
+    r"\d{1,2}\s+[A-Za-z]{3,9}\s+\d{4}|"
+    r"(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|"
+    r"Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s+\d{4})\b",
+    re.I,
+)
 CATEGORY_HINTS = {
     "food": "Food & Dining",
     "dining": "Food & Dining",
@@ -206,8 +219,6 @@ def _iter_numbers(value: Any) -> Iterable[float]:
 
 def allowed_numbers(facts: dict[str, Any], rows: Iterable[Any] = ()) -> set[float]:
     allowed = {_round(value) for value in _iter_numbers(facts)}
-    for number in range(0, 101):
-        allowed.add(float(number))
     for row in rows:
         for attribute in ("amount", "balance"):
             value = getattr(row, attribute, None)
@@ -293,14 +304,18 @@ def _parse_claim_number(raw: str) -> float | None:
 
 def extract_number_claims(text: str) -> list[dict[str, Any]]:
     claims: list[dict[str, Any]] = []
-    for match in CURRENCY_RE.finditer(text):
-        value = _parse_claim_number(match.group(2))
-        if value is not None:
-            claims.append({"raw": match.group(0), "value": value, "kind": "currency"})
-    for match in DECIMAL_RE.finditer(text):
+    # Citation line numbers and calendar dates are not financial/count claims.
+    text = re.sub(r"[^\s:]+\.(?:pdf|docx|csv|txt|text|log):\d+\b", "", text, flags=re.I)
+    text = DATE_CLAIM_RE.sub("", text)
+    for pattern in (CURRENCY_PREFIX_RE, CURRENCY_SUFFIX_RE):
+        for match in pattern.finditer(text):
+            value = _parse_claim_number(match.group(1))
+            if value is not None:
+                claims.append({"raw": match.group(0), "value": value, "kind": "currency"})
+    for match in NUMBER_RE.finditer(text):
         value = _parse_claim_number(match.group(1))
         if value is not None:
-            claims.append({"raw": match.group(0), "value": value, "kind": "decimal"})
+            claims.append({"raw": match.group(0), "value": value, "kind": "number"})
     for match in PERCENT_RE.finditer(text):
         value = _parse_claim_number(match.group(1))
         if value is not None:
@@ -367,7 +382,7 @@ def validate_chat_payload(
     return {
         # A wrong optional citation is filtered; an unsupported number is a
         # grounding failure and forces the deterministic fallback.
-        "grounded": not unsupported and not invalid_figures,
+        "grounded": bool(payload.get("grounded", True)) and not payload.get("refusal") and not unsupported and not invalid_figures,
         "checked_refs": citations,
         "invalid_refs": invalid_refs,
         "checked_numbers": claims,
@@ -460,9 +475,18 @@ def deterministic_analysis(facts: dict[str, Any]) -> dict[str, Any]:
         )
     return {
         "summary": summary,
-        "insights": insights[:8],
+        "insights": insights[:8] or [{
+            "title": "No spending insights available",
+            "detail": "No usable category or merchant totals were parsed. Review the source files and parsing warnings.",
+            "evidence_refs": [],
+            "confidence": "low",
+        }],
         "anomalies": anomalies[:5],
-        "recommendations": recommendations[:6],
+        "recommendations": recommendations[:6] or [{
+            "title": "Review the source data",
+            "detail": "Use a statement with an extractable text layer and recognizable transactions.",
+            "evidence_refs": [],
+        }],
         "data_quality_notes": [
             f"Parsed {facts.get('data_quality', {}).get('parsed_transactions', 0)} transactions; "
             f"{facts.get('data_quality', {}).get('missing_dates', 0)} missing dates, "

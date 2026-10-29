@@ -7,3 +7,8 @@ __pycache__/
 data/
 *.log
 .DS_Store
+*.db
+*.sqlite
+*.sqlite3
+*.mp4
+*.mov

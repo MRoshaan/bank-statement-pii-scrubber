@@ -3,7 +3,8 @@ from __future__ import annotations
 import json
 from typing import Any
 
-MAX_SCRUBBED_CHARS = 3_000
+MAX_SCRUBBED_CHARS = 2_000
+MAX_DIGEST_CHARS = 9_000
 
 ANALYSIS_SYSTEM_PROMPT = """You are the analysis engine for a privacy-first personal budgeting app.
 
@@ -14,7 +15,8 @@ You receive two blocks:
 
 Rules:
 1. Never invent transactions, merchants, dates, amounts, balances, or categories.
-2. Never state a number that is not present in FACTS. Do not calculate new totals, percentages, or differences.
+2. Copy numerical facts exactly, including decimals. Never round or approximate them. Do not calculate new totals, percentages, or differences.
+   Recommendations must be qualitative: do not propose numerical budgets, targets, or savings estimates.
 3. Report each currency separately. Never add different currencies together and never apply an FX rate.
 4. Use transaction refs from FACTS (for example "filename:line") in evidence_refs. For a category
    or merchant claim, cite the example ref attached to that category/merchant, or a ref from
@@ -92,9 +94,12 @@ def _json(value: Any) -> str:
 
 def build_analysis_prompt(facts: dict[str, Any], scrubbed_text: str, digest: str) -> str:
     excerpt = scrubbed_text[:MAX_SCRUBBED_CHARS]
+    if len(digest) > MAX_DIGEST_CHARS:
+        digest = digest[:MAX_DIGEST_CHARS].rsplit("\n", 1)[0]
+        digest += "\n[Digest truncated; use FACTS for complete totals.]"
     return (
         "Analyze the statement data below and return the JSON object.\n"
-        "The full scrubbed statement is stored locally. A token-budgeted excerpt and a complete "
+        "The full scrubbed statement is stored locally. A token-budgeted excerpt and a bounded "
         "transaction digest derived from the scrubbed data are provided. FACTS are the only "
         "source of truth for totals.\n\n"
         f"<FACTS>\n{_json(facts)}\n</FACTS>\n\n"
@@ -111,8 +116,21 @@ def build_chat_prompt(
     history: list[dict[str, str]],
     question: str,
 ) -> str:
+    bounded_analysis: dict[str, Any] = {"summary": str(analysis.get("summary") or "")[:600]}
+    for key, limit in (("insights", 3), ("anomalies", 2), ("recommendations", 3)):
+        bounded_analysis[key] = [
+            {
+                "title": str(item.get("title") or "")[:120],
+                "detail": str(item.get("detail") or "")[:260],
+                "evidence_refs": (item.get("evidence_refs") or [])[:3],
+            }
+            for item in (analysis.get(key) or [])[:limit]
+            if isinstance(item, dict)
+        ]
+    bounded_analysis["data_quality_notes"] = [str(note)[:160] for note in (analysis.get("data_quality_notes") or [])[:2]]
+    history = [{"role": item["role"], "content": item["content"][:400]} for item in history[-6:]]
     return (
-        f"<ANALYSIS>\n{_json(analysis)}\n</ANALYSIS>\n\n"
+        f"<ANALYSIS>\n{_json(bounded_analysis)}\n</ANALYSIS>\n\n"
         f"<FACTS>\n{_json(facts)}\n</FACTS>\n\n"
         f"<RELEVANT_TRANSACTIONS>\n{_json(rows)}\n</RELEVANT_TRANSACTIONS>\n\n"
         f"<CONVERSATION>\n{_json(history)}\n</CONVERSATION>\n\n"
@@ -126,5 +144,7 @@ def build_repair_prompt(original_prompt: str, errors: dict[str, Any]) -> str:
         original_prompt
         + "\n\nYour previous answer failed validation. Fix the following issues and return JSON only:\n"
         + _json(errors)
-        + "\nUse only numbers and refs that appear in FACTS/RELEVANT_TRANSACTIONS."
+        + "\nUse only numbers and refs that appear in FACTS/RELEVANT_TRANSACTIONS. "
+        "Remove unsupported numeric claims or replace them with qualitative wording. "
+        "Do not repeat a number merely because it appears in this error report."
     )

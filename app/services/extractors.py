@@ -19,6 +19,10 @@ class ExtractionError(Exception):
     pass
 
 
+class ExtractionLimitError(ExtractionError):
+    pass
+
+
 @dataclass
 class ExtractedFile:
     filename: str
@@ -120,7 +124,7 @@ def extract_bytes(filename: str, content: bytes) -> ExtractedFile:
     except ExtractionError:
         raise
     except Exception as exc:  # noqa: BLE001 - surface a useful per-file error
-        raise ExtractionError(f"Could not extract {safe_name}: {exc}") from exc
+        raise ExtractionError(f"Could not extract {safe_name} ({type(exc).__name__}).") from exc
     text = text.replace("\r\n", "\n").replace("\r", "\n").strip("\n")
     if not text.strip():
         warnings.append("No extractable text was found.")
@@ -148,24 +152,41 @@ def discover_files(folder: Path) -> list[Path]:
     )
 
 
-def expand_zip(filename: str, content: bytes) -> list[tuple[str, bytes]]:
+def expand_zip(
+    filename: str,
+    content: bytes,
+    *,
+    max_files: int = 50,
+    max_file_bytes: int = 20 * 1024 * 1024,
+    max_total_bytes: int = 50 * 1024 * 1024,
+) -> list[tuple[str, bytes]]:
     if not zipfile.is_zipfile(io.BytesIO(content)):
-        raise ExtractionError(f"Not a valid zip file: {filename}")
-    members: list[tuple[str, bytes]] = []
-    with zipfile.ZipFile(io.BytesIO(content)) as archive:
-        for info in archive.infolist():
-            if info.is_dir():
-                continue
-            name = info.filename.replace("\\", "/")
-            if name.startswith("/") or ".." in name.split("/"):
-                raise ExtractionError(f"Unsafe path in zip: {info.filename}")
-            base = Path(name).name
-            if not base or base.startswith("."):
-                continue
-            if info.file_size > 20 * 1024 * 1024:
-                raise ExtractionError(f"Zip member too large: {name}")
-            members.append((base, archive.read(info)))
-    return members
+        raise ExtractionError("Not a valid ZIP archive.")
+    try:
+        with zipfile.ZipFile(io.BytesIO(content)) as archive:
+            selected = []
+            total = 0
+            # Check all declared sizes/counts before allocating decompressed data.
+            for info in archive.infolist():
+                if info.is_dir():
+                    continue
+                name = info.filename.replace("\\", "/")
+                if name.startswith("/") or ".." in name.split("/"):
+                    raise ExtractionError("Unsafe path in ZIP archive.")
+                base = Path(name).name
+                if not base or base.startswith(".") or "__MACOSX" in name.split("/"):
+                    continue
+                if len(selected) >= max_files:
+                    raise ExtractionLimitError("ZIP expansion exceeds the batch file count limit.")
+                if info.file_size > max_file_bytes:
+                    raise ExtractionLimitError("ZIP member exceeds the per-file size limit.")
+                total += info.file_size
+                if total > max_total_bytes:
+                    raise ExtractionLimitError("ZIP expansion exceeds the total batch size limit.")
+                selected.append((base, info))
+            return [(base, archive.read(info)) for base, info in selected]
+    except (zipfile.BadZipFile, RuntimeError, NotImplementedError, OSError) as exc:
+        raise ExtractionError("Could not read ZIP archive.") from exc
 
 
 def combine_files(files: Iterable[ExtractedFile]) -> str:

@@ -18,7 +18,7 @@ from app.schemas import (
     ScrubResultOut,
     TransactionOut,
 )
-from app.services.pipeline import PipelineError, process_sources
+from app.services.pipeline import PipelineError, UploadLimitError, process_sources
 from app.services.scrubber.engine import ResidualPIIError
 
 router = APIRouter(prefix="/api/v1/batches", tags=["batches"])
@@ -40,7 +40,7 @@ def _batch_detail(db: Session, batch: Batch) -> BatchDetail:
 @router.post("", response_model=ScrubResultOut, status_code=201)
 def create_batch(
     files: list[UploadFile] = File(...),
-    name: str | None = Form(default=None),
+    name: str | None = Form(default=None, max_length=255),
     db: Session = Depends(get_db),
 ) -> ScrubResultOut:
     if not files:
@@ -51,17 +51,21 @@ def create_batch(
     uploads: list[tuple[str, bytes]] = []
     total = 0
     for upload in files:
-        content = upload.file.read()
+        file_limit = settings.max_file_mb * 1024 * 1024
+        remaining = settings.max_total_mb * 1024 * 1024 - total
+        content = upload.file.read(min(file_limit, remaining) + 1)
         size = len(content)
-        if size > settings.max_file_mb * 1024 * 1024:
-            raise HTTPException(status_code=413, detail=f"{upload.filename} exceeds the per-file size limit.")
+        if size > file_limit:
+            raise HTTPException(status_code=413, detail="A file exceeds the per-file size limit.")
         total += size
+        if total > settings.max_total_mb * 1024 * 1024:
+            raise HTTPException(status_code=413, detail="Upload exceeds the total batch size limit.")
         uploads.append((upload.filename or "unnamed", content))
-    if total > settings.max_total_mb * 1024 * 1024:
-        raise HTTPException(status_code=413, detail="Upload exceeds the total batch size limit.")
 
     try:
         result = process_sources(uploads, db=db, name=name)
+    except UploadLimitError as exc:
+        raise HTTPException(status_code=413, detail=str(exc)) from exc
     except ResidualPIIError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
     except PipelineError as exc:
