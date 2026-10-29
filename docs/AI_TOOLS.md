@@ -26,3 +26,9 @@ The provided sample statements were inspected locally during development to veri
 
 - `docs/AI_TRANSCRIPT.md` — full user/assistant-visible conversation and tool calls, with PII and the API key redacted; assistant internal reasoning omitted.
 - `prompts.txt` — user prompts only, in order, with the same redactions.
+
+## Review pass
+
+OpenAI Codex reviewed and fixed privacy boundaries, upload limits, source tracking, transaction parsing, grounding, and UI request handling. No subagents were used. Model metadata records gpt-6.1-sol; it appears in the review transcript. Tests used pytest/ruff and Playwright with local Chrome; live analysis/chat used Groq with scrubbed context.
+
+The complete OpenCode export is in docs/AI_TRANSCRIPT_FULL.md; the earlier capped export remains in docs/AI_TRANSCRIPT.md. The Codex visible-message snapshot is in docs/AI_REVIEW_TRANSCRIPT.md; the earlier tool trace is preserved in docs/AI_REVIEW_TOOL_SNAPSHOT.md. prompts.txt combines both sets of user prompts. Re-export the Codex session after the final reply before submitting.

@@ -4,23 +4,23 @@
 
 | Guard | Where | Behavior |
 |---|---|---|
-| Residual-PII scan | `app/services/llm/analysis.py`, `chat.py` | Every Groq payload is scanned immediately before the call. A hit blocks the request. |
+| Residual-PII scan | `app/services/llm/analysis.py`, `chat.py` | Complete prompts, including history and repair requests, are scanned at the caller and transport boundary. A hit blocks the request. |
 | Chat input scrubbing | `app/services/llm/chat.py` | User messages are scrubbed before storage/sending; residual PII blocks the turn. |
-| LLM output scrubbing | `app/services/llm/chat.py` | Model output is scrubbed and scanned; potential identifiers are replaced or refused. |
+| LLM output scrubbing | `app/services/llm/chat.py` | Every model-controlled string is scrubbed before validation/storage, including refusal and error metadata. |
 | Deterministic facts | `app/services/facts.py` | Totals, category sums, merchant rankings, balances, fees, cash and transfers are computed in Python. |
-| Numeric validation | `app/services/llm/context.py` | Currency/decimal/percentage claims are checked against allowed fact/transaction values. |
+| Numeric validation | `app/services/llm/context.py` | Signed amounts, integers, counts, and percentage claims are checked against allowed fact/transaction values. |
 | Citation validation | `app/services/llm/context.py` | Invalid refs are filtered; analysis citations are re-grounded to rows matching category/merchant/currency. |
 | Repair retry | `analysis.py`, `chat.py` | One retry with validation errors; then deterministic fallback or refusal. |
 | JSON schema | `analysis.py`, `chat.py` | Pydantic models reject malformed analysis/chat payloads. |
 | Prompt injection | `prompts.py` | Statement text and retrieved rows are delimited as untrusted data; system rules say never follow embedded instructions. |
 | Rate limits/timeouts | `client.py` | Retries 429/5xx with backoff and a fallback model; bounded timeout. |
-| Upload safety | `api/batches.py`, `extractors.py` | File count/size limits, magic/extension checks, zip path traversal rejection. |
+| Upload safety | `api/batches.py`, `extractors.py` | File count/size limits before and after ZIP expansion; archive path traversal rejection; distinct scrubbed filenames. |
 | No raw logs | pipeline/API | Only counts/status are logged; raw text is not logged. |
 | No raw persistence | `models.py`, `pipeline.py` | No raw statement column; only scrubbed text and derived data are stored. |
 
 ## Test coverage
 
-`pytest` suite: 21 tests.
+`pytest` suite: 59 tests.
 
 - `test_scrubber.py`
   - known-PII absence across all four sample files
@@ -51,6 +51,10 @@
   - placeholders are ignored
   - chat message scrubbing
 
+Regression cases in `test_review_regressions.py` cover output PII, repair errors, complete-prompt scanning, reference IDs, metadata, source collisions, ZIP limits, empty analyses, signed/compact numeric claims, negative balances, adjacent amount columns, and mixed-currency duplicates.
+
+Numeric membership checks do not prove every semantic association or calendar claim. Prompt delimiters reduce injection risk; the tests do not establish immunity to every adversarial instruction.
+
 ## Run
 
 ```bash
@@ -61,7 +65,7 @@
 Current result:
 
 ```text
-21 passed
+59 passed
 ```
 
 ## Manual adversarial checks
@@ -70,5 +74,5 @@ Current result:
 2. Ask the chat for an unsupported number. Validation flags it, retries once, then uses a deterministic answer or refuses.
 3. Ask a question outside the statement (e.g., “What is my credit score?”). The assistant refuses rather than inventing.
 4. Ask a question containing an email/IBAN. The chat input is scrubbed before storage/sending.
-5. Remove the Groq key. Analysis/chat return a clear 503; scrubbing and PostgreSQL still work.
+5. Remove the Groq key. Analysis returns 503; chat uses a deterministic answer or refusal. Scrubbing and PostgreSQL still work.
 6. Trigger a 429 by rapid calls. The client retries/falls back; common aggregate questions still answer deterministically.

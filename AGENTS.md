@@ -86,7 +86,7 @@ app/
       analysis.py         analysis generation + validation
       chat.py             retrieval + chat + validation
 frontend/                 vanilla HTML/CSS/JS (₨ display, ISO codes in data)
-tests/                    unit, integration, guardrail tests (21)
+tests/                    unit, integration, guardrail tests (59)
 outputs/                  scrubbed combined/per-file output + reports
 docs/                     demo script, guardrails, AI transcript/tool notes
 schema.sql                PostgreSQL DDL
@@ -127,9 +127,9 @@ AGENTS.md                 this file
 
 - Model: `openai/gpt-oss-120b` (fallback `openai/gpt-oss-20b`).
 - Free-tier TPM is 8K. Do not send the entire raw/scrubbed corpus unbounded.
-  Analysis uses a compact facts pack + 3K-char scrubbed excerpt + full transaction
-  digest (~6.2K input tokens; 1.2K output). Chat uses compact facts + at most 18
-  retrieved rows + the analysis narrative (~4.4K input tokens; 1.2K output).
+  Analysis uses a compact facts pack + 2K-char scrubbed excerpt + bounded transaction
+  digest (measure input plus the 1.2K output allowance before adding context). Chat uses compact facts + at most 18
+  retrieved rows + the bounded analysis narrative (food chat measured at 4.9K input tokens; 1.2K output).
   If you add context, re-measure before shipping or the call will 413.
 - FACTS are the only source of truth for numbers. Deterministic Python computes
   totals; the model writes narrative only.
@@ -143,7 +143,7 @@ AGENTS.md                 this file
 
 ## Verification checklist before saying “done”
 
-1. `.venv/bin/pytest -q` passes (currently 21).
+1. `.venv/bin/pytest -q` passes (currently 59).
 2. `.venv/bin/ruff check app tests` passes.
 3. `python -m app.cli scrub data --out outputs --store` runs.
 4. `scan_residual()` returns `[]` on `outputs/scrubbed_combined.txt` and every

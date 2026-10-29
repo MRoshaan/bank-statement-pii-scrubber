@@ -117,3 +117,48 @@ chatbot working fine ? also yeah finish it then i will test it
 ---
 
 Agents.md is updated?
+
+---
+
+# AGENTS.md instructions
+
+<INSTRUCTIONS>
+# Personal working preferences
+
+## No AI Slop
+
+When the user says "no AI slop", "no-ai-slop", "/no-ai-slop", or asks to run it, use the `no-ai-slop` skill installed at `/home/muhammad-roshaan/.codex/skills/no-ai-slop/SKILL.md`. Read the skill rather than substituting a general style review.
+
+For writing or editing, apply the skill to the requested draft or current deliverable before presenting or submitting it. When generating new writing, draft it first and then apply the skill. Use the conversation to identify the target, audience, and purpose when available. Preserve factual meaning, technical precision, the user's voice, and all task-specific format and length constraints. Keep change notes outside an artifact when its format requires that.
+
+Read and apply the accompanying `eval.md` after editing. Fix failed checks before delivering the result. For audit-only requests, follow the skill's Detect workflow without rewriting.
+
+Only say the skill was run after following its actual workflow. It is an instruction-based editing workflow; do not describe it as an automated AI detector. If the installed skill is missing or inaccessible, say so instead of claiming it was used.
+
+This preference applies across chats and projects on this Codex installation. Preserve verbatim quotations and archival records unless the user requests changes to them.
+</INSTRUCTIONS>
+<environment_context>
+  <cwd>/home/muhammad-roshaan/dev/PROJ</cwd>
+  <shell>zsh</shell>
+  <current_date><PHONE></current_date>
+  <timezone>Asia/Karachi</timezone>
+  <filesystem><workspace_roots><root>/home/muhammad-roshaan/dev/PROJ</root></workspace_roots><permission_profile type="managed"><file_system type="restricted"><entry access="read"><special>:root</special></entry><entry access="write"><path>/home/muhammad-roshaan/dev/PROJ</path></entry><entry access="write"><special>:slash_tmp</special></entry><entry access="write"><special>:tmpdir</special></entry><entry access="read"><path>/home/muhammad-roshaan/dev/PROJ/.git</path></entry><entry access="read"><path>/home/muhammad-roshaan/dev/PROJ/.agents</path></entry><entry access="read"><path>/home/muhammad-roshaan/dev/PROJ/.codex</path></entry><entry access="read"><path>/home/muhammad-roshaan/dev/PROJ/.aws</path></entry></file_system></permission_profile></filesystem>
+</environment_context>
+
+---
+
+Okay so the project is done now needs to be checked that everything is all good , please check it and if you find issues do fix them . lets goo
+
+---
+
+<send_user_message_question_reply>
+[{"answer":"I havent created the video yet","question":"Do you already have a Loom or Drive link for the demo video? The README still has a placeholder; send the link if it’s ready.","questionItemId":"[\"request_user_input_async\",\"call_0df1962bd40a4ee2a3de09a1adb04a87\",0]"}]
+</send_user_message_question_reply>
+
+---
+
+a proper commit history is present too right?
+
+---
+
+and finish it now

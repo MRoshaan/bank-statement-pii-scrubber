@@ -18,9 +18,9 @@ except Exception:
 
 DB_PATH = Path.home() / ".local/share/opencode/opencode.db"
 OUT_DIR = Path(__file__).resolve().parent.parent / "docs"
-PROMPTS_PATH = Path(__file__).resolve().parent.parent / "prompts.txt"
+PROMPTS_PATH = Path(__file__).resolve().parent.parent / "docs" / "AI_ORIGINAL_PROMPTS.txt"
 SESSION_ID = "ses_e7b65336dffeOvL74YlbvxlrOz"
-TOOL_OUTPUT_LIMIT = 4000
+TOOL_OUTPUT_LIMIT = None
 SECRET_RE = re.compile(r"\b(?:gsk_|sk-|gho_|github_pat_)[A-Za-z0-9_\-]{8,}\b")
 EMAIL_RE = re.compile(r"(?<![\w.])[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+(?:\.[A-Za-z]{2,})?")
 IBAN_RE = re.compile(r"\b[A-Za-z]{2}\d{2}[A-Za-z0-9 ]{11,34}\b")
@@ -70,7 +70,7 @@ def redact(text: str) -> str:
         try:
             lines.append(scrub_text(line).text)
         except Exception:
-            lines.append(line)
+            lines.append("[Content withheld because local redaction failed.]")
     return fast_redact("\n".join(lines))
 
 
@@ -110,7 +110,7 @@ def main() -> None:
         "> Disclosure: the provided sample statements were inspected locally during development to verify the scrubber. "
         "The task's AI policy says task data should not be pasted into AI tools; that inspection is disclosed here. "
         "All statement PII and the Groq API key are redacted below. Assistant internal reasoning is omitted; every "
-        "user-visible assistant message is included. Very long tool outputs are capped at 4,000 characters.",
+        "user-visible assistant message is included. Tool inputs and outputs are included without exporter truncation.",
         "",
         "---",
         "",
@@ -146,27 +146,23 @@ def main() -> None:
                     lines.extend([f"### Tool call: `{name}`", ""])
                     if tool_input is not None:
                         payload = json.dumps(tool_input, ensure_ascii=False, indent=2)
-                        if "AI_TRANSCRIPT" in payload or "prompts.txt" in payload:
-                            continue
                         clipped = payload[:TOOL_OUTPUT_LIMIT]
-                        if len(payload) > TOOL_OUTPUT_LIMIT:
+                        if TOOL_OUTPUT_LIMIT is not None and len(payload) > TOOL_OUTPUT_LIMIT:
                             clipped += "\n[tool input truncated in transcript]"
                         lines.extend(["```json", redact(clipped), "```", ""])
                     output = tool_text(part)
                     if output:
-                        if "AI_TRANSCRIPT" in output or "prompts.txt" in output:
-                            continue
                         clipped = output[:TOOL_OUTPUT_LIMIT]
-                        if len(output) > TOOL_OUTPUT_LIMIT:
+                        if TOOL_OUTPUT_LIMIT is not None and len(output) > TOOL_OUTPUT_LIMIT:
                             clipped += "\n[tool output truncated in transcript]"
                         lines.extend(["```text", redact(clipped), "```", ""])
         else:
             continue
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    (OUT_DIR / "AI_TRANSCRIPT.md").write_text("\n".join(lines).strip() + "\n", encoding="utf-8")
+    (OUT_DIR / "AI_TRANSCRIPT_FULL.md").write_text("\n".join(lines).strip() + "\n", encoding="utf-8")
     PROMPTS_PATH.write_text("\n\n---\n\n".join(prompts).strip() + "\n", encoding="utf-8")
-    print(f"Transcript: {OUT_DIR / 'AI_TRANSCRIPT.md'}")
+    print(f"Transcript: {OUT_DIR / 'AI_TRANSCRIPT_FULL.md'}")
     print(f"Prompts:   {PROMPTS_PATH}")
     print(f"Prompts:   {len(prompts)}")
     print(f"Lines:     {len(lines)}")

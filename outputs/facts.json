@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-10-29T14:50:36.473817+00:00",
+  "generated_at": "2026-10-29T15:49:46.344807+00:00",
   "period": {
     "start": "2026-04-01",
     "end": "2026-04-30"
@@ -1023,7 +1023,7 @@
       "amount": -25000.0,
       "currency": "PKR",
       "direction": "debit",
-      "description": "RAAST P2P FT - Digital 20260402001456 FT BILAL HASSAN KHAN Others BILAL HASSAN KHAN 2026-Apr-02 10:14:22"
+      "description": "RAAST P2P FT - Digital FT BILAL HASSAN KHAN Others BILAL HASSAN KHAN 2026-Apr-02 10:14:22"
     },
     {
       "ref": "wallet_transactions.csv:15",
@@ -1155,6 +1155,7 @@
     {
       "date": "2026-04-12",
       "amount": -20000.0,
+      "currency": "PKR",
       "description": "atm wdl crescent atm gulshan br trace",
       "count": 2,
       "refs": [
@@ -1165,6 +1166,7 @@
     {
       "date": "2026-04-14",
       "amount": -980.25,
+      "currency": "PKR",
       "description": "paid to foodpanda karachi pk",
       "count": 2,
       "refs": [
@@ -1175,6 +1177,7 @@
     {
       "date": "2026-04-15",
       "amount": 83.3,
+      "currency": "USD",
       "description": "fiverr international ltd — payment received ( completed)",
       "count": 2,
       "refs": [

@@ -1,0 +1,119 @@
+Muhammad Salman <<EMAIL>>
+Attachments
+Tue 27 Oct, 23:45 (2 days ago)
+to me
+
+Hi Roshaan,
+
+Thank you for applying for the AI Engineering Intern position. As the next step, I would like you to complete a short technical task that mirrors a real problem from our current product.
+
+The task: Build a small FastAPI service that scrubs sensitive personal and financial identifiers (account numbers, IBANs, national IDs, phone numbers, etc.) from bank statement files before they can be sent to an LLM API, while preserving everything necessary for analysis (names, merchants, amounts, and dates).
+
+The scrubbed data must then be stored in a PostgreSQL database and analyzed using a Groq-hosted LLM (free tier) to generate budgeting insights. Your application must also include a chat feature that allows users to ask follow-up questions about the analysis and underlying data. Your choice of model, system prompt design, hallucination mitigation strategy, and guardrails must all be documented and justified.
+
+The complete workflow must be demonstrated through a simple HTML/CSS frontend (no frontend frameworks). The API design and database schema are up to you—please explain and justify your design decisions in your documentation.
+
+Please refer to the attached INSTRUCTIONS.pdf for the complete task requirements, implementation details, evaluation criteria, and submission guidelines.
+
+Attached:
+- INSTRUCTIONS.pdf — Full task description, requirements, evaluation criteria, and submission guidelines.
+- data.zip — Sample bank statement files from multiple countries for testing.
+
+Deliverables (submit as a single .zip by replying to this email):
+- Source code and README.md (setup, usage, architecture, approach, and limitations).
+- NOTES.md (maximum one page) describing your R&D and thought process, including what you researched, alternative approaches you considered, what you rejected, and why you chose your final implementation.
+- Scrubbed output for every provided data file.
+- If you used AI tools, include:
+- Complete conversation transcript(s)
+- The name of each AI tool used
+- A separate prompts.txt file containing only your prompts
+- A video demo showing every feature working end-to-end through your frontend, including:
+- Uploading and scrubbing bank statements
+- Scrubbed data stored in PostgreSQL
+- Groq-generated budgeting analysis
+- Chat functionality
+- Your implementation approach and any research you performed
+Any feature not demonstrated in the video will be considered not implemented. The video complements NOTES.md; it does not replace it.
+- A link to a public GitHub repository containing your complete solution (same contents as the ZIP, excluding the video). Include this link both in your reply email and in your README.md.
+
+Deadline: Friday, 30th October 2026, 11:59 PM (PKT).
+
+If anything in the instructions is unclear, feel free to reply to this email and I'll be happy to clarify.
+
+Good luck—I look forward to reviewing your solution.
+
+Best regards,
+Muhammad Salman 
+also read the files in the current directory , also if you can check that make sure the files doesn't contain any virus .
+
+---
+
+plan first
+
+---
+
+Load the `pstack-opencode` skill, then load the `poteto-help` skill and answer with it. This is a guide, not a work order: do not start the task itself.
+
+---
+
+what is the plan ? how we take this project ?
+
+---
+
+?
+
+---
+
+can you breifly tell me what this project is about and what it is requiring ?
+
+---
+
+pj-bank-api 
+<REDACTED_SECRET> 
+
+the grok api,
+it is not a problem as i didn't attached my card so not a concerning issue we on free tier
+
+---
+
+okay and what about database ? shall we use supabase ?
+
+---
+
+Okay shall we start this project ? and we have to finish this project today , then we will see any problems and resolve that to make it ina working condition
+
+---
+
+just go through the project step by step what we do
+
+---
+
+so how is it supposed towork in very short ? then we will start
+
+---
+
+Lets give your best and start
+
+---
+
+do let me know if launching subagents is required and when
+
+---
+
+have you also created agents.md
+
+---
+
+how much is done ?
+
+---
+
+and use pak currency sign
+
+---
+
+chatbot working fine ? also yeah finish it then i will test it
+
+---
+
+Agents.md is updated?

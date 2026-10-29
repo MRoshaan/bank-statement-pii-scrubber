@@ -4,7 +4,7 @@ A local-first FastAPI service that scrubs personal and financial identifiers fro
 
 **Public repository:** https://github.com/MRoshaan/pj-bank-api
 
-**Demo video:** _Add your Loom/Drive link here before submitting._
+**Demo video:** Pending recording. Add the Loom/Drive link before submitting.
 
 ---
 
@@ -37,7 +37,7 @@ Raw statement text is never written to PostgreSQL and never sent to Groq.
 - Groq analysis with deterministic facts, structured JSON, citation grounding, and numeric validation.
 - Grounded chat with retrieval, citations, and deterministic fallback for common aggregate questions.
 - Vanilla HTML/CSS/JS frontend. The UI renders Pakistani rupees with `₨`; the API, database, and LLM keep ISO `PKR` for precision.
-- 21 automated tests covering leaks, precision, API flow, and guardrails.
+- 59 automated tests covering leaks, precision, API flow, and guardrails.
 
 ## Architecture
 
@@ -97,7 +97,7 @@ docker run --name pj-bank-db \
 
 A `docker-compose.yml` is included for environments that have Compose.
 
-Create the test database and tables:
+Create the test database and tables (tests use TEST_DATABASE_URL and require a database name ending in _test):
 
 ```bash
 docker exec pj-bank-db psql -U pjbank -d postgres -c "CREATE DATABASE pjbank_test;" || true
@@ -145,7 +145,9 @@ outputs/metadata.json
 | `POST` | `/api/v1/batches/{id}/analyze` | Generate Groq analysis |
 | `GET` | `/api/v1/batches/{id}/analysis` | Latest analysis |
 | `POST` | `/api/v1/batches/{id}/chat` | Grounded chat |
+| `GET` | `/api/v1/batches/{id}/chat/sessions` | Recent sessions |
 | `GET` | `/api/v1/batches/{id}/chat/sessions/{sid}` | Chat history |
+| `DELETE` | `/api/v1/batches/{id}` | Delete batch and dependent rows |
 | `GET` | `/api/v1/health` | DB + Groq configuration |
 
 Example:
@@ -199,16 +201,16 @@ Key decisions:
 - Very unusual national-ID formats or statement layouts may need a new labeled rule.
 - Multi-currency statements are reported per currency; there is no FX conversion.
 - The transaction parser covers the provided layouts and common variants, not every bank's format.
-- The free Groq tier has an 8K TPM limit, so analysis sends a compact facts pack, a 3K-character scrubbed excerpt, and a complete transaction digest rather than the entire combined string.
+- The free Groq tier has an 8K TPM limit, so analysis sends a compact facts pack, a 2K-character scrubbed excerpt, and a bounded transaction digest (complete for the provided sample) rather than the entire combined string.
 
 ## Groq analysis and chat
 
 - Model: `openai/gpt-oss-120b`, fallback `openai/gpt-oss-20b`.
-- Why: available on Groq's free tier, 131K context, strong reasoning, JSON mode, ~500 tokens/sec. The older Llama 3.3 70B is no longer on the free/developer tier; Qwen 3.8 27B is preview and more expensive.
+- Why: JSON output, reasoning capability, a 131,072-token context, and roughly 500 tokens/sec. Current model details and pricing are in [Groq's model documentation](https://console.groq.com/docs/models); check [account limits](https://console.groq.com/docs/rate-limits) before running a demo.
 - Analysis output is structured JSON: summary, insights, anomalies, recommendations, data-quality notes.
 - Deterministic Python facts are the only source of truth for numbers.
-- Every numeric claim and citation is validated. Invalid citations are filtered/re-grounded; unsupported numbers trigger one repair retry, then a deterministic fallback.
-- Chat retrieves relevant scrubbed rows plus facts, bounds history, and validates citations/numbers.
+- Numeric values are checked against known facts/transactions; this does not prove every sentence or date claim. Invalid citations are filtered/re-grounded; unsupported numbers trigger one repair retry, then a deterministic fallback.
+- Chat retrieves relevant scrubbed rows plus facts, bounds history, and validates citations/numbers. Complete prompts, history, and repair requests are scanned before transport; all model strings are scrubbed before validation and storage.
 - Common aggregate questions have deterministic fallbacks, so a model/rate-limit failure does not produce an ungrounded answer.
 - Prompt injection is treated as data: statement text and retrieved rows are delimited and never followed as instructions.
 
@@ -228,6 +230,8 @@ The suite covers:
 - transaction parsing, Indian/German number formats, PayPal totals
 - API upload → DB → analysis → chat
 - prompt injection, residual-PII blocking, numeric/citation validation
+- model-output PII, complete-prompt scanning, grounding fallback, empty analyses
+- ZIP expansion limits, duplicate filenames, metadata scrubbing, negative balances
 
 ## Project layout
 
@@ -249,7 +253,7 @@ Run the app, upload the four provided files, inspect the combined/per-file outpu
 - “How much did I spend on food?”
 - “Which merchant did I pay most often?”
 
-A shot-by-shot script is in `docs/DEMO_SCRIPT.md`.
+A shot-by-shot script is in `docs/DEMO_SCRIPT.md`. Allow the free-tier token quota to recover between analysis and chat requests; the UI labels deterministic fallbacks when the provider is rate-limited.
 
 ## Approach and limitations (short version)
 
