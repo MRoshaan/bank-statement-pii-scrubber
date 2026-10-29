@@ -1,11 +1,11 @@
-# Demo script — PJ Bank API
+# Demo script — Bank Statement PII Scrubber
 
 Target length: 7–9 minutes. Record at 1080p. Keep the browser at a readable zoom (110–125%).
 
 ## Before recording
 
 ```bash
-cd pj-bank-api
+cd bank-statement-pii-scrubber
 .venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 

@@ -1,8 +1,8 @@
-# PJ Bank API — Privacy-first statement analysis
+# Bank Statement PII Scrubber — Privacy-first analysis
 
 A local-first FastAPI service that scrubs personal and financial identifiers from bank statements, stores the scrubbed data in PostgreSQL, and uses a Groq-hosted LLM for budgeting analysis and grounded chat.
 
-**Public repository:** https://github.com/MRoshaan/pj-bank-api
+**Public repository:** https://github.com/MRoshaan/bank-statement-pii-scrubber
 
 **Demo video:** Pending recording. Add the Loom/Drive link before submitting.
 
@@ -72,8 +72,8 @@ Groq openai/gpt-oss-120b
 ### 2. Install
 
 ```bash
-git clone https://github.com/MRoshaan/pj-bank-api.git
-cd pj-bank-api
+git clone https://github.com/MRoshaan/bank-statement-pii-scrubber.git
+cd bank-statement-pii-scrubber
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
 cp .env.example .env

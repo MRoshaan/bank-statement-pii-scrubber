@@ -1,11 +1,11 @@
-# AGENTS.md — pj-bank-api
+# AGENTS.md — bank-statement-pii-scrubber
 
 ## What this project is
 
 A local-first bank-statement PII scrubber with a FastAPI API, PostgreSQL persistence,
 a vanilla HTML/CSS/JS frontend, and a grounded Groq budgeting assistant.
 
-Public repo: https://github.com/MRoshaan/pj-bank-api
+Public repo: https://github.com/MRoshaan/bank-statement-pii-scrubber
 
 ## Non-negotiable privacy invariants
 
