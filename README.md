@@ -1,75 +1,113 @@
-# Bank Statement PII Scrubber — Privacy-first analysis
+# Bank Statement PII Scrubber
 
-A local-first FastAPI service that scrubs personal and financial identifiers from bank statements, stores the scrubbed data in PostgreSQL, and uses a Groq-hosted LLM for budgeting analysis and grounded chat.
+<p>
+  <img alt="Python 3.12" src="https://img.shields.io/badge/python-3.12-3776AB?logo=python&logoColor=white">
+  <img alt="FastAPI" src="https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white">
+  <img alt="PostgreSQL 16" src="https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql&logoColor=white">
+  <img alt="Groq" src="https://img.shields.io/badge/Groq-gpt--oss--120b-F55036">
+  <img alt="Tests" src="https://img.shields.io/badge/tests-59%20passing-brightgreen">
+  <img alt="License" src="https://img.shields.io/badge/license-MIT-green">
+</p>
 
-**Public repository:** https://github.com/MRoshaan/bank-statement-pii-scrubber
+A local-first FastAPI service that removes personal and financial identifiers from bank statements **before any text leaves the machine**, stores the scrubbed data in PostgreSQL, and uses a Groq-hosted LLM for budgeting analysis and grounded chat.
 
-**Demo video:** Pending recording. Add the Loom/Drive link before submitting.
+**Repository:** <https://github.com/MRoshaan/bank-statement-pii-scrubber>  
+**Demo video:** _pending — add the Loom/Drive link before submitting_  
+**Design notes:** [`NOTES.md`](NOTES.md) · **Guardrail tests:** [`docs/GUARDRAILS.md`](docs/GUARDRAILS.md)
 
 ---
+
+## Contents
+
+- [At a glance](#at-a-glance)
+- [Why this exists](#why-this-exists)
+- [Privacy invariants](#privacy-invariants)
+- [Architecture](#architecture)
+- [What is removed vs kept](#what-is-removed-vs-kept)
+- [Quick start](#quick-start)
+- [Usage](#usage)
+- [API](#api)
+- [Database schema](#database-schema)
+- [Scrubbing approach](#scrubbing-approach)
+- [Groq analysis and chat](#groq-analysis-and-chat)
+- [Testing](#testing)
+- [Known limitations](#known-limitations)
+- [Project layout](#project-layout)
+- [Demo](#demo)
+- [License](#license)
+
+## At a glance
+
+| | |
+|---|---|
+| **Input** | PDF, DOCX, CSV, TXT — any folder, plus ZIP uploads |
+| **Output** | one combined scrubbed string with `---- File: <name> ----` headers, per-file output, redaction report |
+| **Privacy boundary** | raw text is never written to PostgreSQL and never sent to Groq; every LLM payload is re-scanned before transport |
+| **Storage** | PostgreSQL 16 — scrubbed text, transactions, redactions, analyses, chat |
+| **Model** | Groq `openai/gpt-oss-120b`, fallback `openai/gpt-oss-20b` |
+| **Frontend** | vanilla HTML / CSS / JavaScript |
+| **Verification** | 59 pytest tests, `ruff` clean |
 
 ## Why this exists
 
 Bank statements contain exactly the data an LLM needs for budgeting analysis — and exactly the data that must not leave the user's machine. This service separates the two:
 
-1. Raw PDF/DOCX/CSV/TXT files are processed **in memory**.
-2. A deterministic local scrubber replaces identifiers with placeholders.
+1. Raw files are extracted and scrubbed **in memory**.
+2. A deterministic local engine replaces identifiers with placeholders.
 3. Only scrubbed text and deterministic facts are stored and sent to Groq.
-4. Every LLM payload is re-scanned for residual PII before the request.
-5. Chat messages are scrubbed before they are sent or stored.
+4. Every Groq payload passes a residual-PII scan immediately before the call.
+5. Chat questions are scrubbed before they are stored or sent.
 
-Raw statement text is never written to PostgreSQL and never sent to Groq.
+Raw statement text is never persisted and never transmitted.
 
-## Features
+## Privacy invariants
 
-- Folder-in, one-string-out scrubber with `---- File: <name> ----` headers.
-- PDF (pdfplumber), DOCX (python-docx), CSV/TXT (charset-normalizer), and safe ZIP uploads.
-- Deterministic PII detection for:
-  - IBANs, account numbers, full card numbers
-  - CNIC, SSN, SIN, UK NI, PAN, Aadhaar, tax IDs
-  - Emails, phone numbers, UPI/payment handles, wallet IDs
-  - Routing/sort/BIC/SWIFT/IFSC/MICR/transit identifiers
-  - Long reference, trace, transaction, invoice, order, consumer and statement IDs
-  - Home/customer addresses and IP addresses
-- Preserves names, merchants (including `Netflix.com`), dates, times, amounts, balances, currencies, and transaction descriptions.
-- Keeps masked card last-4 (`xxxx2070`); removes masked bank/wallet identifiers.
-- PostgreSQL schema for batches, files, redactions, transactions, analyses, and chat history.
-- Groq analysis with deterministic facts, structured JSON, citation grounding, and numeric validation.
-- Grounded chat with retrieval, citations, and deterministic fallback for common aggregate questions.
-- Vanilla HTML/CSS/JS frontend. The UI renders Pakistani rupees with `₨`; the API, database, and LLM keep ISO `PKR` for precision.
-- 59 automated tests covering leaks, precision, API flow, and guardrails.
+These are enforced in code, not just in prompts:
+
+1. Raw statement text is never written to PostgreSQL.
+2. Raw text is never sent to Groq or any external service.
+3. The scrubber runs locally and deterministically.
+4. Every Groq payload passes `scan_residual()` immediately before the call.
+5. User chat messages are scrubbed before storage and transport.
+6. Model output is scrubbed and scanned before it is stored or shown.
+7. Redaction rows store the entity type, placeholder, and count — never the original value.
 
 ## Architecture
 
-```text
-Browser (vanilla JS)
-        |
-        v
-FastAPI /api/v1
-        |
-        +-- extract PDF/DOCX/CSV/TXT in memory
-        +-- local deterministic scrubber
-        +-- residual-PII guard
-        +-- transaction parser + deterministic facts
-        |
-        v
-PostgreSQL (scrubbed text, files, redactions, transactions, analyses, chats)
-        |
-        v
-Groq openai/gpt-oss-120b
-   analysis: compact facts + scrubbed excerpt + transaction digest
-   chat:     facts + retrieved scrubbed rows + validated analysis
-```
+![Architecture](docs/architecture.png)
+
+**Local machine.** The browser uploads files to FastAPI. Extraction, scrubbing, transaction parsing, and fact computation happen in memory. PostgreSQL stores the scrubbed text and structured rows; there is no raw-statement column.
+
+**External.** Groq receives two bounded payloads:
+
+- **Analysis:** compact FACTS + a 2,000-character scrubbed excerpt + a bounded transaction digest.
+- **Chat:** facts + up to 18 retrieved scrubbed rows + the bounded analysis narrative + recent history.
+
+Every model response is validated before it is shown: numeric claims must match deterministic facts, citations must resolve to real transactions, and failures trigger one repair retry followed by a deterministic answer or an explicit refusal.
+
+## What is removed vs kept
+
+| Removed → placeholder | Kept |
+|---|---|
+| IBANs and bank account numbers (`<IBAN>`, `<ACCOUNT_NUMBER>`) | Person names (account holder and counterparties) |
+| Full card numbers (masked last-4 `xxxx2070` stays) | Merchant names, including URL-like ones (`Netflix.com`, `TESCO STORES`) |
+| CNIC, SSN, SIN, UK NI, PAN, Aadhaar, tax IDs | Dates and times |
+| Emails, phone numbers, UPI/payment handles, wallet IDs | Amounts, balances, currencies |
+| Routing, sort, SWIFT/BIC, IFSC, MICR, transit identifiers | Transaction types and descriptions (minus identifiers) |
+| Long reference, trace, transaction, invoice, order, consumer, statement IDs | Categories and derived facts |
+| Home/customer addresses and IP addresses | |
+
+The hard part is the balance: remove every identifier without destroying the transaction's meaning. A scrubber that deletes `Netflix.com` as a "URL" fails just as badly as one that leaks an IBAN.
 
 ## Quick start
 
-### 1. Prerequisites
+### Prerequisites
 
 - Python 3.12+
 - Docker (for PostgreSQL 16)
 - A Groq API key from [console.groq.com](https://console.groq.com)
 
-### 2. Install
+### 1. Install
 
 ```bash
 git clone https://github.com/MRoshaan/bank-statement-pii-scrubber.git
@@ -79,11 +117,11 @@ python3 -m venv .venv
 cp .env.example .env
 ```
 
-Edit `.env` and set `GROQ_API_KEY`. The key is never committed.
+Set `GROQ_API_KEY` in `.env`. The key is never committed.
 
-### 3. Start PostgreSQL
+### 2. Start PostgreSQL
 
-The host used for development does not have the Docker Compose plugin, so the tested command is `docker run`:
+The development host does not have the Docker Compose plugin, so the tested command is `docker run`:
 
 ```bash
 docker run --name pj-bank-db \
@@ -97,30 +135,38 @@ docker run --name pj-bank-db \
 
 A `docker-compose.yml` is included for environments that have Compose.
 
-Create the test database and tables (tests use TEST_DATABASE_URL and require a database name ending in _test):
+Create the test database and tables (tests use `TEST_DATABASE_URL`, which must end in `_test`):
 
 ```bash
 docker exec pj-bank-db psql -U pjbank -d postgres -c "CREATE DATABASE pjbank_test;" || true
 .venv/bin/python scripts/init_db.py
 ```
 
-### 4. Run
+### 3. Run
 
 ```bash
 .venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
-Open <http://127.0.0.1:8000/>. API docs are at <http://127.0.0.1:8000/docs>.
+Open <http://127.0.0.1:8000/>. Interactive API docs: <http://127.0.0.1:8000/docs>.
 
-### 5. CLI: folder in, one string out
+## Usage
+
+### Web UI
+
+1. Drop the four provided files into the uploader.
+2. Click **Scrub & store**.
+3. Inspect the combined output, per-file output, and redaction table.
+4. Click **Generate analysis**.
+5. Ask follow-up questions in the chat.
+
+### CLI: folder in, one string out
 
 Place the provided `data/` folder in the project root (it is intentionally not committed), then:
 
 ```bash
 .venv/bin/python -m app.cli scrub data --out outputs --name "Provided sample statements" --store
 ```
-
-Outputs:
 
 ```text
 outputs/scrubbed_combined.txt      # one combined string with per-file headers
@@ -141,16 +187,14 @@ outputs/metadata.json
 | `GET` | `/api/v1/batches` | Recent batches |
 | `GET` | `/api/v1/batches/{id}` | Batch detail |
 | `GET` | `/api/v1/batches/{id}/scrubbed` | Combined scrubbed text download |
-| `GET` | `/api/v1/batches/{id}/transactions` | Filter by category/merchant |
+| `GET` | `/api/v1/batches/{id}/transactions` | Filter by category or merchant |
 | `POST` | `/api/v1/batches/{id}/analyze` | Generate Groq analysis |
 | `GET` | `/api/v1/batches/{id}/analysis` | Latest analysis |
 | `POST` | `/api/v1/batches/{id}/chat` | Grounded chat |
 | `GET` | `/api/v1/batches/{id}/chat/sessions` | Recent sessions |
 | `GET` | `/api/v1/batches/{id}/chat/sessions/{sid}` | Chat history |
-| `DELETE` | `/api/v1/batches/{id}` | Delete batch and dependent rows |
-| `GET` | `/api/v1/health` | DB + Groq configuration |
-
-Example:
+| `DELETE` | `/api/v1/batches/{id}` | Delete a batch and its dependent rows |
+| `GET` | `/api/v1/health` | Database and Groq configuration |
 
 ```bash
 curl -X POST http://127.0.0.1:8000/api/v1/batches \
@@ -158,11 +202,13 @@ curl -X POST http://127.0.0.1:8000/api/v1/batches \
   -F "files=@data/wallet_transactions.csv"
 ```
 
+Design rationale is in [`NOTES.md`](NOTES.md); the schema is in [`schema.sql`](schema.sql).
+
 ## Database schema
 
 | Table | Purpose |
 |---|---|
-| `batches` | One upload run; combined scrubbed text, counts, facts, warnings |
+| `batches` | One upload run: combined scrubbed text, counts, facts, warnings |
 | `statement_files` | Per-file scrubbed text, hash, format, counts, warnings |
 | `redactions` | Entity type + placeholder + count (never original values) |
 | `transactions` | Date, time, description, merchant, category, signed amount, currency, balance, source line |
@@ -170,51 +216,37 @@ curl -X POST http://127.0.0.1:8000/api/v1/batches \
 | `chat_sessions` | Conversation per batch |
 | `chat_messages` | User/assistant turns, citations, grounding metadata |
 
-All tables use UUID primary keys and cascade deletes. `statement_files.batch_id`, `transactions.batch_id`, `analyses.batch_id`, and chat tables are indexed. Amounts use `NUMERIC(18,2)`, not floats.
+All tables use UUID primary keys and cascade deletes. Foreign keys and lookup columns are indexed. Amounts use `NUMERIC(18,2)`, not floats.
 
-`schema.sql` contains the PostgreSQL DDL.
-
-### Why this schema
+**Why this schema:**
 
 - Normalizing files and transactions makes per-file output, filtering, and deterministic aggregation possible.
-- `transactions` is the source of truth for chat and analysis; the LLM never computes totals.
-- `analyses` is versioned by model/prompt so a later run does not overwrite an earlier result.
-- `chat_messages` stores citations and grounding metadata for auditability.
-- No raw statement column exists. That is deliberate.
+- `transactions` is the source of truth for analysis and chat; the LLM never computes totals.
+- Analyses are stored per run, so a later model or prompt version does not overwrite history.
+- Chat messages keep citations and grounding metadata for auditability.
+- No raw-statement column exists. That is deliberate.
 
 ## Scrubbing approach
 
-The scrubber is a local, span-based rule engine. It combines labeled field detection, format validation, and context checks, then resolves overlapping spans by priority before replacing them. This avoids a common failure mode where one regex corrupts another rule's placeholder.
+A local, span-based rule engine. It combines labeled field detection, format validation, and context checks, then resolves overlapping spans by priority before replacing them. This avoids the classic failure where one regex corrupts another rule's placeholder.
 
 Key decisions:
 
-- **No Presidio, spaCy NER, scrubadub, or LLM in the scrubbing path.** Those tools over-redact person names, which the task requires preserving, and add nondeterminism/heavy models.
-- **Validators, not just regex:** IBAN mod-97, Luhn cards, `phonenumbers` for international phone formats, date/timestamp exclusions, amount-context exclusions.
-- **Precision guard:** merchant URLs (`Netflix.com`, `Amazon.co.uk`) stay; only emails/handles are removed.
-- **Fail closed:** after scrubbing, a high-confidence residual scanner runs. If it finds PII, the batch is blocked before any LLM call.
-- **Idempotent placeholders:** scrubbing an already-scrubbed file does not change it.
-
-### Known limitations
-
-- Scanned PDFs without a text layer are not OCR'd; the file is flagged with a warning.
-- Addresses are label-driven (`Address:`, `Anschrift:`, etc.). An unlabeled free-text address may survive.
-- Very unusual national-ID formats or statement layouts may need a new labeled rule.
-- Multi-currency statements are reported per currency; there is no FX conversion.
-- The transaction parser covers the provided layouts and common variants, not every bank's format.
-- The free Groq tier has an 8K TPM limit, so analysis sends a compact facts pack, a 2K-character scrubbed excerpt, and a bounded transaction digest (complete for the provided sample) rather than the entire combined string.
+- **No Presidio, spaCy NER, scrubadub, or LLM in the scrubbing path.** They over-redact person names — which this task requires preserving — and add nondeterminism or heavy model dependencies.
+- **Validators, not just regex.** IBAN mod-97, Luhn cards, `phonenumbers` for international formats, date/timestamp exclusions, amount-context exclusions.
+- **Precision guard.** Merchant URLs (`Netflix.com`, `Amazon.co.uk`) stay; only emails and payment handles are removed.
+- **Fail closed.** A high-confidence residual scanner runs after scrubbing. If it finds PII, the batch is blocked before any LLM call.
+- **Idempotent placeholders.** Scrubbing an already-scrubbed file does not change it.
 
 ## Groq analysis and chat
 
-- Model: `openai/gpt-oss-120b`, fallback `openai/gpt-oss-20b`.
-- Why: JSON output, reasoning capability, a 131,072-token context, and roughly 500 tokens/sec. Current model details and pricing are in [Groq's model documentation](https://console.groq.com/docs/models); check [account limits](https://console.groq.com/docs/rate-limits) before running a demo.
-- Analysis output is structured JSON: summary, insights, anomalies, recommendations, data-quality notes.
-- Deterministic Python facts are the only source of truth for numbers.
-- Numeric values are checked against known facts/transactions; this does not prove every sentence or date claim. Invalid citations are filtered/re-grounded; unsupported numbers trigger one repair retry, then a deterministic fallback.
-- Chat retrieves relevant scrubbed rows plus facts, bounds history, and validates citations/numbers. Complete prompts, history, and repair requests are scanned before transport; all model strings are scrubbed before validation and storage.
-- Common aggregate questions have deterministic fallbacks, so a model/rate-limit failure does not produce an ungrounded answer.
-- Prompt injection is treated as data: statement text and retrieved rows are delimited and never followed as instructions.
-
-See `NOTES.md` for the four required LLM write-ups and `docs/GUARDRAILS.md` for tests.
+- **Model:** `openai/gpt-oss-120b`, fallback `openai/gpt-oss-20b` — JSON output, reasoning capability, a 131,072-token context, and roughly 500 tokens/sec on Groq.
+- **Analysis output:** structured JSON with summary, insights, anomalies, recommendations, and data-quality notes.
+- **Facts are the only source of truth for numbers.** Python computes every total, ranking, and count; the model writes narrative only.
+- **Validation:** numeric values are checked against known facts and transactions; invalid citations are filtered or re-grounded; unsupported numbers trigger one repair retry, then a deterministic fallback.
+- **Chat:** retrieval over scrubbed rows plus facts, bounded history, and the same citation/number validation.
+- **Prompt injection:** statement text and retrieved rows are delimited and treated as untrusted data, never as instructions.
+- **Budget:** the free tier allows 8K TPM, so analysis sends a compact facts pack, a 2K-character excerpt, and a bounded digest rather than the entire combined string.
 
 ## Testing
 
@@ -224,14 +256,26 @@ See `NOTES.md` for the four required LLM write-ups and `docs/GUARDRAILS.md` for 
 ```
 
 The suite covers:
+
 - all four sample formats and the combined output
 - known-PII absence and merchant/amount/date preservation
 - idempotence, masked cards, merchant URLs
 - transaction parsing, Indian/German number formats, PayPal totals
-- API upload → DB → analysis → chat
+- API upload → database → analysis → chat
 - prompt injection, residual-PII blocking, numeric/citation validation
 - model-output PII, complete-prompt scanning, grounding fallback, empty analyses
 - ZIP expansion limits, duplicate filenames, metadata scrubbing, negative balances
+
+## Known limitations
+
+- Scanned PDFs without a text layer are not OCR'd; the file is flagged with a warning.
+- Addresses are label-driven (`Address:`, `Anschrift:`, etc.). An unlabeled free-text address may survive.
+- Very unusual national-ID formats or statement layouts may need a new labeled rule.
+- Multi-currency statements are reported per currency; there is no FX conversion.
+- The transaction parser covers the provided layouts and common variants, not every bank's format.
+- The free Groq tier has an 8K TPM limit, so analysis uses a compact facts pack, a 2K-character scrubbed excerpt, and a bounded transaction digest.
+- Person names are retained by design (the brief requires them). Chat may therefore mention a counterparty by name; identifier values are never sent and cannot be reconstructed.
+- Numeric membership cannot prove every sentence's meaning or every date claim; it proves that every number shown came from the data.
 
 ## Project layout
 
@@ -240,25 +284,22 @@ app/                  FastAPI app, scrubber, parser, facts, Groq clients
 frontend/             vanilla HTML/CSS/JS
 tests/                pytest suite
 outputs/              scrubbed output and reports
-docs/                 demo script, guardrails, AI transcript/tool notes
+docs/                 architecture, demo script, guardrails, AI notes
 scripts/init_db.py    create tables
-AGENTS.md             rules for future coding agents
+AGENTS.md             engineering rules and privacy invariants
 schema.sql            PostgreSQL DDL
 ```
 
 ## Demo
 
-Run the app, upload the four provided files, inspect the combined/per-file output, query PostgreSQL, generate the analysis, and ask:
+Run the app, upload the four provided files, inspect the combined and per-file output, query PostgreSQL, generate the analysis, and ask:
 
-- “How much did I spend on food?”
-- “Which merchant did I pay most often?”
+- "How much did I spend on food?"
+- "Which merchant did I pay most often?"
+- "What were my largest cash withdrawals?"
 
-A shot-by-shot script is in `docs/DEMO_SCRIPT.md`. Allow the free-tier token quota to recover between analysis and chat requests; the UI labels deterministic fallbacks when the provider is rate-limited.
-
-## Approach and limitations (short version)
-
-The service treats scrubbing as a local security boundary, not a prompt-engineering problem. A deterministic, label-aware engine removes identifiers while preserving analytical context; PostgreSQL stores only scrubbed text and structured transactions; Groq turns deterministic facts into narrative and grounded chat. The main trade-offs are no OCR for scanned PDFs, label-dependent address detection, per-currency rather than converted totals, and a token-budgeted analysis prompt forced by Groq's free-tier TPM limit.
+A shot-by-shot script is in [`docs/DEMO_SCRIPT.md`](docs/DEMO_SCRIPT.md). Allow the free-tier token quota to recover between analysis and chat requests; the UI labels deterministic fallbacks when the provider is rate-limited.
 
 ## License
 
-MIT. See `LICENSE`.
+MIT. See [`LICENSE`](LICENSE).
