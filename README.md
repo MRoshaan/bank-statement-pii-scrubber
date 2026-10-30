@@ -12,8 +12,7 @@
 A local-first FastAPI service that removes personal and financial identifiers from bank statements **before any text leaves the machine**, stores the scrubbed data in PostgreSQL, and uses a Groq-hosted LLM for budgeting analysis and grounded chat.
 
 **Repository:** <https://github.com/MRoshaan/bank-statement-pii-scrubber>  
-**Demo video:** recorded; `demo.mp4` is included in the submission ZIP.  
-**Design notes:** [`NOTES.md`](NOTES.md) · **Guardrail tests:** [`docs/GUARDRAILS.md`](docs/GUARDRAILS.md)
+**Design notes:** [`NOTES.md`](NOTES.md) · **Guardrails:** [`docs/GUARDRAILS.md`](docs/GUARDRAILS.md)
 
 ---
 
@@ -34,7 +33,7 @@ A local-first FastAPI service that removes personal and financial identifiers fr
 - [Testing](#testing)
 - [Known limitations](#known-limitations)
 - [Project layout](#project-layout)
-- [Demo](#demo)
+- [Example questions](#example-questions)
 - [License](#license)
 
 ## At a glance
@@ -155,7 +154,7 @@ Open <http://127.0.0.1:8000/>. Interactive API docs: <http://127.0.0.1:8000/docs
 
 ### Web UI
 
-1. Drop the four provided files into the uploader.
+1. Drop your PDF, DOCX, CSV, or TXT files into the uploader.
 2. Click **Scrub & store**.
 3. Inspect the combined output, per-file output, and redaction table.
 4. Click **Generate analysis**.
@@ -163,10 +162,10 @@ Open <http://127.0.0.1:8000/>. Interactive API docs: <http://127.0.0.1:8000/docs
 
 ### CLI: folder in, one string out
 
-Place the provided `data/` folder in the project root (it is intentionally not committed), then:
+Put your statements in a local folder, for example `data/` (it is gitignored), then:
 
 ```bash
-.venv/bin/python -m app.cli scrub data --out outputs --name "Provided sample statements" --store
+.venv/bin/python -m app.cli scrub data --out outputs --name "April statements" --store
 ```
 
 ```text
@@ -233,7 +232,7 @@ The scrubber is a local, span-based rule engine. It combines labeled field detec
 
 Key decisions:
 
-- **No Presidio, spaCy NER, scrubadub, or LLM in the scrubbing path.** They over-redact person names, which this task requires preserving, and add nondeterminism or heavy model dependencies.
+- **No Presidio, spaCy NER, scrubadub, or LLM in the scrubbing path.** They over-redact person names, which this project preserves, and add nondeterminism or heavy model dependencies.
 - **Validators do the precision work.** IBAN mod-97, Luhn cards, `phonenumbers` for international formats, date/timestamp exclusions, amount-context exclusions.
 - **Precision guard.** Merchant URLs (`Netflix.com`, `Amazon.co.uk`) stay; only emails and payment handles are removed.
 - **Fail closed.** A high-confidence residual scanner runs after scrubbing. If it finds PII, the batch is blocked before any LLM call.
@@ -285,9 +284,9 @@ The suite covers:
 - Addresses are label-driven (`Address:`, `Anschrift:`, etc.). An unlabeled free-text address may survive.
 - Very unusual national-ID formats or statement layouts may need a new labeled rule.
 - Multi-currency statements are reported per currency; there is no FX conversion.
-- The transaction parser covers the provided layouts and common variants, not every bank's format.
+- The transaction parser covers the sample layouts and common variants, not every bank's format.
 - The free Groq tier has an 8K TPM limit, so analysis uses a compact facts pack, a 2K-character scrubbed excerpt, and a bounded transaction digest.
-- Person names are retained by design (the brief requires them). Chat may therefore mention a counterparty by name; identifier values are never sent and cannot be reconstructed.
+- Person names are retained by design because they carry analytical value. Chat may therefore mention a counterparty by name; identifier values are never sent and cannot be reconstructed.
 - Numeric membership cannot prove every sentence's meaning or every date claim; it proves that every number shown came from the data.
 
 ## Project layout
@@ -297,21 +296,21 @@ app/                  FastAPI app, scrubber, parser, facts, Groq clients
 frontend/             vanilla HTML/CSS/JS
 tests/                pytest suite
 outputs/              scrubbed output and reports
-docs/                 architecture, demo script, guardrails, AI notes
+docs/                 architecture, guardrails, engineering notes
 scripts/init_db.py    create tables
 AGENTS.md             engineering rules and privacy invariants
 schema.sql            PostgreSQL DDL
 ```
 
-## Demo
+## Example questions
 
-Run the app, upload the four provided files, inspect the combined and per-file output, query PostgreSQL, generate the analysis, and ask:
+Run the app, upload a set of statements, inspect the combined and per-file output, query PostgreSQL, generate the analysis, and ask:
 
 - "How much did I spend on food?"
 - "Which merchant did I pay most often?"
 - "What were my largest cash withdrawals?"
 
-A shot-by-shot script is in [`docs/DEMO_SCRIPT.md`](docs/DEMO_SCRIPT.md). Allow the free-tier token quota to recover between analysis and chat requests; the UI labels deterministic fallbacks when the provider is rate-limited.
+The free tier allows 8K TPM, so leave a short gap between the analysis and chat calls. The UI labels deterministic fallbacks when the provider is rate-limited.
 
 ## License
 
