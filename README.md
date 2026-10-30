@@ -12,7 +12,7 @@
 A local-first FastAPI service that removes personal and financial identifiers from bank statements **before any text leaves the machine**, stores the scrubbed data in PostgreSQL, and uses a Groq-hosted LLM for budgeting analysis and grounded chat.
 
 **Repository:** <https://github.com/MRoshaan/bank-statement-pii-scrubber>  
-**Demo video:** _pending — add the Loom/Drive link before submitting_  
+**Demo video:** recorded; `demo.mp4` is included in the submission ZIP.  
 **Design notes:** [`NOTES.md`](NOTES.md) · **Guardrail tests:** [`docs/GUARDRAILS.md`](docs/GUARDRAILS.md)
 
 ---
@@ -30,6 +30,7 @@ A local-first FastAPI service that removes personal and financial identifiers fr
 - [Database schema](#database-schema)
 - [Scrubbing approach](#scrubbing-approach)
 - [Groq analysis and chat](#groq-analysis-and-chat)
+- [Guardrails](#guardrails)
 - [Testing](#testing)
 - [Known limitations](#known-limitations)
 - [Project layout](#project-layout)
@@ -40,17 +41,17 @@ A local-first FastAPI service that removes personal and financial identifiers fr
 
 | | |
 |---|---|
-| **Input** | PDF, DOCX, CSV, TXT — any folder, plus ZIP uploads |
+| **Input** | PDF, DOCX, CSV, TXT, plus ZIP uploads from any folder |
 | **Output** | one combined scrubbed string with `---- File: <name> ----` headers, per-file output, redaction report |
 | **Privacy boundary** | raw text is never written to PostgreSQL and never sent to Groq; every LLM payload is re-scanned before transport |
-| **Storage** | PostgreSQL 16 — scrubbed text, transactions, redactions, analyses, chat |
+| **Storage** | PostgreSQL 16 (scrubbed text, transactions, redactions, analyses, chat) |
 | **Model** | Groq `openai/gpt-oss-120b`, fallback `openai/gpt-oss-20b` |
 | **Frontend** | vanilla HTML / CSS / JavaScript |
 | **Verification** | 59 pytest tests, `ruff` clean |
 
 ## Why this exists
 
-Bank statements contain exactly the data an LLM needs for budgeting analysis — and exactly the data that must not leave the user's machine. This service separates the two:
+Bank statements contain the data an LLM needs for budgeting analysis. They also contain the data that must not leave the user's machine. This service separates the two:
 
 1. Raw files are extracted and scrubbed **in memory**.
 2. A deterministic local engine replaces identifiers with placeholders.
@@ -62,7 +63,7 @@ Raw statement text is never persisted and never transmitted.
 
 ## Privacy invariants
 
-These are enforced in code, not just in prompts:
+These are enforced in code:
 
 1. Raw statement text is never written to PostgreSQL.
 2. Raw text is never sent to Groq or any external service.
@@ -70,7 +71,7 @@ These are enforced in code, not just in prompts:
 4. Every Groq payload passes `scan_residual()` immediately before the call.
 5. User chat messages are scrubbed before storage and transport.
 6. Model output is scrubbed and scanned before it is stored or shown.
-7. Redaction rows store the entity type, placeholder, and count — never the original value.
+7. Redaction rows store the entity type, placeholder, and count. The original value is never stored.
 
 ## Architecture
 
@@ -97,7 +98,7 @@ Every model response is validated before it is shown: numeric claims must match 
 | Long reference, trace, transaction, invoice, order, consumer, statement IDs | Categories and derived facts |
 | Home/customer addresses and IP addresses | |
 
-The hard part is the balance: remove every identifier without destroying the transaction's meaning. A scrubber that deletes `Netflix.com` as a "URL" fails just as badly as one that leaks an IBAN.
+The balance is the hard part: remove every identifier without destroying the transaction's meaning. A scrubber that deletes `Netflix.com` as a "URL" is as much a failure as one that leaks an IBAN.
 
 ## Quick start
 
@@ -224,29 +225,41 @@ All tables use UUID primary keys and cascade deletes. Foreign keys and lookup co
 - `transactions` is the source of truth for analysis and chat; the LLM never computes totals.
 - Analyses are stored per run, so a later model or prompt version does not overwrite history.
 - Chat messages keep citations and grounding metadata for auditability.
-- No raw-statement column exists. That is deliberate.
+- There is no raw-statement column.
 
 ## Scrubbing approach
 
-A local, span-based rule engine. It combines labeled field detection, format validation, and context checks, then resolves overlapping spans by priority before replacing them. This avoids the classic failure where one regex corrupts another rule's placeholder.
+The scrubber is a local, span-based rule engine. It combines labeled field detection, format validation, and context checks, then resolves overlapping spans by priority before replacing them. This avoids the classic failure where one regex corrupts another rule's placeholder.
 
 Key decisions:
 
-- **No Presidio, spaCy NER, scrubadub, or LLM in the scrubbing path.** They over-redact person names — which this task requires preserving — and add nondeterminism or heavy model dependencies.
-- **Validators, not just regex.** IBAN mod-97, Luhn cards, `phonenumbers` for international formats, date/timestamp exclusions, amount-context exclusions.
+- **No Presidio, spaCy NER, scrubadub, or LLM in the scrubbing path.** They over-redact person names, which this task requires preserving, and add nondeterminism or heavy model dependencies.
+- **Validators do the precision work.** IBAN mod-97, Luhn cards, `phonenumbers` for international formats, date/timestamp exclusions, amount-context exclusions.
 - **Precision guard.** Merchant URLs (`Netflix.com`, `Amazon.co.uk`) stay; only emails and payment handles are removed.
 - **Fail closed.** A high-confidence residual scanner runs after scrubbing. If it finds PII, the batch is blocked before any LLM call.
 - **Idempotent placeholders.** Scrubbing an already-scrubbed file does not change it.
 
 ## Groq analysis and chat
 
-- **Model:** `openai/gpt-oss-120b`, fallback `openai/gpt-oss-20b` — JSON output, reasoning capability, a 131,072-token context, and roughly 500 tokens/sec on Groq.
+- **Model:** `openai/gpt-oss-120b`, with `openai/gpt-oss-20b` as fallback. Chosen for JSON output, reasoning capability, a 131,072-token context, and roughly 500 tokens/sec on Groq.
 - **Analysis output:** structured JSON with summary, insights, anomalies, recommendations, and data-quality notes.
 - **Facts are the only source of truth for numbers.** Python computes every total, ranking, and count; the model writes narrative only.
 - **Validation:** numeric values are checked against known facts and transactions; invalid citations are filtered or re-grounded; unsupported numbers trigger one repair retry, then a deterministic fallback.
 - **Chat:** retrieval over scrubbed rows plus facts, bounded history, and the same citation/number validation.
 - **Prompt injection:** statement text and retrieved rows are delimited and treated as untrusted data, never as instructions.
 - **Budget:** the free tier allows 8K TPM, so analysis sends a compact facts pack, a 2K-character excerpt, and a bounded digest rather than the entire combined string.
+
+## Guardrails
+
+The guardrails cover three failure modes: identifiers leaving the machine, the model inventing numbers, and the model following instructions hidden in statement text.
+
+- **Before transport.** Chat questions are scrubbed locally, and every Groq payload passes `scan_residual()`. A hit blocks the call.
+- **After generation.** Model strings are scrubbed and re-scanned before validation, storage, or display.
+- **Numbers.** Every numeric claim must match a value in the deterministic facts or the retrieved transactions.
+- **Citations.** Every citation must resolve to a real `filename:line` ref; invalid refs are dropped or re-grounded to matching rows.
+- **Repair, then refuse.** Failed validation gets one repair retry, then a deterministic answer for common aggregates or an explicit refusal.
+- **Prompt injection.** Statement text and retrieved rows are delimited as data. Instructions inside them are ignored.
+- **Tests.** 59 pytest tests cover leaks, preservation, injection attempts, numeric validation, and refusal paths. See [`docs/GUARDRAILS.md`](docs/GUARDRAILS.md).
 
 ## Testing
 
